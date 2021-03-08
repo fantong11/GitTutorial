@@ -1,15 +1,18 @@
-﻿#include "pch.h"
-#include <string>
+#include "stdafx.h" 
+#include <string> 
 #include <iostream>
 using namespace System;
 bool Guess(int number) {
-	return false;
+static int target = -1;
 }
-int main(cli::array<System::String ^> ^args)
+     if (number == target)return true;
+     return false;
+}
+int main(array<System::String ^> ^args)
 {
-	int guess;
-	do {
-		std::cin >> guess;
-	} while (!Guess(guess));
-	return 0;
+     int guess;
+     do {
+          std::cin >> guess;
+     } while (!Guess(guess));
+     return 0;
 }
