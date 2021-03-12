@@ -329,6 +329,7 @@
     <Image Include="Bitmaps\initial_bk.bmp" />
     <Image Include="RES\ad0.bmp" />
     <Image Include="RES\initial_bk.bmp" />
+    <Image Include="RES\selection_panel.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

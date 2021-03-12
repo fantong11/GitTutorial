@@ -108,6 +108,8 @@ IDB_INIBG               BITMAP                  "..\\Bitmaps\\initial_bk.bmp"
 
 IDB_LOADAD              BITMAP                  "..\\Bitmaps\\ad0.bmp"
 
+IDB_CHOOSE              BITMAP                  "..\\RES\\selection_panel.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

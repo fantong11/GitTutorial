@@ -189,5 +189,8 @@
     <Image Include="Bitmaps\ad0.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\selection_panel.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
