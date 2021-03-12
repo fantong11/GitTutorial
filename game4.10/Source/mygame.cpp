@@ -59,6 +59,7 @@
 #include "gamelib.h"
 #include "mygame.h"
 
+
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的遊戲開頭畫面物件
@@ -396,7 +397,6 @@ CGameStateChoose::CGameStateChoose(CGame *g)
 	: CGameState(g)
 {
 }
-
 
 void CGameStateChoose::OnInit()
 {
