@@ -183,5 +183,11 @@
     <Image Include="RES\ad0.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Bitmaps\initial_bk.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\ad0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
