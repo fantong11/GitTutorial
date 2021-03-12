@@ -40,6 +40,7 @@
 
 #include "CEraser.h"
 #include "CBall.h"
+#include "choose.h"
 #include "CBouncingBall.h"
 
 namespace game_framework {
