@@ -305,11 +305,6 @@
     <ClCompile Include="stage.cpp" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <ClInclude Include="choose.h" />
-    <ClInclude Include="stage.h" />
-=======
->>>>>>> 93c2ea41134a9a49e62d746876bb94ab5827163e
     <ClInclude Include="Source\audio.h" />
     <ClInclude Include="Source\CBall.h" />
     <ClInclude Include="Source\CBouncingBall.h" />
