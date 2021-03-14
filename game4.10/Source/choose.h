@@ -11,6 +11,8 @@ namespace game_framework {
 	//	void OnBeginState();							// 設定每次重玩所需的變數
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
+		void OnKeyUp(UINT, UINT, UINT);
+		void OnLButtonDown(UINT, CPoint);
 	private:
 		CMovingBitmap CHO;
 	};

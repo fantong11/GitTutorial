@@ -7,7 +7,6 @@
 #include "CEraser.h"
 #include "choose.h"
 #include "CBall.h"
-#include "choose.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -30,6 +29,20 @@ namespace game_framework {
 		//
 		// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
 		//
+	}
+
+	void CGameStateChoose::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) {
+		const char KEY_ESC = 27;
+		const char KEY_SPACE = ' ';
+		if (nChar == KEY_SPACE)
+			GotoGameState(GAME_STATE_STAGE);						// 切換至GAME_STATE_RUN
+		else if (nChar == KEY_ESC)								// Demo 關閉遊戲的方法
+			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
+	}
+
+	void CGameStateChoose::OnLButtonDown(UINT nFlags, CPoint point)
+	{
+		GotoGameState(GAME_STATE_STAGE);		// 切換至GAME_STATE_RUN
 	}
 
 	void CGameStateChoose::OnShow()
