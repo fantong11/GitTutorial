@@ -204,5 +204,71 @@
     <Image Include="RES\selection_panel.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Bitmaps\stageOneBackground\forestm1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\stageOneBackground\forestm2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\stageOneBackground\forestm3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\stageOneBackground\forestm4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\stageOneBackground\forests.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\stageOneBackground\forestt.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\stageOneBackground\land1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\stageOneBackground\land2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\stageOneBackground\land3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\stageOneBackground\land4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\stageOneBackground\s.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stageOneBackground\forestm1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stageOneBackground\forestm2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stageOneBackground\forestm3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stageOneBackground\forestm4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stageOneBackground\forests.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stageOneBackground\forestt.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stageOneBackground\land1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stageOneBackground\land2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stageOneBackground\land3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stageOneBackground\land4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stageOneBackground\s.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
