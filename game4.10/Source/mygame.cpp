@@ -306,6 +306,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 }
 
+// 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	const char KEY_LEFT  = 0x25; // keyboard左箭頭
