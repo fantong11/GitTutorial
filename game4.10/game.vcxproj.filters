@@ -132,10 +132,9 @@
     <ClCompile Include="Source\choose.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="stage.cpp">
+    <ClCompile Include="Source\stage.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\stage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -177,10 +176,9 @@
     <ClInclude Include="Source\choose.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="stage.h">
+    <ClInclude Include="Source\stage.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="Source\stage.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc">
