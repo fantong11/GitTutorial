@@ -129,7 +129,7 @@
     <ClCompile Include="Source\CBouncingBall.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="choose.cpp">
+    <ClCompile Include="Source\choose.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
     <ClCompile Include="stage.cpp">
@@ -173,7 +173,7 @@
     <ClInclude Include="Source\CBouncingBall.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="choose.h">
+    <ClInclude Include="Source\choose.h">
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="stage.h">
@@ -199,6 +199,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Bitmaps\ad0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\selection_panel.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

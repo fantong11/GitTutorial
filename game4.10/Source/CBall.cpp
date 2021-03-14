@@ -5,6 +5,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "CEraser.h"
+#include "choose.h"
 #include "CBall.h"
 
 namespace game_framework {

@@ -40,6 +40,7 @@
 
 #include "CEraser.h"
 #include "CBall.h"
+#include "choose.h"
 #include "CBouncingBall.h"
 
 namespace game_framework {
@@ -70,7 +71,6 @@ namespace game_framework {
 	private:
 		CMovingBitmap logo;								// csie的logo
 	};
-
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
 	// 每個Member function的Implementation都要弄懂
