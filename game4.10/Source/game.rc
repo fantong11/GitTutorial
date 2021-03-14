@@ -110,27 +110,9 @@ IDB_LOADAD              BITMAP                  "..\\RES\\ad0.bmp"
 
 IDB_CHOOSE              BITMAP                  "..\\RES\\selection_panel.bmp"
 
-IDB_STAGEONEFORESTM1    BITMAP                  "..\\RES\\stageOneBackground\\forestm1.bmp"
+IDB_JOIN1               BITMAP                  "..\\RES\\join_char_1.bmp"
 
-IDB_STAGEONEFORESTM2    BITMAP                  "..\\RES\\stageOneBackground\\forestm2.bmp"
-
-IDB_STAGEONEFORESTM3    BITMAP                  "..\\RES\\stageOneBackground\\forestm3.bmp"
-
-IDB_STAGEONEFORESTM4    BITMAP                  "..\\RES\\stageOneBackground\\forestm4.bmp"
-
-IDB_STATEONEFORESTS     BITMAP                  "..\\RES\\stageOneBackground\\forests.bmp"
-
-IDB_STAGEONETREE        BITMAP                  "..\\RES\\stageOneBackground\\forestt.bmp"
-
-IDB_STAGEONELAND1       BITMAP                  "..\\RES\\stageOneBackground\\land1.bmp"
-
-IDB_STAGEONELAND2       BITMAP                  "..\\RES\\stageOneBackground\\land2.bmp"
-
-IDB_STAGEONELAND3       BITMAP                  "..\\RES\\stageOneBackground\\land3.bmp"
-
-IDB_STAGEONELAND4       BITMAP                  "..\\RES\\stageOneBackground\\land4.bmp"
-
-IDB_STAGEONEBLACKLINE   BITMAP                  "..\\RES\\stageOneBackground\\s.bmp"
+IDB_JOIN2               BITMAP                  "..\\RES\\join_char_2.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

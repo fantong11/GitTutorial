@@ -42,7 +42,7 @@
 #include "CBall.h"
 #include "choose.h"
 #include "CBouncingBall.h"
-#include "stage.h"
+#include "Character.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////

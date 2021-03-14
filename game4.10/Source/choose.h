@@ -8,13 +8,15 @@ namespace game_framework {
 	public:
 		CGameStateChoose(CGame *g);
 		void OnInit();  								// 遊戲的初值及圖形設定
+		bool PressAttack(int a);
+		void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
 	//	void OnBeginState();							// 設定每次重玩所需的變數
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
-		void OnKeyUp(UINT, UINT, UINT);
-		void OnLButtonDown(UINT, CPoint);
 	private:
 		CMovingBitmap CHO;
+		CMovingBitmap character1;
+		CMovingBitmap character2;
 	};
 	
 

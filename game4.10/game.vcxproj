@@ -261,6 +261,7 @@
     <ClCompile Include="Source\CBall.cpp" />
     <ClCompile Include="Source\CBouncingBall.cpp" />
     <ClCompile Include="Source\CEraser.cpp" />
+    <ClCompile Include="Source\Character.cpp" />
     <ClCompile Include="Source\choose.cpp" />
     <ClCompile Include="Source\game.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -282,7 +283,6 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="Source\stage.cpp" />
     <ClCompile Include="Source\StdAfx.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -309,13 +309,13 @@
     <ClInclude Include="Source\CBall.h" />
     <ClInclude Include="Source\CBouncingBall.h" />
     <ClInclude Include="Source\CEraser.h" />
+    <ClInclude Include="Source\Character.h" />
     <ClInclude Include="Source\choose.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\gameDoc.h" />
     <ClInclude Include="Source\gameView.h" />
     <ClInclude Include="Source\MainFrm.h" />
     <ClInclude Include="Source\Resource.h" />
-    <ClInclude Include="Source\stage.h" />
     <ClInclude Include="Source\StdAfx.h" />
     <ClInclude Include="Source\gamelib.h" />
     <ClInclude Include="Source\mygame.h" />
@@ -331,31 +331,11 @@
     <Image Include="..\..\..\..\..\Program Files (x86)\LittleFighter\sprite\sys\ad0.bmp" />
     <Image Include="Bitmaps\ad0.bmp" />
     <Image Include="Bitmaps\initial_bk.bmp" />
-    <Image Include="Bitmaps\stageOneBackground\forestm1.bmp" />
-    <Image Include="Bitmaps\stageOneBackground\forestm2.bmp" />
-    <Image Include="Bitmaps\stageOneBackground\forestm3.bmp" />
-    <Image Include="Bitmaps\stageOneBackground\forestm4.bmp" />
-    <Image Include="Bitmaps\stageOneBackground\forests.bmp" />
-    <Image Include="Bitmaps\stageOneBackground\forestt.bmp" />
-    <Image Include="Bitmaps\stageOneBackground\land1.bmp" />
-    <Image Include="Bitmaps\stageOneBackground\land2.bmp" />
-    <Image Include="Bitmaps\stageOneBackground\land3.bmp" />
-    <Image Include="Bitmaps\stageOneBackground\land4.bmp" />
-    <Image Include="Bitmaps\stageOneBackground\s.bmp" />
     <Image Include="RES\ad0.bmp" />
     <Image Include="RES\initial_bk.bmp" />
+    <Image Include="RES\join_char_1.bmp" />
+    <Image Include="RES\join_char_2.bmp" />
     <Image Include="RES\selection_panel.bmp" />
-    <Image Include="RES\stageOneBackground\forestm1.bmp" />
-    <Image Include="RES\stageOneBackground\forestm2.bmp" />
-    <Image Include="RES\stageOneBackground\forestm3.bmp" />
-    <Image Include="RES\stageOneBackground\forestm4.bmp" />
-    <Image Include="RES\stageOneBackground\forests.bmp" />
-    <Image Include="RES\stageOneBackground\forestt.bmp" />
-    <Image Include="RES\stageOneBackground\land1.bmp" />
-    <Image Include="RES\stageOneBackground\land2.bmp" />
-    <Image Include="RES\stageOneBackground\land3.bmp" />
-    <Image Include="RES\stageOneBackground\land4.bmp" />
-    <Image Include="RES\stageOneBackground\s.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -132,7 +132,7 @@
     <ClCompile Include="Source\choose.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\stage.cpp">
+    <ClCompile Include="Source\Character.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
   </ItemGroup>
@@ -176,7 +176,7 @@
     <ClInclude Include="Source\choose.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="Source\stage.h">
+    <ClInclude Include="Source\Character.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -204,70 +204,10 @@
     <Image Include="RES\selection_panel.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Bitmaps\stageOneBackground\forestm1.bmp">
+    <Image Include="RES\join_char_1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Bitmaps\stageOneBackground\forestm2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Bitmaps\stageOneBackground\forestm3.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Bitmaps\stageOneBackground\forestm4.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Bitmaps\stageOneBackground\forests.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Bitmaps\stageOneBackground\forestt.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Bitmaps\stageOneBackground\land1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Bitmaps\stageOneBackground\land2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Bitmaps\stageOneBackground\land3.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Bitmaps\stageOneBackground\land4.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Bitmaps\stageOneBackground\s.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\stageOneBackground\forestm1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\stageOneBackground\forestm2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\stageOneBackground\forestm3.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\stageOneBackground\forestm4.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\stageOneBackground\forests.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\stageOneBackground\forestt.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\stageOneBackground\land1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\stageOneBackground\land2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\stageOneBackground\land3.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\stageOneBackground\land4.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\stageOneBackground\s.bmp">
+    <Image Include="RES\join_char_2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
