@@ -160,10 +160,7 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 		if(attack==1)
 			role.LoadBitmap();
 		if(attack==3)
-			GotoGameState(GAME_STATE_RUN);
-
-
-		
+			GotoGameState(GAME_STATE_RUN);		
 	}
 	if (nChar == KEY_LEFT && attack > 0) {
 		select--;
@@ -376,18 +373,19 @@ void CGameStateOver::OnShow()
 /////////////////////////////////////////////////////////////////////////////
 
 CGameStateRun::CGameStateRun(CGame *g)
-: CGameState(g), NUMBALLS(28)
+: CGameState(g)//, NUMBALLS(28)
 {
-	ball = new CBall [NUMBALLS];
+	//ball = new CBall [NUMBALLS];
 }
 
 CGameStateRun::~CGameStateRun()
 {
-	delete [] ball;
+	//delete [] ball;
 }
 
 void CGameStateRun::OnBeginState()
 {
+	/*
 	const int BALL_GAP = 90;
 	const int BALL_XY_OFFSET = 45;
 	const int BALL_PER_ROW = 7;
@@ -411,10 +409,12 @@ void CGameStateRun::OnBeginState()
 	CAudio::Instance()->Play(AUDIO_LAKE, true);			// 撥放 WAVE
 	CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
 	CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
+	*/
 }
 
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
+	/*
 	//
 	// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
 	//
@@ -456,6 +456,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 移動彈跳的球
 	//
 	bball.OnMove();
+	*/
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -465,9 +466,11 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
 	//
 	ShowInitProgress(33);	// 接個前一個狀態的進度，此處進度視為33%
+	stageone.LoadBitmap(IDB_STAGEONEBG);
 	//
 	// 開始載入資料
 	//
+	/*
 	int i;
 	for (i = 0; i < NUMBALLS; i++)	
 		ball[i].LoadBitmap();								// 載入第i個球的圖形
@@ -492,8 +495,9 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 	//
+	*/
 }
-
+/*
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	const char KEY_LEFT  = 0x25; // keyboard左箭頭
@@ -550,7 +554,7 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
 	eraser.SetMovingRight(false);
 }
-
+*/
 void CGameStateRun::OnShow()
 {
 	//
@@ -561,6 +565,7 @@ void CGameStateRun::OnShow()
 	//
 	//  貼上背景圖、撞擊數、球、擦子、彈跳的球
 	//
+	/*
 	background.ShowBitmap();			// 貼上背景圖
 	help.ShowBitmap();					// 貼上說明圖
 	hits_left.ShowBitmap();
@@ -575,6 +580,10 @@ void CGameStateRun::OnShow()
 	corner.ShowBitmap();
 	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
 	corner.ShowBitmap();
+	*/
+	stageone.SetTopLeft(0, 0);
+	stageone.ShowBitmap();
+
 }
 
 

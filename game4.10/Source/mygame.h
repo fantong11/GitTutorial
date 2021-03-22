@@ -126,26 +126,27 @@ namespace game_framework {
 		~CGameStateRun();
 		void OnBeginState();							// 設定每次重玩所需的變數
 		void OnInit();  								// 遊戲的初值及圖形設定
-		void OnKeyDown(UINT, UINT, UINT);
-		void OnKeyUp(UINT, UINT, UINT);
-		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
-		void OnLButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
-		void OnMouseMove(UINT nFlags, CPoint point);	// 處理滑鼠的動作 
-		void OnRButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
-		void OnRButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
+		//void OnKeyDown(UINT, UINT, UINT);
+		//void OnKeyUp(UINT, UINT, UINT);
+		//void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
+		//void OnLButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
+		//void OnMouseMove(UINT nFlags, CPoint point);	// 處理滑鼠的動作 
+		//void OnRButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
+		//void OnRButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
 	protected:
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		const int		NUMBALLS;	// 球的總數
-		CMovingBitmap	background;	// 背景圖
-		CMovingBitmap	help;		// 說明圖
-		CBall			*ball;		// 球的陣列
-		CMovingBitmap	corner;		// 角落圖
-		CEraser			eraser;		// 拍子
-		CInteger		hits_left;	// 剩下的撞擊數
-		CBouncingBall   bball;		// 反覆彈跳的球
-	};
+		//const int		NUMBALLS;	// 球的總數
+		//CMovingBitmap	background;	// 背景圖
+		//CMovingBitmap	help;		// 說明圖
+		//CBall			*ball;		// 球的陣列
+		//CMovingBitmap	corner;		// 角落圖
+		//CEraser			eraser;		// 拍子
+		//CInteger		hits_left;	// 剩下的撞擊數
+		//CBouncingBall   bball;		// 反覆彈跳的球
+		CMovingBitmap	stageone;
+ 	};
 
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的結束狀態(Game Over)

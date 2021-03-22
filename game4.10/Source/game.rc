@@ -154,6 +154,8 @@ IDB_COUNTDOWN5          BITMAP                  "..\\RES\\role\\countdown_5.bmp"
 
 IDB_GAMEMENU            BITMAP                  "..\\RES\\game_menu.bmp"
 
+IDB_STAGEONEBG          BITMAP                  "..\\RES\\stageOneBackground\\stageone (1).bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
