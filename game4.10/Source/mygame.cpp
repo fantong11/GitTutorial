@@ -159,6 +159,9 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 		attack++;
 		if(attack==1)
 			role.LoadBitmap();
+		if(attack==3)
+			GotoGameState(GAME_STATE_RUN);
+
 
 		
 	}
