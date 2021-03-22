@@ -114,6 +114,46 @@ IDB_JOIN1               BITMAP                  "..\\RES\\join_char_1.bmp"
 
 IDB_JOIN2               BITMAP                  "..\\RES\\join_char_2.bmp"
 
+IDB_DAVID               BITMAP                  "..\\RES\\role\\davis_f.bmp"
+
+IDB_TEMPLATE            BITMAP                  "..\\RES\\role\\face.bmp"
+
+IDB_DEEP                BITMAP                  "..\\RES\\role\\deep_f.bmp"
+
+IDB_WHITEPLAYER         BITMAP                  "..\\RES\\role\\player.bmp"
+
+IDB_BLUEPLAYER          BITMAP                  "..\\RES\\role\\player2.bmp"
+
+IDB_INIJOINWHITE        BITMAP                  "..\\RES\\role\\INIJOIN2.bmp"
+
+IDB_INIJOINBLUE         BITMAP                  "..\\RES\\role\\INIJOIN.bmp"
+
+IDB_TEMPLATEBLUE        BITMAP                  "..\\RES\\role\\template.bmp"
+
+IDB_TEMPLATEWHITE       BITMAP                  "..\\RES\\role\\template2.bmp"
+
+IDB_DAVIDNAMEWHITE      BITMAP                  "..\\RES\\role\\David_name.bmp"
+
+IDB_DAVIDNAMEBLUE       BITMAP                  "..\\RES\\role\\David_name2.bmp"
+
+IDB_DEEPNAMEWHITE       BITMAP                  "..\\RES\\role\\DEEP_name.bmp"
+
+IDB_DEEPNAMEBLUE        BITMAP                  "..\\RES\\role\\DEEP_name2.bmp"
+
+IDB_TEAM                BITMAP                  "..\\RES\\role\\team.bmp"
+
+IDB_COUNTDOWN1          BITMAP                  "..\\RES\\role\\countdown_1.bmp"
+
+IDB_COUNTDOWN2          BITMAP                  "..\\RES\\role\\countdown_2.bmp"
+
+IDB_COUNTDOWN3          BITMAP                  "..\\RES\\role\\countdown_3.bmp"
+
+IDB_COUNTDOWN4          BITMAP                  "..\\RES\\role\\countdown_4.bmp"
+
+IDB_COUNTDOWN5          BITMAP                  "..\\RES\\role\\countdown_5.bmp"
+
+IDB_GAMEMENU            BITMAP                  "..\\RES\\game_menu.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -302,6 +302,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</TreatWarningAsError>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -332,9 +333,32 @@
     <Image Include="Bitmaps\ad0.bmp" />
     <Image Include="Bitmaps\initial_bk.bmp" />
     <Image Include="RES\ad0.bmp" />
+    <Image Include="RES\game_menu.bmp" />
     <Image Include="RES\initial_bk.bmp" />
     <Image Include="RES\join_char_1.bmp" />
     <Image Include="RES\join_char_2.bmp" />
+    <Image Include="RES\role\bandit_f.bmp" />
+    <Image Include="RES\role\countdown_1.bmp" />
+    <Image Include="RES\role\countdown_2.bmp" />
+    <Image Include="RES\role\countdown_3.bmp" />
+    <Image Include="RES\role\countdown_4.bmp" />
+    <Image Include="RES\role\countdown_5.bmp" />
+    <Image Include="RES\role\David_name.bmp" />
+    <Image Include="RES\role\David_name2.bmp" />
+    <Image Include="RES\role\davis_f.bmp" />
+    <Image Include="RES\role\deep_f.bmp" />
+    <Image Include="RES\role\DEEP_name.bmp" />
+    <Image Include="RES\role\DEEP_name2.bmp" />
+    <Image Include="RES\role\face.bmp" />
+    <Image Include="RES\role\INIJOIN.bmp" />
+    <Image Include="RES\role\INIJOIN.PNG" />
+    <Image Include="RES\role\INIJOIN2.bmp" />
+    <Image Include="RES\role\jack_f.bmp" />
+    <Image Include="RES\role\player.bmp" />
+    <Image Include="RES\role\player2.bmp" />
+    <Image Include="RES\role\team.bmp" />
+    <Image Include="RES\role\template.bmp" />
+    <Image Include="RES\role\template2.bmp" />
     <Image Include="RES\selection_panel.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -43,6 +43,29 @@
 #define IDB_JOIN1                       166
 #define IDB_BITMAP6                     167
 #define IDB_JOIN2                       167
+#define IDB_DAVID                       170
+#define IDB_TEMPLATE                    171
+#define IDB_DEEP                        172
+#define IDB_WHITEPLAYER                 173
+#define IDB_BLUEPLAYER                  174
+#define IDB_PNG1                        175
+#define IDB_INIJOINWHITE                176
+#define IDB_BITMAP5                     179
+#define IDB_INIJOINBLUE                 179
+#define IDB_TEMPLATEBLUE                180
+#define IDB_TEMPLATEWHITE               181
+#define IDB_DAVIDNAMEWHITE              182
+#define IDB_DAVIDNAMEBLUE               183
+#define IDB_DEEPNAMEWHITE               184
+#define IDB_DEEPNAMEBLUE                185
+#define IDB_TEAM                        186
+#define IDB_COUNTDOWN1                  187
+#define IDB_COUNTDOWN2                  188
+#define IDB_COUNTDOWN3                  189
+#define IDB_COUNTDOWN4                  190
+#define IDB_COUNTDOWN5                  191
+#define IDB_BITMAP7                     192
+#define IDB_GAMEMENU                    192
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -55,7 +78,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        168
+#define _APS_NEXT_RESOURCE_VALUE        193
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

@@ -68,6 +68,13 @@ namespace game_framework {
 CGameStateInit::CGameStateInit(CGame *g)
 : CGameState(g)
 {
+	control = 0;
+	attack = 0;
+	select = 0;
+	role.Initialize();
+	section = 0;
+	
+
 }
 
 void CGameStateInit::OnInit()
@@ -81,31 +88,96 @@ void CGameStateInit::OnInit()
 	// 開始載入資料
 	//
 	logo.LoadBitmap(IDB_INIBG);
-	//Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
-	//
-	// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
-	//
+	CHO.LoadBitmap(IDB_CHOOSE);
+	character1.LoadBitmap(IDB_JOIN1, RGB(255, 255, 255));
+	character2.LoadBitmap(IDB_JOIN2, RGB(255, 255, 255));
+	character3.LoadBitmap(IDB_JOIN1, RGB(255, 255, 255));
+	character4.LoadBitmap(IDB_JOIN2, RGB(255, 255, 255));
+	character5.LoadBitmap(IDB_JOIN1, RGB(255, 255, 255));
+	character6.LoadBitmap(IDB_JOIN2, RGB(255, 255, 255));
+	character7.LoadBitmap(IDB_JOIN1, RGB(255, 255, 255));
+	character8.LoadBitmap(IDB_JOIN2, RGB(255, 255, 255));
+	character9.LoadBitmap(IDB_JOIN1, RGB(255, 255, 255));
+	character10.LoadBitmap(IDB_JOIN2, RGB(255, 255, 255));
+	character11.LoadBitmap(IDB_JOIN1, RGB(255, 255, 255));
+	character12.LoadBitmap(IDB_JOIN2, RGB(255, 255, 255));
+	character13.LoadBitmap(IDB_JOIN1, RGB(255, 255, 255));
+	character14.LoadBitmap(IDB_JOIN2, RGB(255, 255, 255));
+	character15.LoadBitmap(IDB_JOIN1, RGB(255, 255, 255));
+	character16.LoadBitmap(IDB_JOIN2, RGB(255, 255, 255));
+	initialplayer1.LoadBitmap(IDB_INIJOINWHITE);
+	initialplayer2.LoadBitmap(IDB_INIJOINBLUE);
+	initialplayer3.LoadBitmap(IDB_INIJOINWHITE);
+	initialplayer4.LoadBitmap(IDB_INIJOINBLUE);
+	initialplayer5.LoadBitmap(IDB_INIJOINWHITE);
+	initialplayer6.LoadBitmap(IDB_INIJOINBLUE);
+	initialplayer7.LoadBitmap(IDB_INIJOINWHITE);
+	initialplayer8.LoadBitmap(IDB_INIJOINBLUE);
+	initialplayer9.LoadBitmap(IDB_INIJOINWHITE);
+	initialplayer10.LoadBitmap(IDB_INIJOINBLUE);
+	initialplayer11.LoadBitmap(IDB_INIJOINWHITE);
+	initialplayer12.LoadBitmap(IDB_INIJOINBLUE);
+	initialplayer13.LoadBitmap(IDB_INIJOINWHITE);
+	initialplayer14.LoadBitmap(IDB_INIJOINBLUE);
+	initialplayer15.LoadBitmap(IDB_INIJOINWHITE);
+	initialplayer16.LoadBitmap(IDB_INIJOINBLUE);
+	menu.LoadBitmap(IDB_GAMEMENU);
+	int i = 0;
+	for (i = 0; i < 35; i++) {
+		if (i % 5 == 0)
+			countdown[i].LoadBitmap(IDB_COUNTDOWN5);
+		else if (i % 5 == 1)
+			countdown[i].LoadBitmap(IDB_COUNTDOWN4);
+		else if (i % 5 == 2)
+			countdown[i].LoadBitmap(IDB_COUNTDOWN3);
+		else if (i % 5 == 3)
+			countdown[i].LoadBitmap(IDB_COUNTDOWN2);
+		else if (i % 5 == 4)
+			countdown[i].LoadBitmap(IDB_COUNTDOWN1);
+	}
 }
 
 void CGameStateInit::OnBeginState()
 {
+	counter = 30 * 6;
 }
-
+void CGameStateInit::OnMove()
+{
+	control += 1;
+	if (attack > 1)
+		counter--;
+}
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	const char KEY_ESC = 27;
 	const char KEY_SPACE = ' ';
+	const char KEY_LEFT = 0x25; // keyboard左箭頭
+	const char KEY_UP = 0x26; // keyboard上箭頭
+	const char KEY_RIGHT = 0x27; // keyboard右箭頭
+	const char KEY_DOWN = 0x28; // keyboard下箭頭
+	if (nChar == KEY_UP) {
+		attack++;
+		if(attack==1)
+			role.LoadBitmap();
+
+		
+	}
+	if (nChar == KEY_LEFT && attack > 0) {
+		select--;
+	}
+	if (nChar == KEY_RIGHT && attack > 0) {
+		select++;
+	}
 	if (nChar == KEY_SPACE)
-		GotoGameState(GAME_STATE_CHOOSE);						// 切換至GAME_STATE_RUN
+		section++;
 	else if (nChar == KEY_ESC)								// Demo 關閉遊戲的方法
 		PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE,0,0);	// 關閉遊戲
 }
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	GotoGameState(GAME_STATE_CHOOSE);		// 切換至GAME_STATE_RUN
+	section++;
 }
-
 void CGameStateInit::OnShow()
 {
 	//
@@ -114,22 +186,134 @@ void CGameStateInit::OnShow()
 	//logo.SetTopLeft((SIZE_X - logo.Width())/2, SIZE_Y/8);
 	logo.SetTopLeft(0, 0);
 	logo.ShowBitmap();
-	//
-	// Demo螢幕字型的使用，不過開發時請盡量避免直接使用字型，改用CMovingBitmap比較好
-	//
-	//CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-	//CFont f,*fp;
-	//f.CreatePointFont(160,"Times New Roman");	// 產生 font f; 160表示16 point的字
-	//fp=pDC->SelectObject(&f);					// 選用 font f
-	//pDC->SetBkColor(RGB(0,0,0));
-	//pDC->SetTextColor(RGB(255,255,0));
-	//pDC->TextOut(120,220,"Please click mouse or press SPACE to begin.");
-	//pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
-	//if (ENABLE_GAME_PAUSE)
-	//	pDC->TextOut(5,425,"Press Ctrl-Q to pause the Game.");
-	//pDC->TextOut(5,455,"Press Alt-F4 or ESC to Quit.");
-	//pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-	//CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	character1.SetTopLeft(120, 90);
+	character2.SetTopLeft(120, 90);
+	character3.SetTopLeft(260, 90);
+	character4.SetTopLeft(260, 90);
+	character5.SetTopLeft(400, 90);
+	character6.SetTopLeft(400, 90);
+	character7.SetTopLeft(540, 90);
+	character8.SetTopLeft(540, 90);
+	character9.SetTopLeft(120, 320);
+	character10.SetTopLeft(120, 320);
+	character11.SetTopLeft(260, 320);
+	character12.SetTopLeft(260, 320);
+	character13.SetTopLeft(400, 320);
+	character14.SetTopLeft(400, 320);
+	character15.SetTopLeft(540, 320);
+	character16.SetTopLeft(540, 320);
+	initialplayer1.SetTopLeft(97, 180);
+	initialplayer2.SetTopLeft(97, 180);
+	initialplayer3.SetTopLeft(240, 180);
+	initialplayer4.SetTopLeft(240, 180);
+	initialplayer5.SetTopLeft(375, 180);
+	initialplayer6.SetTopLeft(375, 180);
+	initialplayer7.SetTopLeft(515, 180);
+	initialplayer8.SetTopLeft(515, 180);
+	initialplayer9.SetTopLeft(97, 400);
+	initialplayer10.SetTopLeft(97, 400);
+	initialplayer11.SetTopLeft(240, 400);
+	initialplayer12.SetTopLeft(240, 400);
+	initialplayer13.SetTopLeft(375, 400);
+	initialplayer14.SetTopLeft(375, 400);
+	initialplayer15.SetTopLeft(515, 400);
+	initialplayer16.SetTopLeft(515, 400);
+	menu.SetTopLeft(0, 0);
+	int i = 0;
+	for (int i = 0; i < 35; i++) {
+		if (i / 5 == 0)
+			countdown[i].SetTopLeft(234, 51);
+		else if (i / 5 == 1)
+			countdown[i].SetTopLeft(374, 51);
+		else if (i / 5 == 2)
+			countdown[i].SetTopLeft(514, 51);
+		else if (i / 5 == 3)
+			countdown[i].SetTopLeft(97, 273);
+		else if (i / 5 == 4)
+			countdown[i].SetTopLeft(234, 273);
+		else if (i / 5 == 5)
+			countdown[i].SetTopLeft(374, 273);
+		else if (i / 5 == 6)
+			countdown[i].SetTopLeft(514, 273);
+	}
+	if (section > 0) {
+		CHO.SetTopLeft(0, 0);
+		CHO.ShowBitmap();
+		section++;
+	}
+	if (control % 2 == 1 && section >0 && attack <= 1) {
+		character1.ShowBitmap();
+		character3.ShowBitmap();
+		character5.ShowBitmap();
+		character7.ShowBitmap();
+		character9.ShowBitmap();
+		character11.ShowBitmap();
+		character13.ShowBitmap();
+		character15.ShowBitmap();
+		initialplayer1.ShowBitmap();
+		initialplayer3.ShowBitmap();
+		initialplayer5.ShowBitmap();
+		initialplayer7.ShowBitmap();
+		initialplayer9.ShowBitmap();
+		initialplayer11.ShowBitmap();
+		initialplayer13.ShowBitmap();
+		initialplayer15.ShowBitmap();
+	}
+	else if (control % 2 == 0 && section > 0 && attack <= 1) {
+		character2.ShowBitmap();
+		character4.ShowBitmap();
+		character6.ShowBitmap();
+		character8.ShowBitmap();
+		character10.ShowBitmap();
+		character12.ShowBitmap();
+		character14.ShowBitmap();
+		character16.ShowBitmap();
+		initialplayer2.ShowBitmap();
+		initialplayer4.ShowBitmap();
+		initialplayer6.ShowBitmap();
+		initialplayer8.ShowBitmap();
+		initialplayer10.ShowBitmap();
+		initialplayer12.ShowBitmap();
+		initialplayer14.ShowBitmap();
+		initialplayer16.ShowBitmap();
+	}
+	if (attack > 0 && section>1) {
+		role.OnShow(select, control,attack);
+	}
+	if (attack > 1 && section>1) {
+		
+		if (counter / 30 == 5) {
+			for (i = 0; i < 35; i = i + 5) {
+				countdown[i].ShowBitmap();
+			}
+		}
+		if (counter / 30 == 4) {
+			for (i = 1; i < 35; i = i + 5) {
+				countdown[i].ShowBitmap();
+			}
+		}
+		else if (counter / 30 == 3) {
+			for (i = 2; i < 35; i = i + 5) {
+				countdown[i].ShowBitmap();
+			}
+		}
+		else if (counter / 30 == 2) {
+			for (i = 3; i < 35; i = i + 5) {
+				countdown[i].ShowBitmap();
+			}
+		}
+		if (counter / 30 == 1) {
+			for (i = 4; i < 35; i = i + 5) {
+				countdown[i].ShowBitmap();
+			}
+		}
+		
+
+	}
+	if (counter < 0) {
+		menu.ShowBitmap();
+	}
+	
 }								
 
 /////////////////////////////////////////////////////////////////////////////

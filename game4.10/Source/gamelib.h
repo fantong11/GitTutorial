@@ -82,7 +82,6 @@
 
 enum GAME_STATES {
 	GAME_STATE_INIT,
-	GAME_STATE_CHOOSE,
 	GAME_STATE_RUN,
 	GAME_STATE_OVER
 };
@@ -272,7 +271,6 @@ private:
 
 class CGame;
 class CGameStateInit;
-class CGameStateChoose;
 class CharactorChoose;
 class CGameStateRun;
 class CGameStateOver;

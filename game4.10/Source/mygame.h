@@ -40,7 +40,6 @@
 
 #include "CEraser.h"
 #include "CBall.h"
-#include "choose.h"
 #include "CBouncingBall.h"
 #include "Character.h"
 
@@ -69,8 +68,52 @@ namespace game_framework {
 		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
+		void OnMove();
 	private:
 		CMovingBitmap logo;								// csie的logo
+	private:
+		CMovingBitmap CHO;
+		ChooseCharactor role;
+		CMovingBitmap character1;
+		CMovingBitmap character2;
+		CMovingBitmap character3;
+		CMovingBitmap character4;
+		CMovingBitmap character5;
+		CMovingBitmap character6;
+		CMovingBitmap character7;
+		CMovingBitmap character8;
+		CMovingBitmap character9;
+		CMovingBitmap character10;
+		CMovingBitmap character11;
+		CMovingBitmap character12;
+		CMovingBitmap character13;
+		CMovingBitmap character14;
+		CMovingBitmap character15;
+		CMovingBitmap character16;
+		CMovingBitmap initialplayer1;
+		CMovingBitmap initialplayer2;
+		CMovingBitmap initialplayer3;
+		CMovingBitmap initialplayer4;
+		CMovingBitmap initialplayer5;
+		CMovingBitmap initialplayer6;
+		CMovingBitmap initialplayer7;
+		CMovingBitmap initialplayer8;
+		CMovingBitmap initialplayer9;
+		CMovingBitmap initialplayer10;
+		CMovingBitmap initialplayer11;
+		CMovingBitmap initialplayer12;
+		CMovingBitmap initialplayer13;
+		CMovingBitmap initialplayer14;
+		CMovingBitmap initialplayer15;
+		CMovingBitmap initialplayer16;
+		CMovingBitmap countdown[35];
+		CMovingBitmap menu;
+		int control;
+		int attack;
+		int select;
+		int section;
+		int counter;
+
 	};
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡

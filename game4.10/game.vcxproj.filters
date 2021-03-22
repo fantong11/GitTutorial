@@ -210,5 +210,72 @@
     <Image Include="RES\join_char_2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\role\jack_f.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\bandit_f.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\davis_f.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\face.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\deep_f.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\player.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\player2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\INIJOIN.PNG" />
+    <Image Include="RES\role\INIJOIN2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\INIJOIN.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\template.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\template2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\David_name.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\David_name2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\DEEP_name.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\DEEP_name2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\team.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\countdown_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\countdown_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\countdown_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\countdown_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\countdown_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\game_menu.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
