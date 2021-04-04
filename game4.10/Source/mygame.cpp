@@ -462,6 +462,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	bball.OnMove();
 	*/
+	charactor.OnMove();
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -472,6 +473,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	ShowInitProgress(33);	// 接個前一個狀態的進度，此處進度視為33%
 	stageone.LoadBitmap(IDB_STAGEONEBG);
+	charactor.LoadBitmap();
 	//
 	// 開始載入資料
 	//
@@ -502,7 +504,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	*/
 }
-/*
+
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	const char KEY_LEFT  = 0x25; // keyboard左箭頭
@@ -510,13 +512,13 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	if (nChar == KEY_LEFT)
-		eraser.SetMovingLeft(true);
+		charactor.SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)
-		eraser.SetMovingRight(true);
+		charactor.SetMovingRight(true);
 	if (nChar == KEY_UP)
-		eraser.SetMovingUp(true);
+		charactor.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
-		eraser.SetMovingDown(true);
+		charactor.SetMovingDown(true);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -526,15 +528,15 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	if (nChar == KEY_LEFT)
-		eraser.SetMovingLeft(false);
+		charactor.SetMovingLeft(false);
 	if (nChar == KEY_RIGHT)
-		eraser.SetMovingRight(false);
+		charactor.SetMovingRight(false);
 	if (nChar == KEY_UP)
-		eraser.SetMovingUp(false);
+		charactor.SetMovingUp(false);
 	if (nChar == KEY_DOWN)
-		eraser.SetMovingDown(false);
+		charactor.SetMovingDown(false);
 }
-
+/*
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
 	eraser.SetMovingLeft(true);
@@ -570,6 +572,7 @@ void CGameStateRun::OnShow()
 	//
 	//  貼上背景圖、撞擊數、球、擦子、彈跳的球
 	//
+	
 	/*
 	background.ShowBitmap();			// 貼上背景圖
 	help.ShowBitmap();					// 貼上說明圖
@@ -588,7 +591,7 @@ void CGameStateRun::OnShow()
 	*/
 	stageone.SetTopLeft(0, 0);
 	stageone.ShowBitmap();
-
+	charactor.OnShow();
 }
 
 
