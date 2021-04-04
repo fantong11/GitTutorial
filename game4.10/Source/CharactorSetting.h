@@ -20,6 +20,14 @@ namespace game_framework {
 		CAnimation charactor_hit_right;
 		CAnimation charactor_stand_right;
 
+		CAnimation charactor_walk_left;
+		CAnimation charactor_run_left;
+		CAnimation charactor_attack_left;
+		CAnimation charactor_jump_left;
+		CAnimation charactor_defense_left;
+		CAnimation charactor_hit_left;
+		CAnimation charactor_stand_left;
+
 		int charactor_walk_value;
 		int charactor_run_value;
 		int charactor_attack_value;
