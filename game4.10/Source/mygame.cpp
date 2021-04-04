@@ -121,7 +121,8 @@ void CGameStateInit::OnInit()
 	initialplayer14.LoadBitmap(IDB_INIJOINBLUE);
 	initialplayer15.LoadBitmap(IDB_INIJOINWHITE);
 	initialplayer16.LoadBitmap(IDB_INIJOINBLUE);
-	menu.LoadBitmap(IDB_GAMEMENU);
+	menu.LoadBitmap(IDB_GAMEMENU,RGB(237, 28, 36));
+	role.LoadBitmap();
 	int i = 0;
 	for (i = 0; i < 35; i++) {
 		if (i % 5 == 0)
@@ -155,10 +156,11 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN = 0x28; // keyboard下箭頭
-	if (nChar == KEY_UP) {
-		attack++;
-		if(attack==1)
-			role.LoadBitmap();
+	const char KEY_ATTACK = 0x4A;
+	const char KEY_DEF = 0x4C;
+	const char KEY_JUMP = 0x4B;
+	if (nChar == KEY_ATTACK) {
+		attack++;			
 		if(attack==3)
 			GotoGameState(GAME_STATE_RUN);		
 	}
@@ -167,6 +169,9 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	}
 	if (nChar == KEY_RIGHT && attack > 0) {
 		select++;
+	}
+	if (nChar == KEY_JUMP && attack > 0) {
+		attack--;
 	}
 	if (nChar == KEY_SPACE)
 		section++;
@@ -310,7 +315,7 @@ void CGameStateInit::OnShow()
 		
 
 	}
-	if (counter < 0) {
+	if (counter < 0 && attack==2) {
 		menu.ShowBitmap();
 	}
 	
