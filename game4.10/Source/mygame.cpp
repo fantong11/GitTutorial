@@ -526,6 +526,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	const char KEY_JUMP = 0x6B; // keyboard k
 	if (nChar == KEY_LEFT)
 		charactor.SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)
@@ -534,6 +535,9 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		charactor.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
 		charactor.SetMovingDown(true);
+	if (nChar == KEY_JUMP)
+		charactor.SetMovingJump(true);
+	charactor.SetMoving(true);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -542,6 +546,7 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	const char KEY_JUMP  = 0x6B; // keyboard k
 	if (nChar == KEY_LEFT)
 		charactor.SetMovingLeft(false);
 	if (nChar == KEY_RIGHT)
@@ -550,6 +555,10 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 		charactor.SetMovingUp(false);
 	if (nChar == KEY_DOWN)
 		charactor.SetMovingDown(false);
+	if (nChar == KEY_JUMP) 
+		charactor.SetMovingJump(false);
+	if (charactor.IsMoving() == false)
+		charactor.SetMoving(false);
 }
 /*
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
