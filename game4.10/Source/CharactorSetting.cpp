@@ -21,16 +21,24 @@ namespace game_framework {
 		charactor_run_value = RUN_VALUE;
 		charactor_health_value = HEALTH_VALUE;
 
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = false;
 		face_right = true;
+		on_floor = true;
 
 		x = 95;
 		y = 300;
 	}
 
+	bool CharactorSetting::IsMoving(void) {
+		if (!isMovingLeft && !isMovingUp && !isMovingDown && !isMovingRight && !isMovingJump)
+			return false;
+		else 
+			return true;
+	}
+
 	void CharactorSetting::LoadBitmap() {
-		char *file_charactor_walk_to_right[4] = {".\\RES\\template\\walk_to_right\\walk1.bmp", ".\\RES\\template\\walk_to_right\\walk2.bmp", ".\\RES\\template\\walk_to_right\\walk3.bmp", ".\\RES\\template\\walk_to_right\\walk4.bmp"};
-		char *file_charactor_walk_to_left[4] = {".\\RES\\template\\walk_to_left\\walk1.bmp", ".\\RES\\template\\walk_to_left\\walk2.bmp", ".\\RES\\template\\walk_to_left\\walk3.bmp", ".\\RES\\template\\walk_to_left\\walk4.bmp"};
+		char *file_charactor_walk_to_right[6] = {".\\RES\\template\\walk_to_right\\walk1.bmp", ".\\RES\\template\\walk_to_right\\walk2.bmp", ".\\RES\\template\\walk_to_right\\walk3.bmp", ".\\RES\\template\\walk_to_right\\walk4.bmp", ".\\RES\\template\\walk_to_right\\walk3.bmp" , ".\\RES\\template\\walk_to_right\\walk2.bmp" };
+		char *file_charactor_walk_to_left[6] = {".\\RES\\template\\walk_to_left\\walk1.bmp", ".\\RES\\template\\walk_to_left\\walk2.bmp", ".\\RES\\template\\walk_to_left\\walk3.bmp", ".\\RES\\template\\walk_to_left\\walk4.bmp", ".\\RES\\template\\walk_to_left\\walk3.bmp" , ".\\RES\\template\\walk_to_left\\walk2.bmp"};
 		char *file_charactor_run_to_right[4] = {};
 		char *file_charactor_run_to_left[4] = {};
 		char *file_charactor_stand_right[4] = {".\\RES\\template\\stand_right\\stand1.bmp", ".\\RES\\template\\stand_right\\stand2.bmp", ".\\RES\\template\\stand_right\\stand3.bmp", ".\\RES\\template\\stand_right\\stand4.bmp"};
@@ -39,6 +47,9 @@ namespace game_framework {
 		for (int i = 0; i < 4; i ++) {
 			charactor_stand_right.AddBitmap(file_charactor_stand_right[i], RGB(0, 0, 0));
 			charactor_stand_left.AddBitmap(file_charactor_stand_left[i], RGB(0, 0, 0));
+		}
+
+		for (int i = 0; i < 6; i++) {
 			charactor_walk_right.AddBitmap(file_charactor_walk_to_right[i], RGB(0, 0, 0));
 			charactor_walk_left.AddBitmap(file_charactor_walk_to_left[i], RGB(0, 0, 0));
 		}
@@ -62,39 +73,64 @@ namespace game_framework {
 		face_right = true;
 	}
 
+	void CharactorSetting::SetMovingJump(bool flag) {
+		isMovingJump = flag;
+		on_floor = false;
+	}
+
+	void CharactorSetting::SetMoving(bool flag) {
+		isMoving = flag;
+	}
+
 	void CharactorSetting::OnMove() {
 		const int STEP_SIZE = 2;
 		if (face_right) {
-			if (!isMovingDown && !isMovingLeft && !isMovingRight && !isMovingUp) {
+			if (!isMoving) {
+				charactor_stand_right.OnMove();
+				charactor_stand_right.OnMove();
 				charactor_stand_right.OnMove();
 			}
-			if (isMovingRight) {
-				x += STEP_SIZE;
+			else {
+				if (isMovingLeft) {
+					isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = false;
+					return;
+				}
+				if (isMovingRight) {
+					x += STEP_SIZE;
+				}
+				if (isMovingUp) {
+					y -= STEP_SIZE;
+				}
+				if (isMovingDown) {
+					y += STEP_SIZE;
+				}
 				charactor_walk_right.OnMove();
-			}
-			if (isMovingUp) {
-				y -= STEP_SIZE;
 				charactor_walk_right.OnMove();
-			}
-			if (isMovingDown) {
-				y += STEP_SIZE;
 				charactor_walk_right.OnMove();
 			}
 		}
 		else {
-			if (!isMovingDown && !isMovingLeft && !isMovingRight && !isMovingUp) {
+			if (!isMoving) {
+				charactor_stand_left.OnMove();
+				charactor_stand_left.OnMove();
 				charactor_stand_left.OnMove();
 			}
-			if (isMovingLeft) {
-				x -= STEP_SIZE;
+			else {
+				if (isMovingRight) {
+					isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = false;
+					return;
+				}
+				if (isMovingLeft) {
+					x -= STEP_SIZE;
+				}
+				if (isMovingUp) {
+					y -= STEP_SIZE;
+				}
+				if (isMovingDown) {
+					y += STEP_SIZE;
+				}
 				charactor_walk_left.OnMove();
-			}
-			if (isMovingUp) {
-				y -= STEP_SIZE;
 				charactor_walk_left.OnMove();
-			}
-			if (isMovingDown) {
-				y += STEP_SIZE;
 				charactor_walk_left.OnMove();
 			}
 		}
@@ -107,30 +143,26 @@ namespace game_framework {
 		charactor_walk_left.SetTopLeft(x, y);
 
 		if (face_right) {
-			if (!isMovingDown && !isMovingLeft && !isMovingRight && !isMovingUp) {
+			if (!isMoving) {
+				charactor_stand_right.OnShow();
+				charactor_stand_right.OnShow();
 				charactor_stand_right.OnShow();
 			}
-			if (isMovingRight) {
+			else {
 				charactor_walk_right.OnShow();
-			}
-			if (isMovingUp) {
 				charactor_walk_right.OnShow();
-			}
-			if (isMovingDown) {
 				charactor_walk_right.OnShow();
 			}
 		}
 		else {
-			if (!isMovingDown && !isMovingLeft && !isMovingRight && !isMovingUp) {
+			if (!isMoving) {
+				charactor_stand_left.OnShow();
+				charactor_stand_left.OnShow();
 				charactor_stand_left.OnShow();
 			}
-			if (isMovingLeft) {
+			else {
 				charactor_walk_left.OnShow();
-			}
-			if (isMovingUp) {
 				charactor_walk_left.OnShow();
-			}
-			if (isMovingDown) {
 				charactor_walk_left.OnShow();
 			}
 		}

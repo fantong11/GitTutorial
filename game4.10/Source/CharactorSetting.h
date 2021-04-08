@@ -8,6 +8,9 @@ namespace game_framework {
 		void SetMovingLeft(bool flag);	// 設定是否正在往左移動
 		void SetMovingRight(bool flag); // 設定是否正在往右移動
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
+		void SetMovingJump(bool flag);
+		void SetMoving(bool flag);
+		bool IsMoving(void);
 
 		void OnMove();
 		void OnShow();
@@ -39,7 +42,10 @@ namespace game_framework {
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動
 		bool isMovingUp;			// 是否正在往上移動
+		bool isMoving;
+		bool isMovingJump;
 		bool face_right;
+		bool on_floor;
 
 		int x, y;
 	};
