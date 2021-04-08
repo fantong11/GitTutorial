@@ -287,4 +287,9 @@
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Source\text1.txt">
+      <Filter>MyGame</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

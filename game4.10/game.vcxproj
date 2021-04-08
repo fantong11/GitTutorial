@@ -364,6 +364,9 @@
     <Image Include="RES\selection_panel.bmp" />
     <Image Include="RES\stageOneBackground\stageone (1).bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Source\text1.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

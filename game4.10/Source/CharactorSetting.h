@@ -3,7 +3,7 @@ namespace game_framework {
 	class CharactorSetting {
 	public:
 		CharactorSetting();
-		void LoadBitmap();
+		void LoadBitmap(int);
 		void SetMovingDown(bool flag);	// 設定是否正在往下移動
 		void SetMovingLeft(bool flag);	// 設定是否正在往左移動
 		void SetMovingRight(bool flag); // 設定是否正在往右移動
@@ -12,6 +12,7 @@ namespace game_framework {
 		void OnMove();
 		void OnShow();
 	private:
+		CMovingBitmap try1;
 		CAnimation charactor_walk_right;
 		CAnimation charactor_run_right;
 		CAnimation charactor_attack_right;

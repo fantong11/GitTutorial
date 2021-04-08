@@ -7,11 +7,12 @@
 #include "Character.h"
 #include "cmath"
 
+
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// CEraser: Eraser class
 	/////////////////////////////////////////////////////////////////////////////
-
+	
 	ChooseCharactor::ChooseCharactor()
 	{
 		Initialize();
@@ -50,11 +51,7 @@ namespace game_framework {
 		rolename5.LoadBitmap(IDB_DAVIDNAMEWHITE);
 		rolename6.LoadBitmap(IDB_DAVIDNAMEBLUE);
 		team.LoadBitmap(IDB_TEAM);
-		
-		
 	}
-	
-	
 	void ChooseCharactor::OnShow(int select,int shine,int attack)
 	{
 		role1.SetTopLeft(97, 51);

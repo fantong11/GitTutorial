@@ -5,6 +5,8 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "CharactorSetting.h"
+#include "cmath"
+#include "iostream"
 
 namespace game_framework {
 	// ³]©w¦n map
@@ -28,7 +30,13 @@ namespace game_framework {
 		y = 300;
 	}
 
-	void CharactorSetting::LoadBitmap() {
+	void CharactorSetting::LoadBitmap(int RoleSelect222222) {
+		if ((RoleSelect222222 % 3 )== 1)
+			try1.LoadBitmap(IDB_TEMPLATE);
+		else if ((RoleSelect222222 % 3) == 2)
+			try1.LoadBitmap(IDB_DEEP);
+		else if (RoleSelect222222  == 0)
+			try1.LoadBitmap(IDB_DAVID);
 		char *file_charactor_walk_to_right[4] = {".\\RES\\template\\walk_to_right\\walk1.bmp", ".\\RES\\template\\walk_to_right\\walk2.bmp", ".\\RES\\template\\walk_to_right\\walk3.bmp", ".\\RES\\template\\walk_to_right\\walk4.bmp"};
 		char *file_charactor_walk_to_left[4] = {};
 		char *file_charactor_run_to_right[4] = {};
@@ -77,6 +85,7 @@ namespace game_framework {
 	}
 
 	void CharactorSetting::OnShow() {
+		try1.SetTopLeft(120, 120);
 		charactor_stand_right.SetTopLeft(x, y);
 		charactor_walk_right.SetTopLeft(x, y);
 		if (face_right) {
@@ -90,5 +99,6 @@ namespace game_framework {
 		else {
 
 		}
+		try1.ShowBitmap();
 	}
 }

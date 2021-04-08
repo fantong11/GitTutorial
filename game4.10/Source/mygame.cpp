@@ -58,7 +58,10 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "mygame.h"
-
+#include "cmath"
+#include <iostream>
+#include <fstream>
+int RoleSelect222222 = 0;
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -73,6 +76,14 @@ CGameStateInit::CGameStateInit(CGame *g)
 	select = 0;
 	role.Initialize();
 	section = 0;
+	ofstream fout("text1.txt");
+	if (!fout)
+	{
+		cout << "檔案I/O失敗" << endl;
+	}
+	
+	fout << 22 << endl;
+	fout.close();
 	
 
 }
@@ -160,15 +171,19 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_DEF = 0x4C;
 	const char KEY_JUMP = 0x4B;
 	if (nChar == KEY_ATTACK) {
-		attack++;			
-		if(attack==3)
-			GotoGameState(GAME_STATE_RUN);		
+		attack++;
+		if (attack == 3) {
+			
+			GotoGameState(GAME_STATE_RUN);
+		}
 	}
 	if (nChar == KEY_LEFT && attack > 0) {
 		select--;
+		RoleSelect222222--;
 	}
 	if (nChar == KEY_RIGHT && attack > 0) {
 		select++;
+		RoleSelect222222++;
 	}
 	if (nChar == KEY_JUMP && attack > 0) {
 		attack--;
@@ -473,7 +488,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	ShowInitProgress(33);	// 接個前一個狀態的進度，此處進度視為33%
 	stageone.LoadBitmap(IDB_STAGEONEBG);
-	charactor.LoadBitmap();
+	charactor.LoadBitmap(RoleSelect222222);
 	//
 	// 開始載入資料
 	//
