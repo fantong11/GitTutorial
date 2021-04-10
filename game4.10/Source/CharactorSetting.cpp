@@ -16,6 +16,7 @@ namespace game_framework {
 		const int WALK_VALUE = 50;
 		const int RUN_VALUE = 100;
 		const int HEALTH_VALUE = 1000;
+		
 
 		charactor_attack_value = ATTACK_VALUE;
 		charactor_defense_value = DEFENSE_VALUE;
@@ -31,6 +32,19 @@ namespace game_framework {
 		y = 300;
 	}
 
+	void CharactorSetting::SetXY(int _x, int _y) {
+		x = _x;
+		y = _y;
+		face_right = false;
+	}
+	
+	void CharactorSetting::RandomMoving(void) {
+		int move = rand();
+
+		if (move % 8 == 0)
+			isMovingLeft = true;
+	}
+
 
 	bool CharactorSetting::IsMoving(void) {
 		if (!isMovingLeft && !isMovingUp && !isMovingDown && !isMovingRight && !isMovingJump)
@@ -40,11 +54,29 @@ namespace game_framework {
 	}
 
 	void CharactorSetting::LoadBitmap() {
-		char *file_charactor_walk_to_right[6] = {".\\RES\\template\\walk_to_right\\walk1.bmp", ".\\RES\\template\\walk_to_right\\walk2.bmp", ".\\RES\\template\\walk_to_right\\walk3.bmp", ".\\RES\\template\\walk_to_right\\walk4.bmp", ".\\RES\\template\\walk_to_right\\walk3.bmp" , ".\\RES\\template\\walk_to_right\\walk2.bmp" };
-		char *file_charactor_walk_to_left[6] = {".\\RES\\template\\walk_to_left\\walk1.bmp", ".\\RES\\template\\walk_to_left\\walk2.bmp", ".\\RES\\template\\walk_to_left\\walk3.bmp", ".\\RES\\template\\walk_to_left\\walk4.bmp", ".\\RES\\template\\walk_to_left\\walk3.bmp" , ".\\RES\\template\\walk_to_left\\walk2.bmp"};
-		char *file_charactor_stand_right[4] = {".\\RES\\template\\stand_right\\stand1.bmp", ".\\RES\\template\\stand_right\\stand2.bmp", ".\\RES\\template\\stand_right\\stand3.bmp", ".\\RES\\template\\stand_right\\stand4.bmp"};
+		
+		
+		char *file_charactor_walk_to_right[6] = { ".\\RES\\template\\walk_to_right\\walk1.bmp", ".\\RES\\template\\walk_to_right\\walk2.bmp", ".\\RES\\template\\walk_to_right\\walk3.bmp", ".\\RES\\template\\walk_to_right\\walk4.bmp", ".\\RES\\template\\walk_to_right\\walk3.bmp" , ".\\RES\\template\\walk_to_right\\walk2.bmp" };
+		char *file_charactor_walk_to_left[6] = { ".\\RES\\template\\walk_to_left\\walk1.bmp", ".\\RES\\template\\walk_to_left\\walk2.bmp", ".\\RES\\template\\walk_to_left\\walk3.bmp", ".\\RES\\template\\walk_to_left\\walk4.bmp", ".\\RES\\template\\walk_to_left\\walk3.bmp" , ".\\RES\\template\\walk_to_left\\walk2.bmp" };
+		char *file_charactor_stand_right[4] = { ".\\RES\\template\\stand_right\\stand1.bmp", ".\\RES\\template\\stand_right\\stand2.bmp", ".\\RES\\template\\stand_right\\stand3.bmp", ".\\RES\\template\\stand_right\\stand4.bmp" };
 		char *file_charactor_stand_left[4] = { ".\\RES\\template\\stand_left\\stand1.bmp", ".\\RES\\template\\stand_left\\stand2.bmp", ".\\RES\\template\\stand_left\\stand3.bmp", ".\\RES\\template\\stand_left\\stand4.bmp" };
-
+		
+		
+		/*
+		char *file_charactor_walk_to_right[6] = { ".\\RES\\deep\\walk_to_right\\walk1.bmp", ".\\RES\\deep\\walk_to_right\\walk2.bmp", ".\\RES\\deep\\walk_to_right\\walk3.bmp", ".\\RES\\deep\\walk_to_right\\walk4.bmp", ".\\RES\\deep\\walk_to_right\\walk3.bmp" , ".\\RES\\deep\\walk_to_right\\walk2.bmp" };
+		char *file_charactor_walk_to_left[6] = { ".\\RES\\deep\\walk_to_left\\walk1.bmp", ".\\RES\\deep\\walk_to_left\\walk2.bmp", ".\\RES\\deep\\walk_to_left\\walk3.bmp", ".\\RES\\deep\\walk_to_left\\walk4.bmp", ".\\RES\\deep\\walk_to_left\\walk3.bmp" , ".\\RES\\deep\\walk_to_left\\walk2.bmp" };
+		char *file_charactor_stand_right[4] = { ".\\RES\\deep\\stand_right\\stand1.bmp", ".\\RES\\deep\\stand_right\\stand2.bmp", ".\\RES\\deep\\stand_right\\stand3.bmp", ".\\RES\\deep\\stand_right\\stand4.bmp" };
+		char *file_charactor_stand_left[4] = { ".\\RES\\deep\\stand_left\\stand1.bmp", ".\\RES\\deep\\stand_left\\stand2.bmp", ".\\RES\\deep\\stand_left\\stand3.bmp", ".\\RES\\deep\\stand_left\\stand4.bmp" };
+		*/
+		
+		/*
+		else if (role_select == 1) {
+			char *file_charactor_walk_to_right[6] = { ".\\RES\\template\\walk_to_right\\walk1.bmp", ".\\RES\\template\\walk_to_right\\walk2.bmp", ".\\RES\\template\\walk_to_right\\walk3.bmp", ".\\RES\\template\\walk_to_right\\walk4.bmp", ".\\RES\\template\\walk_to_right\\walk3.bmp" , ".\\RES\\template\\walk_to_right\\walk2.bmp" };
+			char *file_charactor_walk_to_left[6] = { ".\\RES\\template\\walk_to_left\\walk1.bmp", ".\\RES\\template\\walk_to_left\\walk2.bmp", ".\\RES\\template\\walk_to_left\\walk3.bmp", ".\\RES\\template\\walk_to_left\\walk4.bmp", ".\\RES\\template\\walk_to_left\\walk3.bmp" , ".\\RES\\template\\walk_to_left\\walk2.bmp" };
+			char *file_charactor_stand_right[4] = { ".\\RES\\template\\stand_right\\stand1.bmp", ".\\RES\\template\\stand_right\\stand2.bmp", ".\\RES\\template\\stand_right\\stand3.bmp", ".\\RES\\template\\stand_right\\stand4.bmp" };
+			char *file_charactor_stand_left[4] = { ".\\RES\\template\\stand_left\\stand1.bmp", ".\\RES\\template\\stand_left\\stand2.bmp", ".\\RES\\template\\stand_left\\stand3.bmp", ".\\RES\\template\\stand_left\\stand4.bmp" };
+		}
+		*/
 		for (int i = 0; i < 4; i ++) {
 			charactor_stand_right.AddBitmap(file_charactor_stand_right[i], RGB(0, 0, 0));
 			charactor_stand_left.AddBitmap(file_charactor_stand_left[i], RGB(0, 0, 0));
@@ -55,7 +87,7 @@ namespace game_framework {
 			charactor_walk_left.AddBitmap(file_charactor_walk_to_left[i], RGB(0, 0, 0));
 		}
 	}
-
+	
 	void CharactorSetting::SetMovingDown(bool flag) {
 		isMovingDown = flag;
 	}
@@ -97,13 +129,16 @@ namespace game_framework {
 					return;
 				}
 				if (isMovingRight) {
-					x += STEP_SIZE;
+					if(x+STEP_SIZE<594)
+						x += STEP_SIZE;
 				}
 				if (isMovingUp) {
-					y -= STEP_SIZE;
+					if (y - STEP_SIZE > 224)
+						y -= STEP_SIZE;
 				}
 				if (isMovingDown) {
-					y += STEP_SIZE;
+					if (y + STEP_SIZE < 380)
+						y += STEP_SIZE;
 				}
 				charactor_walk_right.OnMove();
 				charactor_walk_right.OnMove();
@@ -122,13 +157,16 @@ namespace game_framework {
 					return;
 				}
 				if (isMovingLeft) {
-					x -= STEP_SIZE;
+					if (x - STEP_SIZE > -40)
+						x -= STEP_SIZE;
 				}
 				if (isMovingUp) {
-					y -= STEP_SIZE;
+					if (y - STEP_SIZE > 224)
+						y -= STEP_SIZE;
 				}
 				if (isMovingDown) {
-					y += STEP_SIZE;
+					if (y + STEP_SIZE < 380)
+						y += STEP_SIZE;
 				}
 				charactor_walk_left.OnMove();
 				charactor_walk_left.OnMove();
@@ -138,7 +176,7 @@ namespace game_framework {
 	}
 
 	void CharactorSetting::OnShow() {
-		try1.SetTopLeft(120, 120);
+
 		charactor_stand_right.SetTopLeft(x, y);
 		charactor_stand_left.SetTopLeft(x, y);
 		charactor_walk_right.SetTopLeft(x, y);
@@ -168,6 +206,6 @@ namespace game_framework {
 				charactor_walk_left.OnShow();
 			}
 		}
-		try1.ShowBitmap();
+
 	}
 }
