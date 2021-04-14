@@ -14,6 +14,7 @@ namespace game_framework {
 		void LoadBitmap();				// 載入圖形
 		void OnMove();					// 移動擦子
 		void OnShow(int,int,int);					// 將擦子圖形貼到畫面
+		//void RoleSelect(int);
 		//void SetMovingLeft(bool flag);	// 設定是否正在往左移動
 		//void SetMovingRight(bool flag); // 設定是否正在往右移動
 		//void SetXY(int nx, int ny);		// 設定擦子左上角座標
@@ -24,6 +25,7 @@ namespace game_framework {
 		//bool isMovingLeft;			// 是否正在往左移動
 		//bool isMovingRight;			// 是否正在往右移動
 	private:
+		int roleSel;
 		CMovingBitmap role1;
 		CMovingBitmap role2;
 		CMovingBitmap role3;

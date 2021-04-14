@@ -45,6 +45,7 @@
 #include "CharactorSetting.h"
 
 namespace game_framework {
+	
 	/////////////////////////////////////////////////////////////////////////////
 	// Constants
 	/////////////////////////////////////////////////////////////////////////////
@@ -54,7 +55,6 @@ namespace game_framework {
 		AUDIO_LAKE,				// 1
 		AUDIO_NTUT				// 2
 	};
-
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件
 	// 每個Member function的Implementation都要弄懂
@@ -109,12 +109,17 @@ namespace game_framework {
 		CMovingBitmap initialplayer16;
 		CMovingBitmap countdown[35];
 		CMovingBitmap menu;
+		CMovingBitmap menu2;
+		CMovingBitmap menu3;
+		CMovingBitmap menu4;
+		CMovingBitmap menu5;
+		CMovingBitmap menu6;
 		int control;
 		int attack;
 		int select;
 		int section;
 		int counter;
-
+		int SelectMenu;
 	};
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
@@ -134,9 +139,13 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		CMovingBitmap stageone;
+		CMovingBitmap smallcharacter;
+		CMovingBitmap blood;
+		CMovingBitmap magic;
 		int map_floor_range_x;
 		int map_floor_range_y;
 		CharactorSetting charactor;
+		CharactorSetting enemy;
  	};
 
 	/////////////////////////////////////////////////////////////////////////////

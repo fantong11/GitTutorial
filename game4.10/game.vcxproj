@@ -336,10 +336,17 @@
     <Image Include="Bitmaps\initial_bk.bmp" />
     <Image Include="RES\ad0.bmp" />
     <Image Include="RES\game_menu.bmp" />
+    <Image Include="RES\game_menu2.bmp" />
+    <Image Include="RES\game_menu3.bmp" />
+    <Image Include="RES\game_menu4.bmp" />
+    <Image Include="RES\game_menu5.bmp" />
+    <Image Include="RES\game_menu5.PNG" />
+    <Image Include="RES\game_menu6.bmp" />
     <Image Include="RES\initial_bk.bmp" />
     <Image Include="RES\join_char_1.bmp" />
     <Image Include="RES\join_char_2.bmp" />
     <Image Include="RES\role\bandit_f.bmp" />
+    <Image Include="RES\role\blood.bmp" />
     <Image Include="RES\role\countdown_1.bmp" />
     <Image Include="RES\role\countdown_2.bmp" />
     <Image Include="RES\role\countdown_3.bmp" />
@@ -356,13 +363,19 @@
     <Image Include="RES\role\INIJOIN.PNG" />
     <Image Include="RES\role\INIJOIN2.bmp" />
     <Image Include="RES\role\jack_f.bmp" />
+    <Image Include="RES\role\magic.bmp" />
     <Image Include="RES\role\player.bmp" />
     <Image Include="RES\role\player2.bmp" />
+    <Image Include="RES\role\s.bmp" />
     <Image Include="RES\role\team.bmp" />
     <Image Include="RES\role\template.bmp" />
     <Image Include="RES\role\template2.bmp" />
     <Image Include="RES\selection_panel.bmp" />
     <Image Include="RES\stageOneBackground\stageone (1).bmp" />
+    <Image Include="RES\stageOneBackground\stageone_background.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Source\text1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

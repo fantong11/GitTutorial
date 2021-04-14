@@ -58,6 +58,9 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "mygame.h"
+#include "cmath"
+#include <iostream>
+#include <fstream>
 
 
 namespace game_framework {
@@ -71,8 +74,17 @@ CGameStateInit::CGameStateInit(CGame *g)
 	control = 0;
 	attack = 0;
 	select = 0;
+	SelectMenu = 0;
 	role.Initialize();
-	section = 0;
+	section = 1;
+	TRACE("檔案I/O失敗\n");
+	ofstream fout("text1.txt");
+	if (!fout)
+	{
+		TRACE("檔案I/O失敗");
+	}	
+	fout << 22 << endl;
+	fout.close();
 	
 
 }
@@ -87,6 +99,7 @@ void CGameStateInit::OnInit()
 	//
 	// 開始載入資料
 	//
+	TRACE("\n\n\n\n\n");
 	logo.LoadBitmap(IDB_INIBG);
 	CHO.LoadBitmap(IDB_CHOOSE);
 	character1.LoadBitmap(IDB_JOIN1, RGB(255, 255, 255));
@@ -121,7 +134,12 @@ void CGameStateInit::OnInit()
 	initialplayer14.LoadBitmap(IDB_INIJOINBLUE);
 	initialplayer15.LoadBitmap(IDB_INIJOINWHITE);
 	initialplayer16.LoadBitmap(IDB_INIJOINBLUE);
-	menu.LoadBitmap(IDB_GAMEMENU,RGB(237, 28, 36));
+	menu.LoadBitmap(IDB_GAMEMENU);
+	menu2.LoadBitmap(IDB_MENU2);
+	menu3.LoadBitmap(IDB_MENU3);
+	menu4.LoadBitmap(IDB_MENU4);
+	menu5.LoadBitmap(IDB_MENU5);
+	menu6.LoadBitmap(IDB_MENU6);
 	role.LoadBitmap();
 	int i = 0;
 	for (i = 0; i < 35; i++) {
@@ -147,6 +165,10 @@ void CGameStateInit::OnMove()
 	control += 1;
 	if (attack > 1)
 		counter--;
+	if (attack < 2) {
+		SelectMenu = 0;
+		counter = 30 * 6;
+	}
 }
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
@@ -160,18 +182,47 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_DEF = 0x4C;
 	const char KEY_JUMP = 0x4B;
 	if (nChar == KEY_ATTACK) {
-		attack++;			
-		if(attack==3)
-			GotoGameState(GAME_STATE_RUN);		
+		TRACE("檔案I/O失敗\n");
+		attack++;
+		if (attack == 3) {
+			if (SelectMenu >= 0) {
+				if (((SelectMenu + 1) % 6) == 1)
+					GotoGameState(GAME_STATE_RUN);
+				if (((SelectMenu + 1) % 6) == 2)
+					attack=1;
+			}
+			else {
+				if ((abs(SelectMenu) % 6) == 0)
+					GotoGameState(GAME_STATE_RUN);
+				if ((abs(SelectMenu) % 6) == 5)
+					attack=1;
+			}
+			
+		}
 	}
-	if (nChar == KEY_LEFT && attack > 0) {
-		select--;
+	if (nChar == KEY_LEFT && attack == 1) {
+		select--;	
 	}
-	if (nChar == KEY_RIGHT && attack > 0) {
+	if (nChar == KEY_RIGHT && attack == 1) {
 		select++;
 	}
+	if (nChar == KEY_UP && attack == 2) {
+		SelectMenu--;
+	}
+	if (nChar == KEY_DOWN && attack == 2) {
+		SelectMenu++;
+	}
 	if (nChar == KEY_JUMP && attack > 0) {
-		attack--;
+		
+		if (attack == 2 && counter!=0) {
+			if (0 <= counter) {
+				if (counter <= 180)
+					counter -= 30;
+			}
+		}
+		else {
+			attack--;
+		}
 	}
 	if (nChar == KEY_SPACE)
 		section++;
@@ -224,6 +275,11 @@ void CGameStateInit::OnShow()
 	initialplayer15.SetTopLeft(515, 400);
 	initialplayer16.SetTopLeft(515, 400);
 	menu.SetTopLeft(0, 0);
+	menu2.SetTopLeft(0, 0);
+	menu3.SetTopLeft(0, 0);
+	menu4.SetTopLeft(0, 0);
+	menu5.SetTopLeft(0, 0);
+	menu6.SetTopLeft(0, 0);
 	int i = 0;
 	for (int i = 0; i < 35; i++) {
 		if (i / 5 == 0)
@@ -316,7 +372,42 @@ void CGameStateInit::OnShow()
 
 	}
 	if (counter < 0 && attack==2) {
-		menu.ShowBitmap();
+		if (SelectMenu >= 0) {
+			if (((SelectMenu+1)%6)==1)
+				menu.ShowBitmap();
+			else if (((SelectMenu + 1) % 6) == 2)
+				menu2.ShowBitmap();
+			else if (((SelectMenu + 1) % 6) == 3)
+				menu3.ShowBitmap();
+			else if (((SelectMenu + 1) % 6) == 4)
+				menu4.ShowBitmap();
+			else if (((SelectMenu + 1) % 6) == 5)
+				menu5.ShowBitmap();
+			else
+				menu6.ShowBitmap();
+		}
+		else {
+			if ((abs(SelectMenu) % 6) == 1)
+				menu6.ShowBitmap();
+			else if ((abs(SelectMenu) % 6) == 2)
+				menu5.ShowBitmap();
+			else if ((abs(SelectMenu) % 6) == 3)
+				menu4.ShowBitmap();
+			else if ((abs(SelectMenu) % 6) == 4)
+				menu3.ShowBitmap();
+			else if ((abs(SelectMenu) % 6) == 5)
+				menu2.ShowBitmap();
+			else 
+				menu.ShowBitmap();
+		}
+		if(SelectMenu==0)
+			menu.ShowBitmap();
+		else if (SelectMenu == 1)
+			menu2.ShowBitmap();
+		else if (SelectMenu == 2)
+			menu3.ShowBitmap();
+		else if (SelectMenu == 3)
+			menu4.ShowBitmap();
 	}
 	
 }								
@@ -463,6 +554,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	bball.OnMove();
 	*/
 	charactor.OnMove();
+	enemy.OnMove();
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -473,7 +565,11 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	ShowInitProgress(33);	// 接個前一個狀態的進度，此處進度視為33%
 	stageone.LoadBitmap(IDB_STAGEONEBG);
+	smallcharacter.LoadBitmap(IDB_SMALLTEMPLATE);
+	blood.LoadBitmap(IDB_BLOOD,RGB(255,255,255));
+	magic.LoadBitmap(IDB_MAGIC, RGB(255, 255, 255));
 	charactor.LoadBitmap();
+	enemy.LoadBitmap();
 	//
 	// 開始載入資料
 	//
@@ -600,7 +696,15 @@ void CGameStateRun::OnShow()
 	*/
 	stageone.SetTopLeft(0, 0);
 	stageone.ShowBitmap();
+	smallcharacter.SetTopLeft(0, 0);
+	smallcharacter.ShowBitmap();
+	blood.SetTopLeft(45, 12);
+	blood.ShowBitmap();
+	magic.SetTopLeft(45, 29);
+	magic.ShowBitmap();
 	charactor.OnShow();
+	enemy.SetXY(400, 300);
+	enemy.OnShow();
 }
 
 

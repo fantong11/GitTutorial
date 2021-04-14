@@ -156,6 +156,22 @@ IDB_GAMEMENU            BITMAP                  "..\\RES\\game_menu.bmp"
 
 IDB_STAGEONEBG          BITMAP                  "..\\RES\\stageOneBackground\\stageone_background.bmp"
 
+IDB_MENU2               BITMAP                  "..\\RES\\game_menu2.bmp"
+
+IDB_MENU3               BITMAP                  "..\\RES\\game_menu3.bmp"
+
+IDB_MENU4               BITMAP                  "..\\RES\\game_menu4.bmp"
+
+IDB_MENU5               BITMAP                  "..\\RES\\game_menu5.bmp"
+
+IDB_MENU6               BITMAP                  "..\\RES\\game_menu6.bmp"
+
+IDB_SMALLTEMPLATE       BITMAP                  "..\\RES\\role\\s.bmp"
+
+IDB_BLOOD               BITMAP                  "..\\RES\\role\\blood.bmp"
+
+IDB_MAGIC               BITMAP                  "..\\RES\\role\\magic.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -163,6 +179,14 @@ IDB_STAGEONEBG          BITMAP                  "..\\RES\\stageOneBackground\\st
 //
 
 IDC_GAMECURSOR          CURSOR                  "..\\res\\gamecurs.cur"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// PNG
+//
+
+IDB_PNG2                PNG                     "C:\\Users\\江品寬\\Desktop\\tutorial\\game4.10\\RES\\game_menu5.PNG"
 
 #endif    // 中文 (繁體，台灣) resources
 /////////////////////////////////////////////////////////////////////////////

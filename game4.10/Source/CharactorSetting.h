@@ -11,10 +11,13 @@ namespace game_framework {
 		void SetMovingJump(bool flag);
 		void SetMoving(bool flag);
 		bool IsMoving(void);
+		void SetXY(int x, int y);
+		void RandomMoving(void);
 
 		void OnMove();
 		void OnShow();
 	private:
+		//CMovingBitmap try1;
 		CAnimation charactor_walk_right;
 		CAnimation charactor_run_right;
 		CAnimation charactor_attack_right;
@@ -31,6 +34,7 @@ namespace game_framework {
 		CAnimation charactor_hit_left;
 		CAnimation charactor_stand_left;
 
+	
 		int charactor_walk_value;
 		int charactor_run_value;
 		int charactor_attack_value;

@@ -286,5 +286,38 @@
     <Image Include="RES\stageOneBackground\stageone (1).bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\game_menu2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\game_menu3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\game_menu4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stageOneBackground\stageone_background.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\game_menu5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\game_menu5.PNG" />
+    <Image Include="RES\game_menu6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\s.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\blood.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\magic.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Source\text1.txt">
+      <Filter>MyGame</Filter>
+    </Text>
   </ItemGroup>
 </Project>

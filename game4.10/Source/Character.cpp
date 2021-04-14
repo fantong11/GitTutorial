@@ -7,11 +7,12 @@
 #include "Character.h"
 #include "cmath"
 
+
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// CEraser: Eraser class
 	/////////////////////////////////////////////////////////////////////////////
-
+	
 	ChooseCharactor::ChooseCharactor()
 	{
 		Initialize();
@@ -50,11 +51,7 @@ namespace game_framework {
 		rolename5.LoadBitmap(IDB_DAVIDNAMEWHITE);
 		rolename6.LoadBitmap(IDB_DAVIDNAMEBLUE);
 		team.LoadBitmap(IDB_TEAM);
-		
-		
 	}
-	
-	
 	void ChooseCharactor::OnShow(int select,int shine,int attack)
 	{
 		role1.SetTopLeft(97, 51);
@@ -74,27 +71,54 @@ namespace game_framework {
 				player1.ShowBitmap();
 			else
 				player2.ShowBitmap();
-			if (abs(select+1) % 3 == 1) {
-				role1.ShowBitmap();
-				if (shine % 2 == 0)
-					rolename1.ShowBitmap();
-				else
-					rolename2.ShowBitmap();
-			}
-			else if (abs(select+1) % 3 == 2) {
-				role2.ShowBitmap();
-				if (shine % 2 == 0)
-					rolename3.ShowBitmap();
-				else
-					rolename4.ShowBitmap();
-			}
+			if (select >= 0) {
+				if (abs(select + 1) % 3 == 1) {
+					role1.ShowBitmap();
+					if (shine % 2 == 0)
+						rolename1.ShowBitmap();
+					else
+						rolename2.ShowBitmap();
+				}
+				else if (abs(select + 1) % 3 == 2) {
+					role2.ShowBitmap();
+					if (shine % 2 == 0)
+						rolename3.ShowBitmap();
+					else
+						rolename4.ShowBitmap();
+				}
 
-			else {
-				role3.ShowBitmap();
-				if (shine % 2 == 0)
-					rolename5.ShowBitmap();
-				else
-					rolename6.ShowBitmap();
+				else {
+					role3.ShowBitmap();
+					if (shine % 2 == 0)
+						rolename5.ShowBitmap();
+					else
+						rolename6.ShowBitmap();
+				}
+			}
+			else if (select < 0) {
+				if ((abs(select)  % 3) == 1) {
+					role3.ShowBitmap();
+					if (shine % 2 == 0)
+						rolename5.ShowBitmap();
+					else
+						rolename6.ShowBitmap();
+					
+				}
+				else if ((abs(select) % 3 )== 2) {
+					role2.ShowBitmap();
+					if (shine % 2 == 0)
+						rolename3.ShowBitmap();
+					else
+						rolename4.ShowBitmap();
+				}
+
+				else {
+					role1.ShowBitmap();
+					if (shine % 2 == 0)
+						rolename1.ShowBitmap();
+					else
+						rolename2.ShowBitmap();
+				}
 			}
 		}
 		else if (attack>1) {
