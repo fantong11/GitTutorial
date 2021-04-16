@@ -17,6 +17,7 @@ namespace game_framework {
 		const int RUN_VALUE = 100;
 		const int HEALTH_VALUE = 1000;
 		
+		
 
 		charactor_attack_value = ATTACK_VALUE;
 		charactor_defense_value = DEFENSE_VALUE;
@@ -30,6 +31,7 @@ namespace game_framework {
 
 		x = 95;
 		y = 300;
+		HP = 500;
 	}
 
 	void CharactorSetting::SetXY(int _x, int _y) {
@@ -44,7 +46,6 @@ namespace game_framework {
 		if (move % 8 == 0)
 			isMovingLeft = true;
 	}
-
 
 	bool CharactorSetting::IsMoving(void) {
 		if (!isMovingLeft && !isMovingUp && !isMovingDown && !isMovingRight && !isMovingJump)
@@ -206,6 +207,17 @@ namespace game_framework {
 				charactor_walk_left.OnShow();
 			}
 		}
+		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, *fp;
+		f.CreatePointFont(110, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkColor(RGB(0, 0, 0));
+		pDC->SetTextColor(RGB(120, 120, 255));
+		char str[80];								// Demo 數字對字串的轉換
+		sprintf(str, "Man:  1    HP:  %d", HP);
+		pDC->TextOut(10, 94, str);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 
 	}
 }

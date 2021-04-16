@@ -52,5 +52,6 @@ namespace game_framework {
 		bool on_floor;
 
 		int x, y;
+		int HP;
 	};
 }

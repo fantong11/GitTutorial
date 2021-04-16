@@ -62,7 +62,6 @@
 #include <iostream>
 #include <fstream>
 
-
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的遊戲開頭畫面物件
@@ -339,6 +338,7 @@ void CGameStateInit::OnShow()
 		initialplayer16.ShowBitmap();
 	}
 	if (attack > 0 && section>1) {
+		id = select;
 		role.OnShow(select, control,attack);
 	}
 	if (attack > 1 && section>1) {
@@ -471,6 +471,7 @@ void CGameStateOver::OnShow()
 CGameStateRun::CGameStateRun(CGame *g)
 : CGameState(g)//, NUMBALLS(28)
 {
+	stage = 1;
 	//ball = new CBall [NUMBALLS];
 }
 
@@ -705,6 +706,20 @@ void CGameStateRun::OnShow()
 	charactor.OnShow();
 	enemy.SetXY(400, 300);
 	enemy.OnShow();
+	
+	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+	CFont f, *fp;
+	f.CreatePointFont(110, "Times New Roman");	// 產生 font f; 160表示16 point的字
+	fp = pDC->SelectObject(&f);					// 選用 font f
+	pDC->SetBkColor(RGB(0, 0, 0));
+	pDC->SetTextColor(RGB(255, 255, 255));
+	char str[80];								// Demo 數字對字串的轉換
+	sprintf(str, "STAGE  %d",stage);
+	pDC->TextOut(285, 94, str);
+	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+]
+
 }
 
 

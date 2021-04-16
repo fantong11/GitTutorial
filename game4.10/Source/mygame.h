@@ -120,6 +120,7 @@ namespace game_framework {
 		int section;
 		int counter;
 		int SelectMenu;
+		
 	};
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
@@ -146,6 +147,7 @@ namespace game_framework {
 		int map_floor_range_y;
 		CharactorSetting charactor;
 		CharactorSetting enemy;
+		int stage;
  	};
 
 	/////////////////////////////////////////////////////////////////////////////
