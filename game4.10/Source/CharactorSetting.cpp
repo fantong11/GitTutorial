@@ -125,11 +125,15 @@ namespace game_framework {
 				charactor_stand_right.OnMove();
 			}
 			else {
-				if (isMovingLeft) {
-					isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = false;
-					return;
-				}
 				if (isMovingRight) {
+					if (isMovingLeft) {
+						isMovingLeft = isMovingUp = isMovingDown = isMovingJump = isMoving = false;
+						charactor_stand_right.OnMove();
+						charactor_stand_right.OnMove();
+						charactor_stand_right.OnMove();
+						face_right = !face_right;
+						return;
+					}
 					if(x+STEP_SIZE<594)
 						x += STEP_SIZE;
 				}
@@ -153,11 +157,15 @@ namespace game_framework {
 				charactor_stand_left.OnMove();
 			}
 			else {
-				if (isMovingRight) {
-					isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = false;
-					return;
-				}
 				if (isMovingLeft) {
+					if (isMovingRight) {
+						isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = false;
+						charactor_stand_left.OnMove();
+						charactor_stand_left.OnMove();
+						charactor_stand_left.OnMove();
+						face_right = !face_right;
+						return;
+					}
 					if (x - STEP_SIZE > -40)
 						x -= STEP_SIZE;
 				}
