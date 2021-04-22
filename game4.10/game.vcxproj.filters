@@ -314,10 +314,11 @@
     <Image Include="RES\role\magic.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Source\text1.txt">
-      <Filter>MyGame</Filter>
-    </Text>
+    <Image Include="RES\role\davis_s.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\role\deep_s.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

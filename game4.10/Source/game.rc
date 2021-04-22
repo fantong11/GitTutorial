@@ -172,6 +172,10 @@ IDB_BLOOD               BITMAP                  "..\\RES\\role\\blood.bmp"
 
 IDB_MAGIC               BITMAP                  "..\\RES\\role\\magic.bmp"
 
+IDB_SMALLDAVID          BITMAP                  "..\\RES\\role\\davis_s.bmp"
+
+IDB_SMALLDEEP           BITMAP                  "..\\RES\\role\\deep_s.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

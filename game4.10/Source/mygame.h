@@ -141,8 +141,6 @@ namespace game_framework {
 	private:
 		CMovingBitmap stageone;
 		CMovingBitmap smallcharacter;
-		CMovingBitmap blood;
-		CMovingBitmap magic;
 		int map_floor_range_x;
 		int map_floor_range_y;
 		CharactorSetting charactor;

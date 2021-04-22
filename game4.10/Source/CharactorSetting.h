@@ -3,7 +3,7 @@ namespace game_framework {
 	class CharactorSetting {
 	public:
 		CharactorSetting();
-		void LoadBitmap();
+		void LoadBitmap(int);
 		void SetMovingDown(bool flag);	// 設定是否正在往下移動
 		void SetMovingLeft(bool flag);	// 設定是否正在往左移動
 		void SetMovingRight(bool flag); // 設定是否正在往右移動
@@ -53,5 +53,9 @@ namespace game_framework {
 
 		int x, y;
 		int HP;
+		int MAGIC;
+		int LEAVE_BLOOD;
+		int LEAVE_MAGIC;
+	
 	};
 }
