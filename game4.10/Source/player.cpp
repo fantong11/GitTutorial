@@ -8,10 +8,10 @@
 #include "cmath"
 #include "iostream"
 #include <fstream>
-#include "enemy.h"
+#include "player.h"
 
 namespace game_framework {
-	void Enemy::LoadBitmap(int a) {
+	void Player::LoadBitmap(int a) {
 		if (a == 1) {
 			char *file_charactor_walk_to_right[6] = { ".\\RES\\template\\walk_to_right\\walk1.bmp", ".\\RES\\template\\walk_to_right\\walk2.bmp", ".\\RES\\template\\walk_to_right\\walk3.bmp", ".\\RES\\template\\walk_to_right\\walk4.bmp", ".\\RES\\template\\walk_to_right\\walk3.bmp" , ".\\RES\\template\\walk_to_right\\walk2.bmp" };
 			char *file_charactor_walk_to_left[6] = { ".\\RES\\template\\walk_to_left\\walk1.bmp", ".\\RES\\template\\walk_to_left\\walk2.bmp", ".\\RES\\template\\walk_to_left\\walk3.bmp", ".\\RES\\template\\walk_to_left\\walk4.bmp", ".\\RES\\template\\walk_to_left\\walk3.bmp" , ".\\RES\\template\\walk_to_left\\walk2.bmp" };
@@ -60,35 +60,9 @@ namespace game_framework {
 		}
 	}
 
-	void Enemy::SetXY(int _x, int _y) {
+	void Player::SetXY(int _x, int _y) {
 		x = _x;
 		y = _y;
-		face_right = false;
-	}
-
-	void Enemy::getCloseToPlayer(int _x, int _y) {
-		if (x > _x) {
-			SetMovingLeft(true);
-		}
-		if (x < _x) {
-			SetMovingRight(true);
-		}
-		if (y > _y) {
-			SetMovingUp(true);
-			SetMovingDown(false);
-		}
-		if (y < _y) {
-			SetMovingDown(true);
-			SetMovingUp(false);
-		}
-		SetMoving(true);
-
-		OnMove();
-
-		/*SetMovingUp(false);
-		SetMovingDown(false);
-		SetMovingRight(false);
-		SetMovingLeft(false);
-		SetMoving(false);*/
+		face_right = true;
 	}
 }

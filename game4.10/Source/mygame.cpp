@@ -552,8 +552,10 @@ void CGameStateRun::OnBeginState()
 	int temp;
 	fin >> temp;
 	fin.close();
-	charactor.LoadBitmap(temp);
+	player.LoadBitmap(temp);
 	enemy.LoadBitmap(temp);
+	player.SetXY(95, 300);
+	enemy.SetXY(400, 300);
 	if(temp==1)
 		smallcharacter.LoadBitmap(IDB_SMALLTEMPLATE);
 	else if(temp==2)
@@ -632,8 +634,8 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	bball.OnMove();
 	*/
-	charactor.OnMove();
-	enemy.OnMove();
+	player.OnMove();
+	enemy.getCloseToPlayer(player.x, player.y);
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -686,16 +688,16 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	const char KEY_JUMP = 0x6B; // keyboard k
 	if (nChar == KEY_LEFT)
-		charactor.SetMovingLeft(true);
+		player.SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)
-		charactor.SetMovingRight(true);
+		player.SetMovingRight(true);
 	if (nChar == KEY_UP)
-		charactor.SetMovingUp(true);
+		player.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
-		charactor.SetMovingDown(true);
+		player.SetMovingDown(true);
 	if (nChar == KEY_JUMP)
-		charactor.SetMovingJump(true);
-	charactor.SetMoving(true);
+		player.SetMovingJump(true);
+	player.SetMoving(true);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -706,17 +708,17 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	const char KEY_JUMP  = 0x6B; // keyboard k
 	if (nChar == KEY_LEFT)
-		charactor.SetMovingLeft(false);
+		player.SetMovingLeft(false);
 	if (nChar == KEY_RIGHT)
-		charactor.SetMovingRight(false);
+		player.SetMovingRight(false);
 	if (nChar == KEY_UP)
-		charactor.SetMovingUp(false);
+		player.SetMovingUp(false);
 	if (nChar == KEY_DOWN)
-		charactor.SetMovingDown(false);
+		player.SetMovingDown(false);
 	if (nChar == KEY_JUMP) 
-		charactor.SetMovingJump(false);
-	if (charactor.IsMoving() == false)
-		charactor.SetMoving(false);
+		player.SetMovingJump(false);
+	if (player.IsMoving() == false)
+		player.SetMoving(false);
 }
 /*
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
@@ -775,8 +777,7 @@ void CGameStateRun::OnShow()
 	stageone.ShowBitmap();
 	smallcharacter.SetTopLeft(0, 0);
 	smallcharacter.ShowBitmap();
-	charactor.OnShow();
-	enemy.SetXY(400, 300);
+	player.OnShow();
 	enemy.OnShow();
 	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 	CFont f, *fp;

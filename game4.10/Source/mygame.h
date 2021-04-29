@@ -43,6 +43,8 @@
 #include "CBouncingBall.h"
 #include "Character.h"
 #include "CharactorSetting.h"
+#include "player.h"
+#include "enemy.h"
 
 namespace game_framework {
 	
@@ -143,8 +145,8 @@ namespace game_framework {
 		CMovingBitmap smallcharacter;
 		int map_floor_range_x;
 		int map_floor_range_y;
-		CharactorSetting charactor;
-		CharactorSetting enemy;
+		Enemy enemy;
+		Player player;
 		int stage;
  	};
 
