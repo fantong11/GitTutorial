@@ -77,14 +77,8 @@ CGameStateInit::CGameStateInit(CGame *g)
 	SelectMenu = 0;
 	role.Initialize();
 	section = 1;
-	TRACE("檔案I/O失敗\n");
-	ofstream fout("text1.txt");
-	if (!fout)
-	{
-		TRACE("檔案I/O失敗");
-	}	
-	fout << 22 << endl;
-	fout.close();
+
+	
 	
 
 }
@@ -163,8 +157,10 @@ void CGameStateInit::OnBeginState()
 void CGameStateInit::OnMove()
 {
 	control += 1;
-	if (attack > 1)
+	if (attack > 1) {
 		counter--;
+	}
+		
 	if (attack < 2) {
 		SelectMenu = 0;
 		counter = 30 * 6;
@@ -185,17 +181,86 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 		TRACE("檔案I/O失敗\n");
 		attack++;
 		if (attack == 3) {
+			
 			if (SelectMenu >= 0) {
-				if (((SelectMenu + 1) % 6) == 1)
-					GotoGameState(GAME_STATE_RUN);
+				if (((SelectMenu + 1) % 6) == 1) {
+					if ((abs(SelectMenu) % 6) == 0) {
+						ofstream fout("text1.txt");
+						if (!fout)
+						{
+							TRACE("檔案I/O失敗");
+						}
+						if (select < 0) {
+							if ((abs(select) % 3) == 1) {
+								select = 3;
+							}
+							else if ((abs(select) % 3) == 2) {
+								select = 2;
+							}
+							else {
+								select = 1;
+							}
+						}
+						else if (select >= 0) {
+							if (abs(select + 1) % 3 == 1) {
+								select = 1;
+							}
+							else if (abs(select + 1) % 3 == 2) {
+								select = 2;
+							}
+							else {
+								select = 3;
+							}
+						}
+						fout << select << endl;
+						fout.close();
+						GotoGameState(GAME_STATE_RUN);
+					}
+						
+				}
+					
 				if (((SelectMenu + 1) % 6) == 2)
 					attack=1;
+				if (((SelectMenu + 1) % 6) == 0)
+					PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
 			}
 			else {
-				if ((abs(SelectMenu) % 6) == 0)
+				if ((abs(SelectMenu) % 6) == 0) {
+					ofstream fout("text1.txt");
+					if (!fout)
+					{
+						TRACE("檔案I/O失敗");
+					}
+					if (select < 0) {
+						if ((abs(select) % 3) == 1) {
+							select = 3;
+						}
+						else if ((abs(select) % 3) == 2) {
+							select = 2;
+						}
+						else {
+							select = 1;
+						}
+					}
+					else if (select >= 0) {
+						if (abs(select + 1) % 3 == 1) {
+							select = 1;
+						}
+						else if (abs(select + 1) % 3 == 2) {
+							select = 2;
+						}
+						else {
+							select = 3;
+						}
+					}
+					fout << select << endl;
+					fout.close();
 					GotoGameState(GAME_STATE_RUN);
+				}
 				if ((abs(SelectMenu) % 6) == 5)
 					attack=1;
+				if ((abs(SelectMenu) % 6) == 1)
+					PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
 			}
 			
 		}
@@ -339,6 +404,7 @@ void CGameStateInit::OnShow()
 		initialplayer16.ShowBitmap();
 	}
 	if (attack > 0 && section>1) {
+		//id = select;
 		role.OnShow(select, control,attack);
 	}
 	if (attack > 1 && section>1) {
@@ -471,6 +537,7 @@ void CGameStateOver::OnShow()
 CGameStateRun::CGameStateRun(CGame *g)
 : CGameState(g)//, NUMBALLS(28)
 {
+	stage = 1;
 	//ball = new CBall [NUMBALLS];
 }
 
@@ -481,6 +548,18 @@ CGameStateRun::~CGameStateRun()
 
 void CGameStateRun::OnBeginState()
 {
+	ifstream fin("text1.txt", ios::in);
+	int temp;
+	fin >> temp;
+	fin.close();
+	charactor.LoadBitmap(temp);
+	enemy.LoadBitmap(temp);
+	if(temp==1)
+		smallcharacter.LoadBitmap(IDB_SMALLTEMPLATE);
+	else if(temp==2)
+		smallcharacter.LoadBitmap(IDB_SMALLDEEP);
+	else
+		smallcharacter.LoadBitmap(IDB_SMALLDAVID);
 	/*
 	const int BALL_GAP = 90;
 	const int BALL_XY_OFFSET = 45;
@@ -563,13 +642,11 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
 	//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
 	//
-	ShowInitProgress(33);	// 接個前一個狀態的進度，此處進度視為33%
+	ShowInitProgress(33);	// 接個前一個狀態的進度，此處進度視為33%	
 	stageone.LoadBitmap(IDB_STAGEONEBG);
-	smallcharacter.LoadBitmap(IDB_SMALLTEMPLATE);
-	blood.LoadBitmap(IDB_BLOOD,RGB(255,255,255));
-	magic.LoadBitmap(IDB_MAGIC, RGB(255, 255, 255));
-	charactor.LoadBitmap();
-	enemy.LoadBitmap();
+
+	
+	
 	//
 	// 開始載入資料
 	//
@@ -698,13 +775,21 @@ void CGameStateRun::OnShow()
 	stageone.ShowBitmap();
 	smallcharacter.SetTopLeft(0, 0);
 	smallcharacter.ShowBitmap();
-	blood.SetTopLeft(45, 12);
-	blood.ShowBitmap();
-	magic.SetTopLeft(45, 29);
-	magic.ShowBitmap();
 	charactor.OnShow();
 	enemy.SetXY(400, 300);
 	enemy.OnShow();
+	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+	CFont f, *fp;
+	f.CreatePointFont(110, "Times New Roman");	// 產生 font f; 160表示16 point的字
+	fp = pDC->SelectObject(&f);					// 選用 font f
+	pDC->SetBkColor(RGB(0, 0, 0));
+	pDC->SetTextColor(RGB(255, 255, 255));
+	char str[80];								// Demo 數字對字串的轉換
+	sprintf(str, "STAGE  %d",stage);
+	pDC->TextOut(285, 94, str);
+	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+
 }
 
 

@@ -357,9 +357,11 @@
     <Image Include="RES\role\David_name.bmp" />
     <Image Include="RES\role\David_name2.bmp" />
     <Image Include="RES\role\davis_f.bmp" />
+    <Image Include="RES\role\davis_s.bmp" />
     <Image Include="RES\role\deep_f.bmp" />
     <Image Include="RES\role\DEEP_name.bmp" />
     <Image Include="RES\role\DEEP_name2.bmp" />
+    <Image Include="RES\role\deep_s.bmp" />
     <Image Include="RES\role\face.bmp" />
     <Image Include="RES\role\INIJOIN.bmp" />
     <Image Include="RES\role\INIJOIN.PNG" />
@@ -375,9 +377,6 @@
     <Image Include="RES\selection_panel.bmp" />
     <Image Include="RES\stageOneBackground\stageone (1).bmp" />
     <Image Include="RES\stageOneBackground\stageone_background.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Source\text1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
