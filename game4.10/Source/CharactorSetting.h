@@ -12,7 +12,6 @@ namespace game_framework {
 		void SetMoving(bool flag);
 		bool IsMoving(void);
 		void SetXY(int x, int y);
-		void RandomMoving(void);
 
 		void OnMove();
 		void OnShow();
@@ -33,7 +32,6 @@ namespace game_framework {
 		CAnimation charactor_defense_left;
 		CAnimation charactor_hit_left;
 		CAnimation charactor_stand_left;
-
 	
 		int charactor_walk_value;
 		int charactor_run_value;

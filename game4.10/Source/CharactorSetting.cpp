@@ -37,13 +37,7 @@ namespace game_framework {
 		y = _y;
 		face_right = false;
 	}
-	
-	void CharactorSetting::RandomMoving(void) {
-		int move = rand();
 
-		if (move % 8 == 0)
-			isMovingLeft = true;
-	}
 
 
 	bool CharactorSetting::IsMoving(void) {
@@ -125,14 +119,6 @@ namespace game_framework {
 			}
 			else {
 				if (isMovingRight) {
-					if (isMovingLeft) {
-						isMovingLeft = isMovingUp = isMovingDown = isMovingJump = isMoving = false;
-						charactor_stand_right.OnMove();
-						charactor_stand_right.OnMove();
-						charactor_stand_right.OnMove();
-						face_right = !face_right;
-						return;
-					}
 					if(x+STEP_SIZE<594)
 						x += STEP_SIZE;
 				}
@@ -157,14 +143,6 @@ namespace game_framework {
 			}
 			else {
 				if (isMovingLeft) {
-					if (isMovingRight) {
-						isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = false;
-						charactor_stand_left.OnMove();
-						charactor_stand_left.OnMove();
-						charactor_stand_left.OnMove();
-						face_right = !face_right;
-						return;
-					}
 					if (x - STEP_SIZE > -40)
 						x -= STEP_SIZE;
 				}
