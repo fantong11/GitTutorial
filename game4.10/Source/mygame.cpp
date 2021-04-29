@@ -71,12 +71,7 @@ namespace game_framework {
 CGameStateInit::CGameStateInit(CGame *g)
 : CGameState(g)
 {
-	control = 0;
-	attack = 0;
-	select = 0;
-	SelectMenu = 0;
-	role.Initialize();
-	section = 1;
+	
 
 	
 	
@@ -153,6 +148,12 @@ void CGameStateInit::OnInit()
 void CGameStateInit::OnBeginState()
 {
 	counter = 30 * 6;
+	control = 0;
+	attack = 0;
+	select = 0;
+	SelectMenu = 0;
+	role.Initialize();
+	section = 1;
 }
 void CGameStateInit::OnMove()
 {
@@ -634,6 +635,8 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	*/
 	charactor.OnMove();
 	enemy.OnMove();
+	if(charactor.IsDead())
+		GotoGameState(GAME_STATE_OVER);
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定

@@ -136,16 +136,23 @@ namespace game_framework {
 		isMoving = flag;
 	}
 
+	bool CharactorSetting::IsDead() {
+		if (LEAVE_BLOOD == 45)
+			return true;
+		else
+			return false;
+	}
 	void CharactorSetting::OnMove() {
 		const int STEP_SIZE = 2;
 		///// test /////
 		LEAVE_BLOOD = 148 - int((500 - HP)*0.2);
 		LEAVE_MAGIC = 148 - (100 - MAGIC);
-		HP--;
+		HP-=5;
 		MAGIC--;
 		if (LEAVE_BLOOD <= 45) {
 			LEAVE_BLOOD = 45;
-			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	
+			
+			//PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	
 		}
 			
 		if (LEAVE_MAGIC <= 45)

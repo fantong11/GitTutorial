@@ -13,6 +13,7 @@ namespace game_framework {
 		bool IsMoving(void);
 		void SetXY(int x, int y);
 		void RandomMoving(void);
+		bool IsDead();
 
 		void OnMove();
 		void OnShow();
