@@ -3,7 +3,7 @@ namespace game_framework {
 	class CharactorSetting {
 	public:
 		CharactorSetting();
-		void LoadBitmap(int);
+		virtual void LoadBitmap(int);
 		void SetMovingDown(bool flag);	// 設定是否正在往下移動
 		void SetMovingLeft(bool flag);	// 設定是否正在往左移動
 		void SetMovingRight(bool flag); // 設定是否正在往右移動
@@ -11,14 +11,17 @@ namespace game_framework {
 		void SetMovingJump(bool flag);
 		void SetMoving(bool flag);
 		bool IsMoving(void);
+<<<<<<< HEAD
 		void SetXY(int x, int y);
 		void RandomMoving(void);
 		bool IsDead();
+=======
+		virtual void SetXY(int, int);
+>>>>>>> c96d9a168b97fb9c6e6f1755c12da9f710e005bd
 
-		void OnMove();
+		virtual void OnMove();
 		void OnShow();
-	private:
-		//CMovingBitmap try1;
+
 		CAnimation charactor_walk_right;
 		CAnimation charactor_run_right;
 		CAnimation charactor_attack_right;
@@ -35,6 +38,18 @@ namespace game_framework {
 		CAnimation charactor_hit_left;
 		CAnimation charactor_stand_left;
 
+		int x, y;
+		bool face_right;
+		bool isMovingDown;			// 是否正在往下移動
+		bool isMovingLeft;			// 是否正在往左移動
+		bool isMovingRight;			// 是否正在往右移動
+		bool isMovingUp;			// 是否正在往上移動
+		bool isMoving;
+		bool isMovingJump;
+		bool on_floor;
+
+	protected:
+		//CMovingBitmap try1;
 	
 		int charactor_walk_value;
 		int charactor_run_value;
@@ -43,16 +58,7 @@ namespace game_framework {
 		int charactor_hit_value;
 		int charactor_health_value;
 
-		bool isMovingDown;			// 是否正在往下移動
-		bool isMovingLeft;			// 是否正在往左移動
-		bool isMovingRight;			// 是否正在往右移動
-		bool isMovingUp;			// 是否正在往上移動
-		bool isMoving;
-		bool isMovingJump;
-		bool face_right;
-		bool on_floor;
 
-		int x, y;
 		int HP;
 		int MAGIC;
 		int LEAVE_BLOOD;
