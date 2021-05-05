@@ -145,9 +145,10 @@ namespace game_framework {
 		CMovingBitmap smallcharacter;
 		int map_floor_range_x;
 		int map_floor_range_y;
-		Enemy enemy;
+		Enemy* enemy;
 		Player player;
 		int stage;
+		int control_hit_speed;
  	};
 
 	/////////////////////////////////////////////////////////////////////////////

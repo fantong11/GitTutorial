@@ -539,12 +539,13 @@ CGameStateRun::CGameStateRun(CGame *g)
 : CGameState(g)//, NUMBALLS(28)
 {
 	stage = 1;
+	control_hit_speed = 0;
 	//ball = new CBall [NUMBALLS];
 }
 
 CGameStateRun::~CGameStateRun()
 {
-	//delete [] ball;
+	delete [] enemy;
 }
 
 void CGameStateRun::OnBeginState()
@@ -554,9 +555,10 @@ void CGameStateRun::OnBeginState()
 	fin >> temp;
 	fin.close();
 	player.LoadBitmap(temp);
-	enemy.LoadBitmap(temp);
+	enemy = new Enemy[1];
+	enemy[0].LoadBitmap(temp);
 	player.SetXY(95, 300);
-	enemy.SetXY(400, 300);
+	enemy[0].SetXY(400, 300);
 	if(temp==1)
 		smallcharacter.LoadBitmap(IDB_SMALLTEMPLATE);
 	else if(temp==2)
@@ -639,30 +641,39 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 
 	if(player.IsDead())
 		GotoGameState(GAME_STATE_OVER);
+	if (enemy[0].IsDead()) {
+		enemy[0].SetAlive(false);
+		enemy[0].isAttack = false;
+	}
 	int p_x = 0, p_y = 0, e_x = 0, e_y = 0;
+	if (control_hit_speed > 0)
+		control_hit_speed--;
 
-
-	if (fabs(player.y - enemy.y) < 1) {
-		if (fabs(player.x - enemy.x) < 30) {
-			if (player.IsAttacking()) {
-				if (enemy.IsAttacking()) {
-					player.HP-=5;
-					enemy.HP -= 5;
+	if (fabs(player.y - enemy[0].y) < 1) {
+		if (fabs(player.x - enemy[0].x) < 30) {
+			if (player.IsAttacking() && control_hit_speed==0) {
+				control_hit_speed = 30;
+				if (enemy[0].IsAttacking()) {
+					player.DecreaseBlood();
+					enemy[0].DecreaseBlood();
 				}
-				enemy.HP -= 5;
+				else
+					enemy[0].DecreaseBlood();
 			}
-			if (enemy.IsAttacking()) {
+			else if (enemy[0].IsAttacking() && control_hit_speed == 0) {
+				control_hit_speed = 30;
 				if (player.IsAttacking()) {
-					player.HP -= 5;
-					enemy.HP -= 5;
+					player.DecreaseBlood();
+					enemy[0].DecreaseBlood();
 				}
-				player.HP -= 5;
+				else
+					player.DecreaseBlood();
 			}
 		}
 	}
 
 	player.Decrease();
-	enemy.getCloseToPlayer(player.x, player.y);
+	enemy[0].getCloseToPlayer(player.x, player.y);
 
 }
 
@@ -809,7 +820,7 @@ void CGameStateRun::OnShow()
 	stageone.ShowBitmap();
 	smallcharacter.SetTopLeft(0, 0);
 	smallcharacter.ShowBitmap();
-	enemy.OnShow();
+	enemy[0].DrawAllAboutEnemy();
 	player.DrawAllAboutPlayer();
 
 	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 

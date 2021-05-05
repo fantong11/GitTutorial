@@ -12,12 +12,14 @@ namespace game_framework {
 		void SetMoving(bool flag);
 		void SetAttack(bool flag);
 		void DecreaseBlood(void);
+		void SetAlive(bool flag);
 		int NowX(void);
 		int NowY(void);
 		bool IsMoving(void);
 		bool IsAttacking(void);
 
 		bool IsDead();
+		bool is_alive;
 
 		virtual void SetXY(int, int);
 		virtual void OnMove();

@@ -87,6 +87,7 @@ namespace game_framework {
 		x = _x;
 		y = _y;
 		face_right = false;
+		HP = 50;
 	}
 
 	void Enemy::getCloseToPlayer(int _x, int _y) {
@@ -123,6 +124,28 @@ namespace game_framework {
 	}
 	void Enemy::getHit() {
 		SetAttack(true);
+	}
+	void Enemy::DrawAllAboutEnemy() {
+		OnShow();
+		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CPen *pp, p(PS_NULL, 0, RGB(0, 0, 0));		// 清除pen
+		pp = pDC->SelectObject(&p);
+
+		CFont f, *fp;
+		f.CreatePointFont(110, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkColor(RGB(0, 0, 0));
+		pDC->SetTextColor(RGB(120, 120, 255));
+		char str[80];								// Demo 數字對字串的轉換
+		sprintf(str, "Man:  1    HP:  %d", HP);
+		pDC->TextOut(300, 94, str);
+
+
+		pDC->SelectObject(pp);						// 釋放 pen
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		//pDC->SelectObject(pb);						// 釋放 brush
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+
 	}
 
 }
