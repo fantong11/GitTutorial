@@ -10,15 +10,16 @@ namespace game_framework {
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
 		void SetMovingJump(bool flag);
 		void SetMoving(bool flag);
+		void SetAttack(bool flag);
+		void DecreaseBlood(void);
+		int NowX(void);
+		int NowY(void);
 		bool IsMoving(void);
-<<<<<<< HEAD
-		void SetXY(int x, int y);
-		void RandomMoving(void);
-		bool IsDead();
-=======
-		virtual void SetXY(int, int);
->>>>>>> c96d9a168b97fb9c6e6f1755c12da9f710e005bd
+		bool IsAttacking(void);
 
+		bool IsDead();
+
+		virtual void SetXY(int, int);
 		virtual void OnMove();
 		void OnShow();
 
@@ -39,14 +40,20 @@ namespace game_framework {
 		CAnimation charactor_stand_left;
 
 		int x, y;
+		int HP;
 		bool face_right;
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動
 		bool isMovingUp;			// 是否正在往上移動
+		bool isAttack;
 		bool isMoving;
 		bool isMovingJump;
 		bool on_floor;
+		int MAGIC;
+		int LEAVE_BLOOD;
+		int LEAVE_MAGIC;
+		int control_attack;
 
 	protected:
 		//CMovingBitmap try1;
@@ -59,10 +66,8 @@ namespace game_framework {
 		int charactor_health_value;
 
 
-		int HP;
-		int MAGIC;
-		int LEAVE_BLOOD;
-		int LEAVE_MAGIC;
+		
+
 	
 	};
 }

@@ -6,5 +6,6 @@ namespace game_framework {
 		void LoadBitmap(int) override;
 		void SetXY(int x, int y) override;
 		void getCloseToPlayer(int, int);
+		void getHit(void);
 	};
 }

@@ -17,6 +17,9 @@ namespace game_framework {
 			char *file_charactor_walk_to_left[6] = { ".\\RES\\template\\walk_to_left\\walk1.bmp", ".\\RES\\template\\walk_to_left\\walk2.bmp", ".\\RES\\template\\walk_to_left\\walk3.bmp", ".\\RES\\template\\walk_to_left\\walk4.bmp", ".\\RES\\template\\walk_to_left\\walk3.bmp" , ".\\RES\\template\\walk_to_left\\walk2.bmp" };
 			char *file_charactor_stand_right[4] = { ".\\RES\\template\\stand_right\\stand1.bmp", ".\\RES\\template\\stand_right\\stand2.bmp", ".\\RES\\template\\stand_right\\stand3.bmp", ".\\RES\\template\\stand_right\\stand4.bmp" };
 			char *file_charactor_stand_left[4] = { ".\\RES\\template\\stand_left\\stand1.bmp", ".\\RES\\template\\stand_left\\stand2.bmp", ".\\RES\\template\\stand_left\\stand3.bmp", ".\\RES\\template\\stand_left\\stand4.bmp" };
+			char *file_charactor_attack_right[4] = { ".\\RES\\template\\attack_right\\attack1.bmp",".\\RES\\template\\attack_right\\attack2.bmp",".\\RES\\template\\attack_right\\attack3.bmp" ,".\\RES\\template\\attack_right\\attack4.bmp" };
+			char *file_charactor_attack_left[4] = { ".\\RES\\template\\attack_left\\attack1.bmp",".\\RES\\template\\attack_left\\attack2.bmp",".\\RES\\template\\attack_left\\attack3.bmp",".\\RES\\template\\attack_left\\attack4.bmp" };
+
 			for (int i = 0; i < 4; i++) {
 				charactor_stand_right.AddBitmap(file_charactor_stand_right[i], RGB(0, 0, 0));
 				charactor_stand_left.AddBitmap(file_charactor_stand_left[i], RGB(0, 0, 0));
@@ -25,6 +28,11 @@ namespace game_framework {
 			for (int i = 0; i < 6; i++) {
 				charactor_walk_right.AddBitmap(file_charactor_walk_to_right[i], RGB(0, 0, 0));
 				charactor_walk_left.AddBitmap(file_charactor_walk_to_left[i], RGB(0, 0, 0));
+			}
+
+			for (int i = 0; i < 4; i++) {
+				charactor_attack_right.AddBitmap(file_charactor_attack_right[i], RGB(0, 0, 0));
+				charactor_attack_left.AddBitmap(file_charactor_attack_left[i], RGB(0, 0, 0));
 			}
 
 		}
@@ -33,6 +41,9 @@ namespace game_framework {
 			char *file_charactor_walk_to_left[6] = { ".\\RES\\deep\\walk_to_left\\walk1.bmp", ".\\RES\\deep\\walk_to_left\\walk2.bmp", ".\\RES\\deep\\walk_to_left\\walk3.bmp", ".\\RES\\deep\\walk_to_left\\walk4.bmp", ".\\RES\\deep\\walk_to_left\\walk3.bmp" , ".\\RES\\deep\\walk_to_left\\walk2.bmp" };
 			char *file_charactor_stand_right[4] = { ".\\RES\\deep\\stand_right\\stand1.bmp", ".\\RES\\deep\\stand_right\\stand2.bmp", ".\\RES\\deep\\stand_right\\stand3.bmp", ".\\RES\\deep\\stand_right\\stand4.bmp" };
 			char *file_charactor_stand_left[4] = { ".\\RES\\deep\\stand_left\\stand1.bmp", ".\\RES\\deep\\stand_left\\stand2.bmp", ".\\RES\\deep\\stand_left\\stand3.bmp", ".\\RES\\deep\\stand_left\\stand4.bmp" };
+			char *file_charactor_attack_right[4] = { ".\\RES\\deep\\attack_right\\attack1.bmp",".\\RES\\deep\\attack_right\\attack2.bmp",".\\RES\\deep\\attack_right\\attack3.bmp",".\\RES\\deep\\attack_right\\attack4.bmp" };
+			char *file_charactor_attack_left[4] = { ".\\RES\\deep\\attack_left\\attack1.bmp",".\\RES\\deep\\attack_left\\attack2.bmp",".\\RES\\deep\\attack_left\\attack3.bmp",".\\RES\\deep\\attack_left\\attack4.bmp" };
+
 			for (int i = 0; i < 4; i++) {
 				charactor_stand_right.AddBitmap(file_charactor_stand_right[i], RGB(0, 0, 0));
 				charactor_stand_left.AddBitmap(file_charactor_stand_left[i], RGB(0, 0, 0));
@@ -41,6 +52,11 @@ namespace game_framework {
 			for (int i = 0; i < 6; i++) {
 				charactor_walk_right.AddBitmap(file_charactor_walk_to_right[i], RGB(0, 0, 0));
 				charactor_walk_left.AddBitmap(file_charactor_walk_to_left[i], RGB(0, 0, 0));
+			}
+
+			for (int i = 0; i < 4; i++) {
+				charactor_attack_right.AddBitmap(file_charactor_attack_right[i], RGB(0, 0, 0));
+				charactor_attack_left.AddBitmap(file_charactor_attack_left[i], RGB(0, 0, 0));
 			}
 		}
 		else {
@@ -48,6 +64,9 @@ namespace game_framework {
 			char *file_charactor_walk_to_left[6] = { ".\\RES\\david\\walk_to_left\\walk1.bmp", ".\\RES\\david\\walk_to_left\\walk2.bmp", ".\\RES\\david\\walk_to_left\\walk3.bmp", ".\\RES\\david\\walk_to_left\\walk4.bmp", ".\\RES\\david\\walk_to_left\\walk3.bmp" , ".\\RES\\david\\walk_to_left\\walk2.bmp" };
 			char *file_charactor_stand_right[4] = { ".\\RES\\david\\stand_right\\stand1.bmp", ".\\RES\\david\\stand_right\\stand2.bmp", ".\\RES\\david\\stand_right\\stand3.bmp", ".\\RES\\david\\stand_right\\stand4.bmp" };
 			char *file_charactor_stand_left[4] = { ".\\RES\\david\\stand_left\\stand1.bmp", ".\\RES\\david\\stand_left\\stand2.bmp", ".\\RES\\david\\stand_left\\stand3.bmp", ".\\RES\\david\\stand_left\\stand4.bmp" };
+			char *file_charactor_attack_right[4] = { ".\\RES\\david\\attack_right\\attack1.bmp",".\\RES\\david\\attack_right\\attack2.bmp",".\\RES\\david\\attack_right\\attack3.bmp",".\\RES\\david\\attack_right\\attack4.bmp" };
+			char *file_charactor_attack_left[4] = { ".\\RES\\david\\attack_left\\attack1.bmp",".\\RES\\david\\attack_left\\attack2.bmp",".\\RES\\david\\attack_left\\attack3.bmp",".\\RES\\david\\attack_left\\attack4.bmp" };
+
 			for (int i = 0; i < 4; i++) {
 				charactor_stand_right.AddBitmap(file_charactor_stand_right[i], RGB(0, 0, 0));
 				charactor_stand_left.AddBitmap(file_charactor_stand_left[i], RGB(0, 0, 0));
@@ -56,6 +75,10 @@ namespace game_framework {
 			for (int i = 0; i < 6; i++) {
 				charactor_walk_right.AddBitmap(file_charactor_walk_to_right[i], RGB(0, 0, 0));
 				charactor_walk_left.AddBitmap(file_charactor_walk_to_left[i], RGB(0, 0, 0));
+			}
+			for (int i = 0; i < 4; i++) {
+				charactor_attack_right.AddBitmap(file_charactor_attack_right[i], RGB(0, 0, 0));
+				charactor_attack_left.AddBitmap(file_charactor_attack_left[i], RGB(0, 0, 0));
 			}
 		}
 	}
@@ -67,28 +90,39 @@ namespace game_framework {
 	}
 
 	void Enemy::getCloseToPlayer(int _x, int _y) {
-		if (x > _x) {
+		if (x > _x && fabs(x - _x) > 10) {
+
 			SetMovingLeft(true);
 		}
-		if (x < _x) {
+		if (x < _x && fabs(x - _x) > 10) {
+
 			SetMovingRight(true);
 		}
-		if (y > _y) {
+		if (y > _y && fabs(y - _y) > 1) {
+	
 			SetMovingUp(true);
 			SetMovingDown(false);
 		}
-		if (y < _y) {
+		if (y < _y && fabs(y - _y) > 1) {
+			
 			SetMovingDown(true);
 			SetMovingUp(false);
 		}
 		SetMoving(true);
-
+		if (fabs(y - _y) < 1) {
+			
+			if (fabs(x - _x) < 30){
+				SetMoving(false);
+				SetAttack(true);
+			}
+				
+		}
 		OnMove();
 
-		/*SetMovingUp(false);
-		SetMovingDown(false);
-		SetMovingRight(false);
-		SetMovingLeft(false);
-		SetMoving(false);*/
+
 	}
+	void Enemy::getHit() {
+		SetAttack(true);
+	}
+
 }

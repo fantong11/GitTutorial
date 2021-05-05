@@ -635,15 +635,35 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	bball.OnMove();
 	*/
-<<<<<<< HEAD
-	charactor.OnMove();
-	enemy.OnMove();
-	if(charactor.IsDead())
+
+
+	if(player.IsDead())
 		GotoGameState(GAME_STATE_OVER);
-=======
-	player.OnMove();
+	int p_x = 0, p_y = 0, e_x = 0, e_y = 0;
+
+
+	if (fabs(player.y - enemy.y) < 1) {
+		if (fabs(player.x - enemy.x) < 30) {
+			if (player.IsAttacking()) {
+				if (enemy.IsAttacking()) {
+					player.HP-=5;
+					enemy.HP -= 5;
+				}
+				enemy.HP -= 5;
+			}
+			if (enemy.IsAttacking()) {
+				if (player.IsAttacking()) {
+					player.HP -= 5;
+					enemy.HP -= 5;
+				}
+				player.HP -= 5;
+			}
+		}
+	}
+
+	player.Decrease();
 	enemy.getCloseToPlayer(player.x, player.y);
->>>>>>> c96d9a168b97fb9c6e6f1755c12da9f710e005bd
+
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -695,6 +715,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	const char KEY_JUMP = 0x6B; // keyboard k
+	const char KEY_ATTACK = 0x4A;
 	if (nChar == KEY_LEFT)
 		player.SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)
@@ -705,6 +726,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		player.SetMovingDown(true);
 	if (nChar == KEY_JUMP)
 		player.SetMovingJump(true);
+	if (nChar == KEY_ATTACK)
+		player.SetAttack(true);
 	player.SetMoving(true);
 }
 
@@ -715,6 +738,7 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	const char KEY_JUMP  = 0x6B; // keyboard k
+	const char KEY_ATTACK = 0x4A;
 	if (nChar == KEY_LEFT)
 		player.SetMovingLeft(false);
 	if (nChar == KEY_RIGHT)
@@ -785,8 +809,9 @@ void CGameStateRun::OnShow()
 	stageone.ShowBitmap();
 	smallcharacter.SetTopLeft(0, 0);
 	smallcharacter.ShowBitmap();
-	player.OnShow();
 	enemy.OnShow();
+	player.DrawAllAboutPlayer();
+
 	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 	CFont f, *fp;
 	f.CreatePointFont(110, "Times New Roman");	// 產生 font f; 160表示16 point的字

@@ -5,5 +5,7 @@ namespace game_framework {
 	public:
 		void LoadBitmap(int) override;
 		void SetXY(int x, int y) override;
+		void Decrease(void);
+		void DrawAllAboutPlayer(void);
 	};
 }

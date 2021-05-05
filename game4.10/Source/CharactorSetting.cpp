@@ -24,13 +24,14 @@ namespace game_framework {
 		charactor_run_value = RUN_VALUE;
 		charactor_health_value = HEALTH_VALUE;
 
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = false;
+		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = isAttack = false;
 		on_floor = true;
 
 		HP = 500;
 		MAGIC = 100;
 		LEAVE_MAGIC = 100;
 		LEAVE_BLOOD = 500;
+		control_attack = 10;
 
 	}
 
@@ -48,26 +49,36 @@ namespace game_framework {
 		else 
 			return true;
 	}
+
+	void CharactorSetting::SetAttack(bool flag) {
+		isAttack = flag;
+	}
+
 	
 	void CharactorSetting::SetMovingDown(bool flag) {
+		isAttack = false;
 		isMovingDown = flag;
 	}
 
 	void CharactorSetting::SetMovingUp(bool flag) {
+		isAttack = false;
 		isMovingUp = flag;
 	}
 
 	void CharactorSetting::SetMovingLeft(bool flag) {
+		isAttack = false;
 		isMovingLeft = flag;
 		face_right = false;
 	}
 
 	void CharactorSetting::SetMovingRight(bool flag) {
+		isAttack = false;
 		isMovingRight = flag;
 		face_right = true;
 	}
 
 	void CharactorSetting::SetMovingJump(bool flag) {
+		isAttack = false;
 		isMovingJump = flag;
 		on_floor = false;
 	}
@@ -77,32 +88,48 @@ namespace game_framework {
 	}
 
 	bool CharactorSetting::IsDead() {
-		if (LEAVE_BLOOD == 45)
+		if (LEAVE_BLOOD == 48)
 			return true;
 		else
 			return false;
 	}
+	int CharactorSetting::NowX() {
+		return x;
+	}
+	int CharactorSetting::NowY() {
+		return y;
+	}
+	bool CharactorSetting::IsAttacking() {
+		return isAttack;
+	}
+	
+	void CharactorSetting::DecreaseBlood() {
+		HP --;	
+	}
+	
 	void CharactorSetting::OnMove() {
 		const int STEP_SIZE = 2;
-		///// test /////
-		LEAVE_BLOOD = 148 - int((500 - HP)*0.2);
-		LEAVE_MAGIC = 148 - (100 - MAGIC);
-		HP-=5;
-		MAGIC--;
-		if (LEAVE_BLOOD <= 45) {
-			LEAVE_BLOOD = 45;
-			
-			//PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	
-		}
-			
-		if (LEAVE_MAGIC <= 45)
-			LEAVE_MAGIC = 45;
-		//////////////////
+
 		if (face_right) {
 			if (!isMoving) {
+				if (isAttack) {
+					
+					charactor_attack_right.OnMove();
+					charactor_attack_right.OnMove();
+					charactor_attack_right.OnMove();
+					control_attack--;
+					if (control_attack == 0) {
+						control_attack = 10;
+						isAttack = false;
+					}
+				}
+				else{
+				
 				charactor_stand_right.OnMove();
 				charactor_stand_right.OnMove();
 				charactor_stand_right.OnMove();
+				}
+
 			}
 			else {
 				if (isMovingRight) {
@@ -124,9 +151,22 @@ namespace game_framework {
 		}
 		else {
 			if (!isMoving) {
-				charactor_stand_left.OnMove();
-				charactor_stand_left.OnMove();
-				charactor_stand_left.OnMove();
+				if (isAttack) {
+
+					charactor_attack_left.OnMove();
+					charactor_attack_left.OnMove();
+					charactor_attack_left.OnMove();
+					control_attack--;
+					if (control_attack == 0) {
+						control_attack = 10;
+						isAttack = false;
+					}
+				}
+				else {
+					charactor_stand_left.OnMove();
+					charactor_stand_left.OnMove();
+					charactor_stand_left.OnMove();
+				}
 			}
 			else {
 				if (isMovingLeft) {
@@ -149,17 +189,27 @@ namespace game_framework {
 	}
 
 	void CharactorSetting::OnShow() {
-
+		charactor_attack_right.SetTopLeft(x, y);
+		charactor_attack_left.SetTopLeft(x, y);
 		charactor_stand_right.SetTopLeft(x, y);
 		charactor_stand_left.SetTopLeft(x, y);
 		charactor_walk_right.SetTopLeft(x, y);
 		charactor_walk_left.SetTopLeft(x, y);
+		
 
 		if (face_right) {
 			if (!isMoving) {
-				charactor_stand_right.OnShow();
-				charactor_stand_right.OnShow();
-				charactor_stand_right.OnShow();
+				if (isAttack) {
+					charactor_attack_right.OnShow();
+					charactor_attack_right.OnShow();
+					charactor_attack_right.OnShow();
+				}
+				else {
+			
+					charactor_stand_right.OnShow();
+					charactor_stand_right.OnShow();
+					charactor_stand_right.OnShow();
+				}
 			}
 			else {
 				charactor_walk_right.OnShow();
@@ -169,9 +219,16 @@ namespace game_framework {
 		}
 		else {
 			if (!isMoving) {
-				charactor_stand_left.OnShow();
-				charactor_stand_left.OnShow();
-				charactor_stand_left.OnShow();
+				if (isAttack) {
+					charactor_attack_left.OnShow();
+					charactor_attack_left.OnShow();
+					charactor_attack_left.OnShow();
+				}
+				else {
+					charactor_stand_left.OnShow();
+					charactor_stand_left.OnShow();
+					charactor_stand_left.OnShow();
+				}
 			}
 			else {
 				charactor_walk_left.OnShow();
@@ -180,35 +237,6 @@ namespace game_framework {
 			}
 		}
 
-		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-		CPen *pp, p(PS_NULL, 0, RGB(0, 0, 0));		// 清除pen
-		pp = pDC->SelectObject(&p);
-
-		CFont f, *fp;
-		f.CreatePointFont(110, "Times New Roman");	// 產生 font f; 160表示16 point的字
-		fp = pDC->SelectObject(&f);					// 選用 font f
-		pDC->SetBkColor(RGB(0, 0, 0));
-		pDC->SetTextColor(RGB(120, 120, 255));
-		char str[80];								// Demo 數字對字串的轉換
-		sprintf(str, "Man:  1    HP:  %d", HP);
-		pDC->TextOut(10, 94, str);
-
-		
-		CBrush b2(RGB(255, 0, 0));					// 畫黃色 progrss進度
-		pDC->SelectObject(&b2);
-		pDC->Rectangle(45, 12, LEAVE_BLOOD, 25);
-
-		CBrush b3(RGB(0, 0, 255));					// 畫黃色 progrss進度
-		pDC->SelectObject(&b3);
-		pDC->Rectangle(45, 29, LEAVE_MAGIC, 42);
-
-		pDC->SelectObject(pp);						// 釋放 pen
-		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-		//pDC->SelectObject(pb);						// 釋放 brush
-		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
-		//
-		// 如果是別的地方用到CDC的話，不要抄以下這行，否則螢幕會閃爍
-		//
 
 	}
 }
