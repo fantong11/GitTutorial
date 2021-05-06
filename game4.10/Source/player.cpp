@@ -12,6 +12,8 @@
 
 namespace game_framework {
 	void Player::LoadBitmap(int a) {
+		char *file_charactor_shadow[1] = {".\\RES\\shadow.bmp"};
+		charactor_shadow.AddBitmap(file_charactor_shadow[0], RGB(0, 0, 0));
 		if (a == 1) {
 			char *file_charactor_walk_to_right[6] = { ".\\RES\\template\\walk_to_right\\walk1.bmp", ".\\RES\\template\\walk_to_right\\walk2.bmp", ".\\RES\\template\\walk_to_right\\walk3.bmp", ".\\RES\\template\\walk_to_right\\walk4.bmp", ".\\RES\\template\\walk_to_right\\walk3.bmp" , ".\\RES\\template\\walk_to_right\\walk2.bmp" };
 			char *file_charactor_walk_to_left[6] = { ".\\RES\\template\\walk_to_left\\walk1.bmp", ".\\RES\\template\\walk_to_left\\walk2.bmp", ".\\RES\\template\\walk_to_left\\walk3.bmp", ".\\RES\\template\\walk_to_left\\walk4.bmp", ".\\RES\\template\\walk_to_left\\walk3.bmp" , ".\\RES\\template\\walk_to_left\\walk2.bmp" };
@@ -19,6 +21,10 @@ namespace game_framework {
 			char *file_charactor_stand_left[4] = { ".\\RES\\template\\stand_left\\stand1.bmp", ".\\RES\\template\\stand_left\\stand2.bmp", ".\\RES\\template\\stand_left\\stand3.bmp", ".\\RES\\template\\stand_left\\stand4.bmp" };
 			char *file_charactor_attack_right[4] = { ".\\RES\\template\\attack_right\\attack1.bmp",".\\RES\\template\\attack_right\\attack2.bmp",".\\RES\\template\\attack_right\\attack3.bmp" ,".\\RES\\template\\attack_right\\attack4.bmp" };
 			char *file_charactor_attack_left[4] = { ".\\RES\\template\\attack_left\\attack1.bmp",".\\RES\\template\\attack_left\\attack2.bmp",".\\RES\\template\\attack_left\\attack3.bmp",".\\RES\\template\\attack_left\\attack4.bmp" };
+
+			char *file_charactor_jump_right[3] = {".\\RES\\template\\jump_to_right\\jump1.bmp", ".\\RES\\template\\jump_to_right\\jump2.bmp", ".\\RES\\template\\jump_to_right\\jump3.bmp"};
+
+			char *file_charactor_jump_left[3] = {".\\RES\\template\\jump_to_left\\jump1.bmp", ".\\RES\\template\\jump_to_left\\jump2.bmp", ".\\RES\\template\\jump_to_left\\jump3.bmp"};
 
 			for (int i = 0; i < 4; i++) {
 				charactor_stand_right.AddBitmap(file_charactor_stand_right[i], RGB(0, 0, 0));
@@ -33,6 +39,11 @@ namespace game_framework {
 			for (int i = 0; i < 4; i++) {
 				charactor_attack_right.AddBitmap(file_charactor_attack_right[i], RGB(0, 0, 0));
 				charactor_attack_left.AddBitmap(file_charactor_attack_left[i], RGB(0, 0, 0));
+			}
+
+			for (int i = 0; i < 3; i++) {
+				charactor_jump_left.AddBitmap(file_charactor_jump_left[i], RGB(0, 0, 0));
+				charactor_jump_right.AddBitmap(file_charactor_jump_right[i], RGB(0, 0, 0));
 			}
 
 		}
@@ -86,6 +97,7 @@ namespace game_framework {
 	void Player::SetXY(int _x, int _y) {
 		x = _x;
 		y = _y;
+		z = 0;
 		face_right = true;
 	}
 
