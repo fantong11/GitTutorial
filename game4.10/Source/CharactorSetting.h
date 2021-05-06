@@ -45,6 +45,7 @@ namespace game_framework {
 
 		int x, y, z;
 		int HP;
+		bool is_up;
 		bool face_right;
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動

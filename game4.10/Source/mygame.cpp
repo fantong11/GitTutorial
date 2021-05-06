@@ -725,7 +725,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
-	const char KEY_JUMP = 0x6B; // keyboard k
+	const char KEY_JUMP = 0x4B; // keyboard k
 	const char KEY_ATTACK = 0x4A;
 	if (nChar == KEY_LEFT)
 		player.SetMovingLeft(true);
@@ -739,7 +739,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		player.SetMovingJump(true);
 	if (nChar == KEY_ATTACK)
 		player.SetAttack(true);
-	player.SetMoving(true);
+	if (nChar == KEY_LEFT || nChar == KEY_RIGHT || nChar == KEY_UP || nChar == KEY_DOWN || nChar == KEY_JUMP || nChar == KEY_ATTACK)
+		player.SetMoving(true);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -758,8 +759,6 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 		player.SetMovingUp(false);
 	if (nChar == KEY_DOWN)
 		player.SetMovingDown(false);
-	if (nChar == KEY_JUMP) 
-		player.SetMovingJump(false);
 	if (player.IsMoving() == false)
 		player.SetMoving(false);
 }

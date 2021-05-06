@@ -8,6 +8,7 @@
 #include "cmath"
 #include "iostream"
 #include <fstream>
+#include <windows.h>
 
 namespace game_framework {
 	// ³]©w¦n map
@@ -32,7 +33,7 @@ namespace game_framework {
 		LEAVE_MAGIC = 100;
 		LEAVE_BLOOD = 500;
 		control_attack = 10;
-
+		is_up = false;
 	}
 
 	void CharactorSetting::LoadBitmap(int a) {
@@ -117,7 +118,6 @@ namespace game_framework {
 		if (face_right) {
 			if (!isMoving) {
 				if (isAttack) {
-					
 					charactor_attack_right.OnMove();
 					charactor_attack_right.OnMove();
 					charactor_attack_right.OnMove();
@@ -126,9 +126,32 @@ namespace game_framework {
 						control_attack = 10;
 						isAttack = false;
 					}
+					return ;
+				}
+				else if (isMovingJump) {
+					if (z == 0) {
+						charactor_jump_right.OnMove();
+						charactor_jump_right.OnMove();
+						is_up = true;
+					}
+					if (z < 120 && is_up) {
+						z += 10;
+					}
+					if (z >= 120) {
+						is_up = false;
+					}
+					if (!is_up) {
+						z -= 10;
+					}
+					if (z == 0) {
+						is_up = true;
+						charactor_jump_right.OnMove();
+						charactor_jump_right.OnMove();
+						isMovingJump = false;
+					}
+					return ;
 				}
 				else{
-				
 					charactor_stand_right.OnMove();
 					charactor_stand_right.OnMove();
 					charactor_stand_right.OnMove();
@@ -149,7 +172,27 @@ namespace game_framework {
 						y += STEP_SIZE;
 				}
 				if (isMovingJump) {
-					
+					if (z == 0) {
+						charactor_jump_right.OnMove();
+						charactor_jump_right.OnMove();
+						is_up = true;
+					}
+					if (z < 120 && is_up) {
+						z += 10;
+					}
+					if (z >= 120) {
+						is_up = false;
+					}
+					if (!is_up) {
+						z -= 10;
+					}
+					if (z == 0) {
+						is_up = true;
+						charactor_jump_right.OnMove();
+						charactor_jump_right.OnMove();
+						isMovingJump = false;
+					}
+					return ;
 				}
 				charactor_walk_right.OnMove();
 				charactor_walk_right.OnMove();
@@ -168,6 +211,7 @@ namespace game_framework {
 						control_attack = 10;
 						isAttack = false;
 					}
+					return ;
 				}
 				else {
 					charactor_stand_left.OnMove();
@@ -197,13 +241,15 @@ namespace game_framework {
 
 	void CharactorSetting::OnShow() {
 		if (is_alive) {
-			charactor_attack_right.SetTopLeft(x, y + z);
-			charactor_attack_left.SetTopLeft(x, y + z);
-			charactor_stand_right.SetTopLeft(x, y + z);
-			charactor_stand_left.SetTopLeft(x, y + z);
-			charactor_walk_right.SetTopLeft(x, y + z);
-			charactor_walk_left.SetTopLeft(x, y + z);
-			charactor_shadow.SetTopLeft(x + 20, y + 75 + z);
+			charactor_jump_left.SetTopLeft(x, y - z);
+			charactor_jump_right.SetTopLeft(x, y - z);
+			charactor_attack_right.SetTopLeft(x, y - z);
+			charactor_attack_left.SetTopLeft(x, y - z);
+			charactor_stand_right.SetTopLeft(x, y - z);
+			charactor_stand_left.SetTopLeft(x, y - z);
+			charactor_walk_right.SetTopLeft(x, y - z);
+			charactor_walk_left.SetTopLeft(x, y - z);
+			charactor_shadow.SetTopLeft(x + 20, y + 75);
 
 			charactor_shadow.OnShow();
 			if (face_right) {
@@ -213,17 +259,28 @@ namespace game_framework {
 						charactor_attack_right.OnShow();
 						charactor_attack_right.OnShow();
 					}
+					else if (isMovingJump) {
+						charactor_jump_right.OnShow();
+						charactor_jump_right.OnShow();
+						charactor_jump_right.OnShow();
+					}
 					else {
-
 						charactor_stand_right.OnShow();
 						charactor_stand_right.OnShow();
 						charactor_stand_right.OnShow();
 					}
 				}
 				else {
-					charactor_walk_right.OnShow();
-					charactor_walk_right.OnShow();
-					charactor_walk_right.OnShow();
+					if (isMovingJump) {
+						charactor_jump_right.OnShow();
+						charactor_jump_right.OnShow();
+						charactor_jump_right.OnShow();
+					}
+					else {
+						charactor_walk_right.OnShow();
+						charactor_walk_right.OnShow();
+						charactor_walk_right.OnShow();
+					}
 				}
 			}
 			else {
