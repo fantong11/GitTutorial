@@ -176,6 +176,10 @@ IDB_SMALLDAVID          BITMAP                  "..\\RES\\role\\davis_s.bmp"
 
 IDB_SMALLDEEP           BITMAP                  "..\\RES\\role\\deep_s.bmp"
 
+IDB_STAGEONEWHOLE       BITMAP                  "..\\RES\\stageOneBackground\\down_block_whole.bmp"
+
+IDB_UPBLOCK             BITMAP                  "..\\RES\\stageOneBackground\\up_block.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

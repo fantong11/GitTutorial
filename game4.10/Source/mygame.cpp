@@ -684,7 +684,8 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
 	//
 	ShowInitProgress(33);	// 接個前一個狀態的進度，此處進度視為33%	
-	stageone.LoadBitmap(IDB_STAGEONEBG);
+	stageone.LoadBitmap(IDB_STAGEONEWHOLE);
+	up_block.LoadBitmap(IDB_UPBLOCK);
 
 	
 	
@@ -816,8 +817,10 @@ void CGameStateRun::OnShow()
 	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
 	corner.ShowBitmap();
 	*/
-	stageone.SetTopLeft(0, 0);
+	stageone.SetTopLeft(0, 100);
 	stageone.ShowBitmap();
+	up_block.SetTopLeft(0, 0);
+	up_block.ShowBitmap();
 	smallcharacter.SetTopLeft(0, 0);
 	smallcharacter.ShowBitmap();
 	enemy[0].DrawAllAboutEnemy();
@@ -831,7 +834,7 @@ void CGameStateRun::OnShow()
 	pDC->SetTextColor(RGB(255, 255, 255));
 	char str[80];								// Demo 數字對字串的轉換
 	sprintf(str, "STAGE  %d",stage);
-	pDC->TextOut(285, 94, str);
+	pDC->TextOut(281, 94, str);
 	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 
