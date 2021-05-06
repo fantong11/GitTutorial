@@ -332,5 +332,11 @@
     <Image Include="RES\role\deep_s.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\stageOneBackground\down_block_whole.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stageOneBackground\up_block.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -142,6 +142,7 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		CMovingBitmap stageone;
+		CMovingBitmap up_block;
 		CMovingBitmap smallcharacter;
 		int map_floor_range_x;
 		int map_floor_range_y;

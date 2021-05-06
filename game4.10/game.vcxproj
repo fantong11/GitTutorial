@@ -377,8 +377,10 @@
     <Image Include="RES\role\template.bmp" />
     <Image Include="RES\role\template2.bmp" />
     <Image Include="RES\selection_panel.bmp" />
+    <Image Include="RES\stageOneBackground\down_block_whole.bmp" />
     <Image Include="RES\stageOneBackground\stageone (1).bmp" />
     <Image Include="RES\stageOneBackground\stageone_background.bmp" />
+    <Image Include="RES\stageOneBackground\up_block.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

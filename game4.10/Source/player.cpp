@@ -101,19 +101,19 @@ namespace game_framework {
 	}
 
 	void Player::Decrease() {
-		LEAVE_BLOOD = 148 - int((500 - HP)*0.2);
-		LEAVE_MAGIC = 148 - (100 - MAGIC);
+		LEAVE_BLOOD = 144 - int((500 - HP)*0.206);
+		LEAVE_MAGIC = 144 - int((100 - MAGIC)*103/100);
 		//HP--;
 		//MAGIC--;
-		if (LEAVE_BLOOD <= 45) {
-			LEAVE_BLOOD = 45;
+		if (LEAVE_BLOOD <= 41) {
+			LEAVE_BLOOD = 41;
 		}
-		if (LEAVE_MAGIC <= 48)
-			LEAVE_MAGIC = 48;
+		if (LEAVE_MAGIC <= 41)
+			LEAVE_MAGIC = 41;
 		if (HP < 0)
 			HP = 0;
-		if (LEAVE_MAGIC <= 45)
-			LEAVE_MAGIC = 45;
+		if (MAGIC < 0)
+			MAGIC = 0;
 		OnMove();
 	}
 	void Player::DrawAllAboutPlayer() {
@@ -129,16 +129,16 @@ namespace game_framework {
 		pDC->SetTextColor(RGB(120, 120, 255));
 		char str[80];								// Demo 數字對字串的轉換
 		sprintf(str, "Man:  1    HP:  %d", HP);
-		pDC->TextOut(10, 94, str);
+		pDC->TextOut(6, 94, str);
 
 
 		CBrush b2(RGB(255, 0, 0));					// 畫黃色 progrss進度
 		pDC->SelectObject(&b2);
-		pDC->Rectangle(45, 12, LEAVE_BLOOD, 25);
+		pDC->Rectangle(41, 12, LEAVE_BLOOD, 25);
 
 		CBrush b3(RGB(0, 0, 255));					// 畫黃色 progrss進度
 		pDC->SelectObject(&b3);
-		pDC->Rectangle(45, 29, LEAVE_MAGIC, 42);
+		pDC->Rectangle(41, 29, LEAVE_MAGIC, 42);
 
 		pDC->SelectObject(pp);						// 釋放 pen
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
