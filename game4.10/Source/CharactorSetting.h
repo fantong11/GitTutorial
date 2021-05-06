@@ -25,6 +25,8 @@ namespace game_framework {
 		virtual void OnMove();
 		void OnShow();
 
+		CAnimation charactor_shadow;
+
 		CAnimation charactor_walk_right;
 		CAnimation charactor_run_right;
 		CAnimation charactor_attack_right;
@@ -41,7 +43,7 @@ namespace game_framework {
 		CAnimation charactor_hit_left;
 		CAnimation charactor_stand_left;
 
-		int x, y;
+		int x, y, z;
 		int HP;
 		bool face_right;
 		bool isMovingDown;			// 是否正在往下移動

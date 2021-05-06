@@ -129,9 +129,9 @@ namespace game_framework {
 				}
 				else{
 				
-				charactor_stand_right.OnMove();
-				charactor_stand_right.OnMove();
-				charactor_stand_right.OnMove();
+					charactor_stand_right.OnMove();
+					charactor_stand_right.OnMove();
+					charactor_stand_right.OnMove();
 				}
 
 			}
@@ -147,6 +147,9 @@ namespace game_framework {
 				if (isMovingDown) {
 					if (y + STEP_SIZE < 380)
 						y += STEP_SIZE;
+				}
+				if (isMovingJump) {
+					
 				}
 				charactor_walk_right.OnMove();
 				charactor_walk_right.OnMove();
@@ -194,14 +197,15 @@ namespace game_framework {
 
 	void CharactorSetting::OnShow() {
 		if (is_alive) {
-			charactor_attack_right.SetTopLeft(x, y);
-			charactor_attack_left.SetTopLeft(x, y);
-			charactor_stand_right.SetTopLeft(x, y);
-			charactor_stand_left.SetTopLeft(x, y);
-			charactor_walk_right.SetTopLeft(x, y);
-			charactor_walk_left.SetTopLeft(x, y);
+			charactor_attack_right.SetTopLeft(x, y + z);
+			charactor_attack_left.SetTopLeft(x, y + z);
+			charactor_stand_right.SetTopLeft(x, y + z);
+			charactor_stand_left.SetTopLeft(x, y + z);
+			charactor_walk_right.SetTopLeft(x, y + z);
+			charactor_walk_left.SetTopLeft(x, y + z);
+			charactor_shadow.SetTopLeft(x + 20, y + 75 + z);
 
-
+			charactor_shadow.OnShow();
 			if (face_right) {
 				if (!isMoving) {
 					if (isAttack) {
