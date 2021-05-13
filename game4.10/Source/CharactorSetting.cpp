@@ -25,8 +25,8 @@ namespace game_framework {
 		charactor_run_value = RUN_VALUE;
 		charactor_health_value = HEALTH_VALUE;
 
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = isAttack = false;
-		on_floor = is_alive=true;
+		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = isAttack = UnderAttack = false;
+		on_floor = is_alive= enemy_now= true;
 
 		HP = 500;
 		MAGIC = 100;
@@ -111,12 +111,26 @@ namespace game_framework {
 	void CharactorSetting::SetAlive(bool flag) {
 		is_alive = false;
 	}
-	
+	void CharactorSetting::isUnderAttack(int _x, int _y,bool flag) {
+		if (fabs(_y - y) < 1) {
+			if (fabs(_x - x) < 30) {
+				if (flag) {
+					UnderAttack = true;
+					DecreaseBlood();
+				}
+			}
+		}
+	}
 	void CharactorSetting::OnMove() {
 		const int STEP_SIZE = 2;
 
 		if (face_right) {
-			if (!isMoving) {
+			if (UnderAttack) {
+				charactor_behit_right.OnMove();
+				charactor_behit_right.OnMove();
+				charactor_behit_right.OnMove();
+			}
+			else if (!isMoving) {
 				if (isAttack) {
 					charactor_attack_right.OnMove();
 					charactor_attack_right.OnMove();
@@ -131,7 +145,7 @@ namespace game_framework {
 				else if (isMovingJump) {
 					if (z == 0) {
 						charactor_jump_right.OnMove();
-						charactor_jump_right.OnMove();
+						//charactor_jump_right.OnMove();
 						is_up = true;
 					}
 					if (z < 120 && is_up) {
@@ -146,7 +160,7 @@ namespace game_framework {
 					if (z == 0) {
 						is_up = true;
 						charactor_jump_right.OnMove();
-						charactor_jump_right.OnMove();
+						//charactor_jump_right.OnMove();
 						isMovingJump = false;
 					}
 					return ;
@@ -174,7 +188,7 @@ namespace game_framework {
 				if (isMovingJump) {
 					if (z == 0) {
 						charactor_jump_right.OnMove();
-						charactor_jump_right.OnMove();
+						//charactor_jump_right.OnMove();
 						is_up = true;
 					}
 					if (z < 120 && is_up) {
@@ -189,7 +203,7 @@ namespace game_framework {
 					if (z == 0) {
 						is_up = true;
 						charactor_jump_right.OnMove();
-						charactor_jump_right.OnMove();
+						//charactor_jump_right.OnMove();
 						isMovingJump = false;
 					}
 					return ;
@@ -200,7 +214,12 @@ namespace game_framework {
 			}
 		}
 		else {
-			if (!isMoving) {
+			if (UnderAttack) {
+				charactor_behit_right.OnMove();
+				charactor_behit_right.OnMove();
+				charactor_behit_right.OnMove();				
+			}
+			else if (!isMoving) {
 				if (isAttack) {
 
 					charactor_attack_left.OnMove();
@@ -212,6 +231,29 @@ namespace game_framework {
 						isAttack = false;
 					}
 					return ;
+				}
+				else if (isMovingJump) {
+					if (z == 0) {
+						charactor_jump_left.OnMove();
+						charactor_jump_left.OnMove();
+						is_up = true;
+					}
+					if (z < 120 && is_up) {
+						z += 10;
+					}
+					if (z >= 120) {
+						is_up = false;
+					}
+					if (!is_up) {
+						z -= 10;
+					}
+					if (z == 0) {
+						is_up = true;
+						charactor_jump_left.OnMove();
+						charactor_jump_left.OnMove();
+						isMovingJump = false;
+					}
+					return;
 				}
 				else {
 					charactor_stand_left.OnMove();
@@ -232,6 +274,29 @@ namespace game_framework {
 					if (y + STEP_SIZE < 380)
 						y += STEP_SIZE;
 				}
+				if (isMovingJump) {
+					if (z == 0) {
+						charactor_jump_left.OnMove();
+						charactor_jump_left.OnMove();
+						is_up = true;
+					}
+					if (z < 120 && is_up) {
+						z += 10;
+					}
+					if (z >= 120) {
+						is_up = false;
+					}
+					if (!is_up) {
+						z -= 10;
+					}
+					if (z == 0) {
+						is_up = true;
+						charactor_jump_left.OnMove();
+						charactor_jump_left.OnMove();
+						isMovingJump = false;
+					}
+					return;
+				}
 				charactor_walk_left.OnMove();
 				charactor_walk_left.OnMove();
 				charactor_walk_left.OnMove();
@@ -242,6 +307,7 @@ namespace game_framework {
 	void CharactorSetting::OnShow() {
 		if (is_alive) {
 			charactor_jump_left.SetTopLeft(x, y - z);
+			charactor_behit_right.SetTopLeft(x, y - z);
 			charactor_jump_right.SetTopLeft(x, y - z);
 			charactor_attack_right.SetTopLeft(x, y - z);
 			charactor_attack_left.SetTopLeft(x, y - z);
@@ -253,7 +319,13 @@ namespace game_framework {
 
 			charactor_shadow.OnShow();
 			if (face_right) {
-				if (!isMoving) {
+				if (UnderAttack) {
+					charactor_behit_right.OnShow();
+					charactor_behit_right.OnShow();
+					charactor_behit_right.OnShow();
+					UnderAttack = false;
+				}
+				else if (!isMoving) {
 					if (isAttack) {
 						charactor_attack_right.OnShow();
 						charactor_attack_right.OnShow();
@@ -284,11 +356,22 @@ namespace game_framework {
 				}
 			}
 			else {
-				if (!isMoving) {
+				if (UnderAttack) {
+					charactor_behit_right.OnShow();
+					charactor_behit_right.OnShow();
+					charactor_behit_right.OnShow();
+					UnderAttack = false;
+				}
+				else if (!isMoving) {
 					if (isAttack) {
 						charactor_attack_left.OnShow();
 						charactor_attack_left.OnShow();
 						charactor_attack_left.OnShow();
+					}
+					else if (isMovingJump) {
+						charactor_jump_left.OnShow();
+						charactor_jump_left.OnShow();
+						charactor_jump_left.OnShow();
 					}
 					else {
 						charactor_stand_left.OnShow();
@@ -297,9 +380,16 @@ namespace game_framework {
 					}
 				}
 				else {
-					charactor_walk_left.OnShow();
-					charactor_walk_left.OnShow();
-					charactor_walk_left.OnShow();
+					if (isMovingJump) {
+						charactor_jump_left.OnShow();
+						charactor_jump_left.OnShow();
+						charactor_jump_left.OnShow();
+					}
+					else {
+						charactor_walk_left.OnShow();
+						charactor_walk_left.OnShow();
+						charactor_walk_left.OnShow();
+					}
 				}
 			}
 

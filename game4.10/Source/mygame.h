@@ -143,13 +143,16 @@ namespace game_framework {
 	private:
 		CMovingBitmap stageone;
 		CMovingBitmap up_block;
-		CMovingBitmap smallcharacter;
+		CMovingBitmap* smallcharacter;
 		int map_floor_range_x;
 		int map_floor_range_y;
 		Enemy* enemy;
-		Player player;
+		Player* player;
 		int stage;
 		int control_hit_speed;
+		int control_hit_speed2;
+		int enemy_num;
+		int smallstage;
  	};
 
 	/////////////////////////////////////////////////////////////////////////////

@@ -13,13 +13,18 @@ namespace game_framework {
 		void SetAttack(bool flag);
 		void DecreaseBlood(void);
 		void SetAlive(bool flag);
+		void isUnderAttack(int, int, bool);
+
 		int NowX(void);
 		int NowY(void);
 		bool IsMoving(void);
 		bool IsAttacking(void);
+		
 
 		bool IsDead();
 		bool is_alive;
+		bool enemy_now;
+		bool underAttack;
 
 		virtual void SetXY(int, int);
 		virtual void OnMove();
@@ -34,7 +39,7 @@ namespace game_framework {
 		CAnimation charactor_defense_right;
 		CAnimation charactor_hit_right;
 		CAnimation charactor_stand_right;
-
+		CAnimation charactor_behit_right;
 		CAnimation charactor_walk_left;
 		CAnimation charactor_run_left;
 		CAnimation charactor_attack_left;
@@ -55,6 +60,7 @@ namespace game_framework {
 		bool isMoving;
 		bool isMovingJump;
 		bool on_floor;
+		bool UnderAttack;
 		int MAGIC;
 		int LEAVE_BLOOD;
 		int LEAVE_MAGIC;

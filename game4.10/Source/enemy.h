@@ -7,6 +7,5 @@ namespace game_framework {
 		void SetXY(int x, int y) override;
 		void getCloseToPlayer(int, int);
 		void getHit(void);
-		void DrawAllAboutEnemy(void);
 	};
 }

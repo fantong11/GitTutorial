@@ -538,33 +538,52 @@ void CGameStateOver::OnShow()
 CGameStateRun::CGameStateRun(CGame *g)
 : CGameState(g)//, NUMBALLS(28)
 {
-	stage = 1;
-	control_hit_speed = 0;
+
 	//ball = new CBall [NUMBALLS];
 }
 
 CGameStateRun::~CGameStateRun()
 {
 	delete [] enemy;
+	delete[] player;
+	delete[] smallcharacter;
 }
 
 void CGameStateRun::OnBeginState()
 {
+	stage = 1;
+	control_hit_speed = 0;
+	control_hit_speed2 = 0;
+	smallstage = 1;
 	ifstream fin("text1.txt", ios::in);
 	int temp;
 	fin >> temp;
 	fin.close();
-	player.LoadBitmap(temp);
-	enemy = new Enemy[1];
-	enemy[0].LoadBitmap(temp);
-	player.SetXY(95, 300);
+	player = new Player[1];
+	player[0].LoadBitmap(temp);
+	enemy = new Enemy[5];
+	enemy_num = 0;
+	int i = 0;
+	for (i = 0; i < 5; i++)
+		enemy[i].LoadBitmap(temp);
 	enemy[0].SetXY(400, 300);
+	enemy[1].SetXY(400, 270);
+	enemy[2].SetXY(400, 330);
+	enemy[3].SetXY(400, 270);
+	enemy[4].SetXY(400, 330);
+	enemy_num = 1;
+	player[0].SetXY(95, 300);
+	if (smallstage == 1) {
+		for (i = 1; i < 5; i++)
+			enemy[i].enemy_now = false;
+	}
+	smallcharacter = new CMovingBitmap[1];
 	if(temp==1)
-		smallcharacter.LoadBitmap(IDB_SMALLTEMPLATE);
+		smallcharacter[0].LoadBitmap(IDB_SMALLTEMPLATE);
 	else if(temp==2)
-		smallcharacter.LoadBitmap(IDB_SMALLDEEP);
+		smallcharacter[0].LoadBitmap(IDB_SMALLDEEP);
 	else
-		smallcharacter.LoadBitmap(IDB_SMALLDAVID);
+		smallcharacter[0].LoadBitmap(IDB_SMALLDAVID);
 	/*
 	const int BALL_GAP = 90;
 	const int BALL_XY_OFFSET = 45;
@@ -594,6 +613,7 @@ void CGameStateRun::OnBeginState()
 
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
+
 	/*
 	//
 	// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
@@ -637,43 +657,140 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	bball.OnMove();
 	*/
-
-
-	if(player.IsDead())
-		GotoGameState(GAME_STATE_OVER);
+	int i = 0;
+	enemy_num = 0;
+	for (i = 0; i < 5; i++) {
+		if (enemy[i].enemy_now)
+			enemy_num++;
+	}
 	if (enemy[0].IsDead()) {
+		if (enemy_num > 0 && smallstage == 1 && enemy[0].is_alive) {
+			enemy_num--;
+			smallstage++;
+			enemy[1].enemy_now = true;
+			enemy[2].enemy_now = true;
+		}
+		enemy[0].is_alive = false;
 		enemy[0].SetAlive(false);
 		enemy[0].isAttack = false;
+		enemy[0].enemy_now = false;
 	}
+	if (enemy[1].IsDead()) {
+		if (enemy_num > 0 && smallstage == 2 && enemy[1].is_alive)
+			enemy_num -= 1;
+		enemy[1].is_alive = false;
+		enemy[1].SetAlive(false);
+		enemy[1].isAttack = false;
+		enemy[1].enemy_now = false;
+	}
+	if (enemy[2].IsDead()) {
+		if (enemy_num > 0 && smallstage == 2 && enemy[2].is_alive)
+			enemy_num -= 1;
+		enemy[2].is_alive = false;
+		enemy[2].SetAlive(false);
+		enemy[2].isAttack = false;
+		enemy[2].enemy_now = false;
+	}
+	if (smallstage == 2 && enemy[1].IsDead() && enemy[2].IsDead()) {
+		smallstage += 1;
+		enemy[3].enemy_now = true;
+		enemy[4].enemy_now = true;
+	}
+	if (enemy[3].IsDead()) {
+		if (enemy_num > 0 && smallstage == 3 && enemy[3].is_alive)
+			enemy_num -= 1;
+		enemy[3].is_alive = false;
+		enemy[3].SetAlive(false);
+		enemy[3].isAttack = false;
+		enemy[3].enemy_now = false;
+	}
+	if (enemy[4].IsDead()) {
+		if (enemy_num > 0 && smallstage == 3 && enemy[4].is_alive)
+			enemy_num -= 1;
+		enemy[4].is_alive = false;
+		enemy[4].SetAlive(false);
+		enemy[4].isAttack = false;
+		enemy[4].enemy_now = false;
+	}
+	if (smallstage == 3 && enemy[3].IsDead() && enemy[4].IsDead()) {
+		GotoGameState(GAME_STATE_OVER);
+	}
+	if (smallstage == 2) {
+		for (i = 1; i < 3; i++)
+			enemy[i].enemy_now = true;
+	}
+	if (smallstage == 3) {
+		for (i = 3; i < 5; i++)
+			enemy[i].enemy_now = true;
+	}
+	if(player[0].IsDead())
+		GotoGameState(GAME_STATE_OVER);
+
+
 	int p_x = 0, p_y = 0, e_x = 0, e_y = 0;
 	if (control_hit_speed > 0)
 		control_hit_speed--;
-
-	if (fabs(player.y - enemy[0].y) < 1) {
-		if (fabs(player.x - enemy[0].x) < 30) {
-			if (player.IsAttacking() && control_hit_speed==0) {
-				control_hit_speed = 30;
-				if (enemy[0].IsAttacking()) {
-					player.DecreaseBlood();
-					enemy[0].DecreaseBlood();
+	if (control_hit_speed2 > 0)
+		control_hit_speed2--;
+	for (i = 0; i < 5; i++) {
+		if (enemy[i].enemy_now) {
+			if (i == 0 || i == 1 || i == 3) {
+				if (fabs(player[0].y - enemy[i].y) < 1) {
+					if (fabs(player[0].x - enemy[i].x) < 30) {
+						if (player[0].IsAttacking() && control_hit_speed == 0) {
+							control_hit_speed = 30;
+							if (enemy[i].IsAttacking()) {
+								player[0].DecreaseBlood();
+								enemy[i].DecreaseBlood();
+							}
+							else
+								enemy[i].DecreaseBlood();
+						}
+						else if (enemy[i].IsAttacking() && control_hit_speed == 0) {
+							control_hit_speed = 30;
+							if (player[0].IsAttacking()) {
+								player[0].DecreaseBlood();
+								enemy[i].DecreaseBlood();
+							}
+							else
+								player[0].DecreaseBlood();
+						}
+					}
 				}
-				else
-					enemy[0].DecreaseBlood();
 			}
-			else if (enemy[0].IsAttacking() && control_hit_speed == 0) {
-				control_hit_speed = 30;
-				if (player.IsAttacking()) {
-					player.DecreaseBlood();
-					enemy[0].DecreaseBlood();
+			else {
+				if (fabs(player[0].y - enemy[i].y) < 1) {
+					if (fabs(player[0].x - enemy[i].x) < 30) {
+						if (player[0].IsAttacking() && control_hit_speed2 == 0) {
+							control_hit_speed2 = 30;
+							if (enemy[i].IsAttacking()) {
+								player[0].DecreaseBlood();
+								enemy[i].DecreaseBlood();
+							}
+							else
+								enemy[i].DecreaseBlood();
+						}
+						else if (enemy[i].IsAttacking() && control_hit_speed2 == 0) {
+							control_hit_speed2 = 30;
+							if (player[0].IsAttacking()) {
+								player[0].DecreaseBlood();
+								enemy[i].DecreaseBlood();
+							}
+							else
+								player[0].DecreaseBlood();
+						}
+					}
 				}
-				else
-					player.DecreaseBlood();
 			}
 		}
 	}
 
-	player.Decrease();
-	enemy[0].getCloseToPlayer(player.x, player.y);
+	player[0].Decrease();
+	for (i = 0; i < 5; i++) {
+		if(enemy[i].enemy_now)
+			enemy[i].getCloseToPlayer(player[0].x, player[0].y);
+	}
+	
 
 }
 
@@ -722,6 +839,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
+	int i = 0;
 	const char KEY_LEFT  = 0x25; // keyboard左箭頭
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
@@ -729,19 +847,21 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_JUMP = 0x4B; // keyboard k
 	const char KEY_ATTACK = 0x4A;
 	if (nChar == KEY_LEFT)
-		player.SetMovingLeft(true);
+		player[0].SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)
-		player.SetMovingRight(true);
+		player[0].SetMovingRight(true);
 	if (nChar == KEY_UP)
-		player.SetMovingUp(true);
+		player[0].SetMovingUp(true);
 	if (nChar == KEY_DOWN)
-		player.SetMovingDown(true);
+		player[0].SetMovingDown(true);
 	if (nChar == KEY_JUMP)
-		player.SetMovingJump(true);
-	if (nChar == KEY_ATTACK)
-		player.SetAttack(true);
-	if (nChar == KEY_LEFT || nChar == KEY_RIGHT || nChar == KEY_UP || nChar == KEY_DOWN || nChar == KEY_JUMP || nChar == KEY_ATTACK)
-		player.SetMoving(true);
+		player[0].SetMovingJump(true);
+	if (nChar == KEY_ATTACK) {
+		player[0].SetAttack(true);
+	}
+		
+	if (nChar == KEY_LEFT || nChar == KEY_RIGHT || nChar == KEY_UP || nChar == KEY_DOWN)
+		player[0].SetMoving(true);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -753,15 +873,15 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_JUMP  = 0x6B; // keyboard k
 	const char KEY_ATTACK = 0x4A;
 	if (nChar == KEY_LEFT)
-		player.SetMovingLeft(false);
+		player[0].SetMovingLeft(false);
 	if (nChar == KEY_RIGHT)
-		player.SetMovingRight(false);
+		player[0].SetMovingRight(false);
 	if (nChar == KEY_UP)
-		player.SetMovingUp(false);
+		player[0].SetMovingUp(false);
 	if (nChar == KEY_DOWN)
-		player.SetMovingDown(false);
-	if (player.IsMoving() == false)
-		player.SetMoving(false);
+		player[0].SetMovingDown(false);
+	if (player[0].IsMoving() == false)
+		player[0].SetMoving(false);
 }
 /*
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
@@ -820,13 +940,17 @@ void CGameStateRun::OnShow()
 	stageone.ShowBitmap();
 	up_block.SetTopLeft(0, 0);
 	up_block.ShowBitmap();
-	smallcharacter.SetTopLeft(0, 0);
-	smallcharacter.ShowBitmap();
-	enemy[0].DrawAllAboutEnemy();
-	player.DrawAllAboutPlayer();
+	smallcharacter[0].SetTopLeft(0, 0);
+	smallcharacter[0].ShowBitmap();
+	int i = 0;
+	for (i = 0; i < 5; i++) {
+		if(enemy[i].enemy_now)
+			enemy[i].OnShow();
+	}
+	player[0].DrawAllAboutPlayer();
 
 	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-	CFont f, *fp;
+	CFont f, ff1,*fp, *ff;
 	f.CreatePointFont(110, "Times New Roman");	// 產生 font f; 160表示16 point的字
 	fp = pDC->SelectObject(&f);					// 選用 font f
 	pDC->SetBkColor(RGB(0, 0, 0));
@@ -834,8 +958,23 @@ void CGameStateRun::OnShow()
 	char str[80];								// Demo 數字對字串的轉換
 	sprintf(str, "STAGE  %d",stage);
 	pDC->TextOut(281, 94, str);
+
+	ff1.CreatePointFont(110, "Times New Roman");	// 產生 font f; 160表示16 point的字
+	ff = pDC->SelectObject(&ff1);					// 選用 font f
+	pDC->SetBkColor(RGB(0, 0, 0));
+	pDC->SetTextColor(RGB(255, 0, 255));
+	char str1[80];								// Demo 數字對字串的轉換
+	if(smallstage==1)
+		sprintf(str1, "Man:  %d    HP:  %d", enemy_num,enemy[0].HP);
+	else if(smallstage==2)
+		sprintf(str1, "Man:  %d    HP:  %d", enemy_num, enemy[1].HP+enemy[2].HP);
+	else if (smallstage == 3)
+		sprintf(str1, "Man:  %d    HP:  %d", enemy_num, enemy[3].HP + enemy[4].HP);
+	pDC->TextOut(523, 94, str1);
 	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+	pDC->SelectObject(ff);
 	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+
 
 }
 
