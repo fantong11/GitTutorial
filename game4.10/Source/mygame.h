@@ -149,8 +149,6 @@ namespace game_framework {
 		Enemy* enemy;
 		Player* player;
 		int stage;
-		int control_hit_speed;
-		int control_hit_speed2;
 		int enemy_num;
 		int smallstage;
  	};

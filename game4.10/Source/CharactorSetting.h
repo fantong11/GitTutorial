@@ -12,15 +12,17 @@ namespace game_framework {
 		void SetMoving(bool flag);
 		void SetAttack(bool flag);
 		void DecreaseBlood(void);
+		void DecreaseBlood2(void);
 		void SetAlive(bool flag);
-		void isUnderAttack(int, int, bool);
+		void isUnderAttack(int, int,int, bool);
 
 		int NowX(void);
 		int NowY(void);
 		bool IsMoving(void);
 		bool IsAttacking(void);
+		void SetDefense(bool flag);
 		
-
+		bool isDefense;
 		bool IsDead();
 		bool is_alive;
 		bool enemy_now;
@@ -36,7 +38,6 @@ namespace game_framework {
 		CAnimation charactor_run_right;
 		CAnimation charactor_attack_right;
 		CAnimation charactor_jump_right;
-		CAnimation charactor_defense_right;
 		CAnimation charactor_hit_right;
 		CAnimation charactor_stand_right;
 		CAnimation charactor_behit_right;
@@ -44,9 +45,11 @@ namespace game_framework {
 		CAnimation charactor_run_left;
 		CAnimation charactor_attack_left;
 		CAnimation charactor_jump_left;
-		CAnimation charactor_defense_left;
 		CAnimation charactor_hit_left;
 		CAnimation charactor_stand_left;
+		CAnimation charactor_behit_left;
+		CAnimation charactor_defense_right;
+		CAnimation charactor_defense_left;
 
 		int x, y, z;
 		int HP;
@@ -65,6 +68,8 @@ namespace game_framework {
 		int LEAVE_BLOOD;
 		int LEAVE_MAGIC;
 		int control_attack;
+		int control_be_attack;
+		int control_hit_speed;
 
 	protected:
 		//CMovingBitmap try1;

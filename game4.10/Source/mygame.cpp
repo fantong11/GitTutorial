@@ -552,8 +552,6 @@ CGameStateRun::~CGameStateRun()
 void CGameStateRun::OnBeginState()
 {
 	stage = 1;
-	control_hit_speed = 0;
-	control_hit_speed2 = 0;
 	smallstage = 1;
 	ifstream fin("text1.txt", ios::in);
 	int temp;
@@ -728,69 +726,21 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 
 
 	int p_x = 0, p_y = 0, e_x = 0, e_y = 0;
-	if (control_hit_speed > 0)
-		control_hit_speed--;
-	if (control_hit_speed2 > 0)
-		control_hit_speed2--;
+	player[0].Decrease();
+	for (i = 0; i < 5; i++) {
+		if (enemy[i].enemy_now)
+			enemy[i].getCloseToPlayer(player[0].x, player[0].y);
+	}
+
 	for (i = 0; i < 5; i++) {
 		if (enemy[i].enemy_now) {
-			if (i == 0 || i == 1 || i == 3) {
-				if (fabs(player[0].y - enemy[i].y) < 1) {
-					if (fabs(player[0].x - enemy[i].x) < 30) {
-						if (player[0].IsAttacking() && control_hit_speed == 0) {
-							control_hit_speed = 30;
-							if (enemy[i].IsAttacking()) {
-								player[0].DecreaseBlood();
-								enemy[i].DecreaseBlood();
-							}
-							else
-								enemy[i].DecreaseBlood();
-						}
-						else if (enemy[i].IsAttacking() && control_hit_speed == 0) {
-							control_hit_speed = 30;
-							if (player[0].IsAttacking()) {
-								player[0].DecreaseBlood();
-								enemy[i].DecreaseBlood();
-							}
-							else
-								player[0].DecreaseBlood();
-						}
-					}
-				}
-			}
-			else {
-				if (fabs(player[0].y - enemy[i].y) < 1) {
-					if (fabs(player[0].x - enemy[i].x) < 30) {
-						if (player[0].IsAttacking() && control_hit_speed2 == 0) {
-							control_hit_speed2 = 30;
-							if (enemy[i].IsAttacking()) {
-								player[0].DecreaseBlood();
-								enemy[i].DecreaseBlood();
-							}
-							else
-								enemy[i].DecreaseBlood();
-						}
-						else if (enemy[i].IsAttacking() && control_hit_speed2 == 0) {
-							control_hit_speed2 = 30;
-							if (player[0].IsAttacking()) {
-								player[0].DecreaseBlood();
-								enemy[i].DecreaseBlood();
-							}
-							else
-								player[0].DecreaseBlood();
-						}
-					}
-				}
-			}
+			if(player[0].isAttack)
+				enemy[i].isUnderAttack(player[0].x, player[0].y, player[0].z, player[0].isAttack);
+			else
+				player[0].isUnderAttack(enemy[i].x, enemy[i].y, enemy[i].z, enemy[i].isAttack);
 		}
 	}
 
-	player[0].Decrease();
-	for (i = 0; i < 5; i++) {
-		if(enemy[i].enemy_now)
-			enemy[i].getCloseToPlayer(player[0].x, player[0].y);
-	}
-	
 
 }
 
@@ -846,6 +796,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	const char KEY_JUMP = 0x4B; // keyboard k
 	const char KEY_ATTACK = 0x4A;
+	const char KEY_DEF = 0x4C;
 	if (nChar == KEY_LEFT)
 		player[0].SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)
@@ -858,6 +809,9 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		player[0].SetMovingJump(true);
 	if (nChar == KEY_ATTACK) {
 		player[0].SetAttack(true);
+	}
+	if (nChar == KEY_DEF) {
+		player[0].SetDefense(true);
 	}
 		
 	if (nChar == KEY_LEFT || nChar == KEY_RIGHT || nChar == KEY_UP || nChar == KEY_DOWN)
@@ -872,6 +826,7 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	const char KEY_JUMP  = 0x6B; // keyboard k
 	const char KEY_ATTACK = 0x4A;
+	const char KEY_DEF = 0x4C;
 	if (nChar == KEY_LEFT)
 		player[0].SetMovingLeft(false);
 	if (nChar == KEY_RIGHT)
@@ -880,6 +835,9 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 		player[0].SetMovingUp(false);
 	if (nChar == KEY_DOWN)
 		player[0].SetMovingDown(false);
+	if (nChar == KEY_DEF) {
+		player[0].SetDefense(false);
+	}
 	if (player[0].IsMoving() == false)
 		player[0].SetMoving(false);
 }
