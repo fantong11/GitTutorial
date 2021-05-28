@@ -15,6 +15,7 @@ namespace game_framework {
 		void DecreaseBlood2(void);
 		void SetAlive(bool flag);
 		void isUnderAttack(int, int,int, bool);
+		void isJumping(bool flag);
 
 		int NowX(void);
 		int NowY(void);
@@ -72,6 +73,9 @@ namespace game_framework {
 		int control_hit_speed;
 		int STEP_SIZE;
 
+		int jump_count;
+
+
 	protected:
 		//CMovingBitmap try1;
 	
@@ -81,10 +85,5 @@ namespace game_framework {
 		int charactor_defense_value;
 		int charactor_hit_value;
 		int charactor_health_value;
-
-
-		
-
-	
 	};
 }

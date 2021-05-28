@@ -27,6 +27,7 @@ namespace game_framework {
 
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = isAttack = UnderAttack = isDefense = false;
 		on_floor = is_alive= enemy_now= true;
+		jump_count = 0;
 
 		HP = 500;
 		MAGIC = 100;
@@ -168,27 +169,37 @@ namespace game_framework {
 					//return;
 				}
 				else if (isMovingJump) {
-					if (z == 0) {
+					if (z == 0 && jump_count < 2) {
 						charactor_jump_right.OnMove();
-						//charactor_jump_right.OnMove();
+						charactor_jump_right.OnMove();
+						charactor_jump_right.OnMove();
 						is_up = true;
+						jump_count ++;
 					}
-					if (z < 120 && is_up) {
+					if (jump_count < 2) {
+						charactor_jump_right.OnMove();
+						charactor_jump_right.OnMove();
+						charactor_jump_right.OnMove();
+					}
+					if (z < 120 && is_up && jump_count == 2) {
+						//charactor_jump_right.OnMove();
 						z += 10;
 					}
-					if (z >= 120) {
+					if (z >= 120 && jump_count == 2) {
+						//charactor_jump_right.OnMove();
 						is_up = false;
 					}
-					if (!is_up) {
+					if (!is_up && jump_count == 2) {
+						//charactor_jump_right.OnMove();
 						z -= 10;
 					}
-					if (z == 0) {
+					if (z == 0 && jump_count == 2) {
+						jump_count = 0;
 						is_up = true;
 						charactor_jump_right.OnMove();
 						//charactor_jump_right.OnMove();
 						isMovingJump = false;
 					}
-					return ;
 				}
 				else if (isDefense) {
 					charactor_defense_right.OnMove();
@@ -387,8 +398,6 @@ namespace game_framework {
 					}
 					else if (isMovingJump) {
 						charactor_jump_right.OnShow();
-						charactor_jump_right.OnShow();
-						charactor_jump_right.OnShow();
 					}
 					else if (isDefense) {
 						charactor_defense_right.OnShow();
@@ -401,8 +410,6 @@ namespace game_framework {
 				}
 				else {
 					if (isMovingJump) {
-						charactor_jump_right.OnShow();
-						charactor_jump_right.OnShow();
 						charactor_jump_right.OnShow();
 					}
 					else {
@@ -445,8 +452,6 @@ namespace game_framework {
 					}
 					else if (isMovingJump) {
 						charactor_jump_left.OnShow();
-						charactor_jump_left.OnShow();
-						charactor_jump_left.OnShow();
 					}
 					else if (isDefense) {
 						charactor_defense_left.OnShow();
@@ -459,8 +464,6 @@ namespace game_framework {
 				}
 				else {
 					if (isMovingJump) {
-						charactor_jump_left.OnShow();
-						charactor_jump_left.OnShow();
 						charactor_jump_left.OnShow();
 					}
 					else {

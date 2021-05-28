@@ -338,5 +338,18 @@
     <Image Include="RES\stageOneBackground\up_block.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\role\bitmap8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stageTwoBackground\stage_2.png" />
+    <Image Include="res\role\bitmap11.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stageTwoBackground\stage_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\stageThreeBackground\stage_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
