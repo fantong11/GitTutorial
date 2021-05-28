@@ -9,6 +9,7 @@
 #include "iostream"
 #include <fstream>
 #include "enemy.h"
+#include <cstdlib>
 
 namespace game_framework {
 	void Enemy::LoadBitmap(int a) {
@@ -20,8 +21,8 @@ namespace game_framework {
 			char *file_charactor_stand_left[4] = { ".\\RES\\enemy\\stand_left\\stand1.bmp", ".\\RES\\enemy\\stand_left\\stand2.bmp", ".\\RES\\enemy\\stand_left\\stand3.bmp", ".\\RES\\enemy\\stand_left\\stand4.bmp" };
 			char *file_charactor_attack_right[4] = { ".\\RES\\enemy\\attack_right\\attack1.bmp",".\\RES\\enemy\\attack_right\\attack2.bmp",".\\RES\\enemy\\attack_right\\attack3.bmp" ,".\\RES\\enemy\\attack_right\\attack4.bmp" };
 			char *file_charactor_attack_left[4] = { ".\\RES\\enemy\\attack_left\\attack1.bmp",".\\RES\\enemy\\attack_left\\attack2.bmp",".\\RES\\enemy\\attack_left\\attack3.bmp",".\\RES\\enemy\\attack_left\\attack4.bmp" };
-			char *file_charactor_jump_right[3] = { ".\\RES\\template\\jump_to_right\\jump1.bmp", ".\\RES\\template\\jump_to_right\\jump2.bmp", ".\\RES\\template\\jump_to_right\\jump3.bmp" };
-			char *file_charactor_jump_left[3] = { ".\\RES\\template\\jump_to_left\\jump1.bmp", ".\\RES\\template\\jump_to_left\\jump2.bmp", ".\\RES\\template\\jump_to_left\\jump3.bmp" };
+			char *file_charactor_jump_right[3] = { ".\\RES\\enemy\\jump_to_right\\jump1.bmp", ".\\RES\\enemy\\jump_to_right\\jump2.bmp", ".\\RES\\enemy\\jump_to_right\\jump3.bmp" };
+			char *file_charactor_jump_left[3] = { ".\\RES\\enemy\\jump_to_left\\jump1.bmp", ".\\RES\\enemy\\jump_to_left\\jump2.bmp", ".\\RES\\enemy\\jump_to_left\\jump3.bmp" };
 			char *file_charactor_behit_right[3] = { ".\\RES\\enemy\\be_hit_right\\behit1.bmp",".\\RES\\enemy\\be_hit_right\\behit2.bmp",".\\RES\\enemy\\be_hit_right\\behit3.bmp" };
 			char *file_charactor_behit_left[3] = { ".\\RES\\enemy\\be_hit_left\\behit1.bmp",".\\RES\\enemy\\be_hit_left\\behit2.bmp",".\\RES\\enemy\\be_hit_left\\behit3.bmp" };
 			char *file_charactor_defense_right[2] = { ".\\RES\\enemy\\defense_to_right\\defense1.bmp",".\\RES\\enemy\\defense_to_right\\defense2.bmp" };
@@ -64,6 +65,7 @@ namespace game_framework {
 		z = 0;
 		face_right = false;
 		HP = 50;
+		STEP_SIZE = 1;
 	}
 
 	void Enemy::getCloseToPlayer(int _x, int _y) {
@@ -90,11 +92,26 @@ namespace game_framework {
 			if (fabs(y - _y) < 1) {
 				if (fabs(x - _x) < 30) {
 					SetMoving(false);
+					SetDefense(false);
+
+					int x = rand() % 30 + 1;
 					if (!UnderAttack) {
-						SetAttack(true);
+						if (isAttack == 0 && isDefense == 0 && isMovingJump == 0) {
+							if (x == 1) {
+								SetMovingJump(true);
+							}
+							else if (x == 2) {
+								SetDefense(true);
+							}
+							else {
+								
+								SetAttack(true);
+							}
+						}
 					}
 
 				}
+				
 
 			}
 			OnMove();

@@ -17,8 +17,8 @@ namespace game_framework {
 		const int DEFENSE_VALUE = 50;
 		const int WALK_VALUE = 50;
 		const int RUN_VALUE = 100;
-		const int HEALTH_VALUE = 1000;	
-
+		const int HEALTH_VALUE = 1000;
+		STEP_SIZE = 2;
 		charactor_attack_value = ATTACK_VALUE;
 		charactor_defense_value = DEFENSE_VALUE;
 		charactor_walk_value = WALK_VALUE;
@@ -93,7 +93,7 @@ namespace game_framework {
 		isDefense = flag;
 	}
 	bool CharactorSetting::IsDead() {
-		if (HP == 0)
+		if (HP <= 0)
 			return true;
 		else
 			return false;
@@ -145,7 +145,7 @@ namespace game_framework {
 		}
 	}
 	void CharactorSetting::OnMove() {
-		const int STEP_SIZE = 2;
+		
 
 		if (face_right) {
 			if (UnderAttack) {
@@ -297,14 +297,17 @@ namespace game_framework {
 				if (isMovingLeft) {
 					if (x - STEP_SIZE > -40)
 						x -= STEP_SIZE;
+
 				}
 				if (isMovingUp) {
 					if (y - STEP_SIZE > 224)
 						y -= STEP_SIZE;
+
 				}
 				if (isMovingDown) {
 					if (y + STEP_SIZE < 380)
 						y += STEP_SIZE;
+		
 				}
 				if (isMovingJump) {
 					if (z == 0) {

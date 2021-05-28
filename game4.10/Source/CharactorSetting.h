@@ -70,6 +70,7 @@ namespace game_framework {
 		int control_attack;
 		int control_be_attack;
 		int control_hit_speed;
+		int STEP_SIZE;
 
 	protected:
 		//CMovingBitmap try1;
