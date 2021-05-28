@@ -350,6 +350,8 @@
     <Image Include="RES\join_char_1.bmp" />
     <Image Include="RES\join_char_2.bmp" />
     <Image Include="RES\role\bandit_f.bmp" />
+    <Image Include="res\role\bitmap11.bmp" />
+    <Image Include="res\role\bitmap8.bmp" />
     <Image Include="RES\role\blood.bmp" />
     <Image Include="RES\role\countdown_1.bmp" />
     <Image Include="RES\role\countdown_2.bmp" />
@@ -381,6 +383,9 @@
     <Image Include="RES\stageOneBackground\stageone (1).bmp" />
     <Image Include="RES\stageOneBackground\stageone_background.bmp" />
     <Image Include="RES\stageOneBackground\up_block.bmp" />
+    <Image Include="RES\stageThreeBackground\stage_3.bmp" />
+    <Image Include="RES\stageTwoBackground\stage_2.bmp" />
+    <Image Include="RES\stageTwoBackground\stage_2.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
