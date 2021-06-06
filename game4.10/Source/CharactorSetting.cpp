@@ -552,9 +552,6 @@ namespace game_framework {
 					else if (isDefense) {
 						charactor_defense_right.OnShow();
 					}
-					else if (isMovingRunRight) {
-						charactor_run_right.OnShow();
-					}
 					else {
 						charactor_stand_right.OnShow();
 						charactor_stand_right.OnShow();
@@ -564,6 +561,9 @@ namespace game_framework {
 				else {
 					if (isMovingJump) {
 						charactor_jump_right.OnShow();
+					}
+					else if (isMovingRunRight) {
+						charactor_run_right.OnShow();
 					}
 					else {
 						charactor_walk_right.OnShow();
@@ -609,9 +609,6 @@ namespace game_framework {
 					else if (isDefense) {
 						charactor_defense_left.OnShow();
 					}
-					else if (isMovingRunLeft) {
-						charactor_run_left.OnShow();
-					}
 					else {
 						charactor_stand_left.OnShow();
 						charactor_stand_left.OnShow();
@@ -621,6 +618,9 @@ namespace game_framework {
 				else {
 					if (isMovingJump) {
 						charactor_jump_left.OnShow();
+					}
+					else if (isMovingRunLeft) {
+						charactor_run_left.OnShow();
 					}
 					else {
 						charactor_walk_left.OnShow();
