@@ -21,7 +21,8 @@ namespace game_framework {
 			char *file_charactor_stand_left[4] = { ".\\RES\\template\\stand_left\\stand1.bmp", ".\\RES\\template\\stand_left\\stand2.bmp", ".\\RES\\template\\stand_left\\stand3.bmp", ".\\RES\\template\\stand_left\\stand4.bmp" };
 			char *file_charactor_attack_right[4] = { ".\\RES\\template\\attack_right\\attack1.bmp",".\\RES\\template\\attack_right\\attack2.bmp",".\\RES\\template\\attack_right\\attack3.bmp" ,".\\RES\\template\\attack_right\\attack4.bmp" };
 			char *file_charactor_attack_left[4] = { ".\\RES\\template\\attack_left\\attack1.bmp",".\\RES\\template\\attack_left\\attack2.bmp",".\\RES\\template\\attack_left\\attack3.bmp",".\\RES\\template\\attack_left\\attack4.bmp" };
-
+			char *file_charactor_run_left[3] = {".\\RES\\template\\run_to_left\\run1.bmp", ".\\RES\\template\\run_to_left\\run2.bmp", ".\\RES\\template\\run_to_left\\run3.bmp"};
+			char *file_charactor_run_right[3] = {".\\RES\\template\\run_to_right\\run1.bmp", ".\\RES\\template\\run_to_right\\run2.bmp", ".\\RES\\template\\run_to_right\\run3.bmp"};
 			char *file_charactor_jump_right[3] = {".\\RES\\template\\jump_to_right\\jump1.bmp", ".\\RES\\template\\jump_to_right\\jump2.bmp", ".\\RES\\template\\jump_to_right\\jump3.bmp"};
 			char *file_charactor_jump_left[3] = {".\\RES\\template\\jump_to_left\\jump1.bmp", ".\\RES\\template\\jump_to_left\\jump2.bmp", ".\\RES\\template\\jump_to_left\\jump3.bmp"};
 			char *file_charactor_behit_right[3] = { ".\\RES\\template\\be_hit_right\\behit1.bmp",".\\RES\\template\\be_hit_right\\behit2.bmp",".\\RES\\template\\be_hit_right\\behit3.bmp" };
@@ -48,6 +49,8 @@ namespace game_framework {
 				charactor_jump_right.AddBitmap(file_charactor_jump_right[i], RGB(0, 0, 0));
 				charactor_behit_right.AddBitmap(file_charactor_behit_right[i], RGB(0, 0, 0));
 				charactor_behit_left.AddBitmap(file_charactor_behit_left[i], RGB(0, 0, 0));
+				charactor_run_left.AddBitmap(file_charactor_run_left[i], RGB(0, 0, 0));
+				charactor_run_right.AddBitmap(file_charactor_run_right[i], RGB(0, 0, 0));
 			}
 			for (int i = 0; i < 2; i++) {
 				charactor_defense_right.AddBitmap(file_charactor_defense_right[i], RGB(0, 0, 0));

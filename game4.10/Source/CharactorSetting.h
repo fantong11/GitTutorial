@@ -1,5 +1,11 @@
 #pragma once
 namespace game_framework {
+	class Data {
+		public:
+		string action;
+		time_t time;
+	};
+
 	class CharactorSetting {
 	public:
 		CharactorSetting();
@@ -16,6 +22,8 @@ namespace game_framework {
 		void SetAlive(bool flag);
 		void isUnderAttack(int, int,int, bool);
 		void isJumping(bool flag);
+
+		void whatStatus(void);
 
 		int NowX(void);
 		int NowY(void);
@@ -60,6 +68,8 @@ namespace game_framework {
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動
 		bool isMovingUp;			// 是否正在往上移動
+		bool isMovingRunLeft;
+		bool isMovingRunRight;
 		bool isAttack;
 		bool isMoving;
 		bool isMovingJump;
@@ -74,6 +84,7 @@ namespace game_framework {
 		int STEP_SIZE;
 
 		int jump_count;
+		vector<Data> data;
 
 
 	protected:

@@ -9,6 +9,8 @@
 #include "iostream"
 #include <fstream>
 #include <windows.h>
+#include <vector>
+#include <ctime>
 
 namespace game_framework {
 	// ³]©w¦n map
@@ -25,7 +27,7 @@ namespace game_framework {
 		charactor_run_value = RUN_VALUE;
 		charactor_health_value = HEALTH_VALUE;
 
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = isAttack = UnderAttack = isDefense = false;
+		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = isAttack = UnderAttack = isDefense = isMovingRunLeft = isMovingRunRight = false;
 		on_floor = is_alive= enemy_now= true;
 		jump_count = 0;
 
@@ -54,37 +56,81 @@ namespace game_framework {
 			return true;
 	}
 
+	void CharactorSetting::whatStatus(void) {
+		// ¶]
+		if (data.size() > 1) {
+			if (data[data.size() - 1].action == "left" && data[data.size() - 2].action == "left") {
+				isMovingRunLeft = true;
+				data.empty();
+			}
+			else if (data[data.size() - 1].action == "right" && data[data.size() - 2].action == "right") {
+				isMovingRunRight = true;
+				data.empty();
+			} 
+		}
+	}
+
 	void CharactorSetting::SetAttack(bool flag) {
 		isAttack = flag;
+		string s = "attack";
+		Data d;
+		d.action = s;
+		d.time = time(0);
+		data.push_back(d);
 	}
 
 	
 	void CharactorSetting::SetMovingDown(bool flag) {
 		isAttack = false;
 		isMovingDown = flag;
+		string s = "down";
+		Data d;
+		d.action = s;
+		d.time = time(0);
+		data.push_back(d);
 	}
 
 	void CharactorSetting::SetMovingUp(bool flag) {
 		isAttack = false;
 		isMovingUp = flag;
+		string s = "up";
+		Data d;
+		d.action = s;
+		d.time = time(0);
+		data.push_back(d);
 	}
 
 	void CharactorSetting::SetMovingLeft(bool flag) {
 		isAttack = false;
 		isMovingLeft = flag;
 		face_right = false;
+		string s = "left";
+		Data d;
+		d.action = s;
+		d.time = time(0);
+		data.push_back(d);
 	}
 
 	void CharactorSetting::SetMovingRight(bool flag) {
 		isAttack = false;
 		isMovingRight = flag;
 		face_right = true;
+		string s = "right";
+		Data d;
+		d.action = s;
+		d.time = time(0);
+		data.push_back(d);
 	}
 
 	void CharactorSetting::SetMovingJump(bool flag) {
 		isAttack = false;
 		isMovingJump = flag;
 		on_floor = false;
+		string s = "jump";
+		Data d;
+		d.action = s;
+		d.time = time(0);
+		data.push_back(d);
 	}
 
 	void CharactorSetting::SetMoving(bool flag) {
@@ -92,6 +138,11 @@ namespace game_framework {
 	}
 	void CharactorSetting::SetDefense(bool flag) {
 		isDefense = flag;
+		string s = "defense";
+		Data d;
+		d.action = s;
+		d.time = time(0);
+		data.push_back(d);
 	}
 	bool CharactorSetting::IsDead() {
 		if (HP <= 0)
@@ -204,6 +255,9 @@ namespace game_framework {
 				else if (isDefense) {
 					charactor_defense_right.OnMove();
 				}
+				else if (isMovingRunRight) {
+					charactor_run_right.OnMove();
+				}
 				else{
 					charactor_stand_right.OnMove();
 					charactor_stand_right.OnMove();
@@ -223,6 +277,12 @@ namespace game_framework {
 				if (isMovingDown) {
 					if (y + STEP_SIZE < 380)
 						y += STEP_SIZE;
+				}
+				if (isMovingRunRight) {
+					if (x + STEP_SIZE + 2 < 594)
+						x += 4;
+					charactor_run_right.OnMove();
+					return ;
 				}
 				if (isMovingJump) {
 					if (z == 0) {
@@ -320,6 +380,13 @@ namespace game_framework {
 						y += STEP_SIZE;
 		
 				}
+				if (isMovingRunLeft) {
+					if (x - STEP_SIZE - 2 > -40) {
+						x -= 4;
+						charactor_run_left.OnMove();
+						return ;
+					}
+				}
 				if (isMovingJump) {
 					if (z == 0) {
 						charactor_jump_left.OnMove();
@@ -365,8 +432,13 @@ namespace game_framework {
 			charactor_walk_right.SetTopLeft(x, y - z);
 			charactor_walk_left.SetTopLeft(x, y - z);
 			charactor_shadow.SetTopLeft(x + 20, y + 75);
+			charactor_run_left.SetTopLeft(x, y - z);
+			charactor_run_right.SetTopLeft(x, y - z);
 
 			charactor_shadow.OnShow();
+
+			whatStatus();
+
 			if (face_right) {
 				if (UnderAttack) {
 					if (isDefense) {
@@ -401,6 +473,9 @@ namespace game_framework {
 					}
 					else if (isDefense) {
 						charactor_defense_right.OnShow();
+					}
+					else if (isMovingRunRight) {
+						charactor_run_right.OnShow();
 					}
 					else {
 						charactor_stand_right.OnShow();
@@ -455,6 +530,9 @@ namespace game_framework {
 					}
 					else if (isDefense) {
 						charactor_defense_left.OnShow();
+					}
+					else if (isMovingRunLeft) {
+						charactor_run_left.OnShow();
 					}
 					else {
 						charactor_stand_left.OnShow();
