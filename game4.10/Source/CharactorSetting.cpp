@@ -102,38 +102,7 @@ namespace game_framework {
 			}
 		}
 		
-			if (data[data.size() - 1].action == "left") {
-				isMovingLeft = true;
-				isMovingRunLeft = false;
-				isMovingRunRight = false;
-			}
-			if (data[data.size() - 1].action == "right") {
-				isMovingRight = true;
-				isMovingRunLeft = false;
-				isMovingRunRight = false;
-			}
-			if (data[data.size() - 1].action == "up") {
-				isMovingUp = true;
-			}
-			if (data[data.size() - 1].action == "down") {
-				isMovingDown = true;
-			}
-			if (data[data.size() - 1].action == "attack") {
-				isAttack = true;
-				isMovingRunLeft = false;
-				isMovingRunRight = false;
-			}
-			if (data[data.size() - 1].action == "jump") {
-				isMovingJump = true;
-				isMovingRunLeft = false;
-				isMovingRunRight = false;
-				on_floor = false;
-			}
-			if (data[data.size() - 1].action == "defense") {
-				isDefense = true;
-				isMovingRunLeft = false;
-				isMovingRunRight = false;
-			}
+
 		
 	}
 
@@ -329,9 +298,7 @@ namespace game_framework {
 				else if (isDefense) {
 					charactor_defense_right.OnMove();
 				}
-				else if (isMovingRunRight) {
-					charactor_run_right.OnMove();
-				}
+
 				else{
 					charactor_stand_right.OnMove();
 					charactor_stand_right.OnMove();
@@ -343,21 +310,32 @@ namespace game_framework {
 				if (isMovingRight) {
 					if(x+STEP_SIZE<594)
 						x += STEP_SIZE;
+					charactor_walk_right.OnMove();
+					charactor_walk_right.OnMove();
+					charactor_walk_right.OnMove();
 				}
-				if (isMovingUp) {
+				else if (isMovingUp) {
 					if (y - STEP_SIZE > 224)
 						y -= STEP_SIZE;
+					charactor_walk_right.OnMove();
+					charactor_walk_right.OnMove();
+					charactor_walk_right.OnMove();
 				}
-				if (isMovingDown) {
+				else if (isMovingDown) {
 					if (y + STEP_SIZE < 380)
 						y += STEP_SIZE;
+					charactor_walk_right.OnMove();
+					charactor_walk_right.OnMove();
+					charactor_walk_right.OnMove();
 				}
-				if (isMovingRunRight) {
+				else if (isMovingRunRight) {
 					if (x + STEP_SIZE + 2 < 594)
 						x += 4;
 					charactor_run_right.OnMove();
+					charactor_run_right.OnMove();
+					charactor_run_right.OnMove();
 				}
-				if (isMovingJump) {
+				else if (isMovingJump) {
 					if (z == 0) {
 						charactor_jump_right.OnMove();
 						//charactor_jump_right.OnMove();
@@ -380,10 +358,6 @@ namespace game_framework {
 					}
 					return ;
 				}
-				
-					charactor_walk_right.OnMove();
-					charactor_walk_right.OnMove();
-					charactor_walk_right.OnMove();
 				
 			}
 		}
@@ -433,9 +407,7 @@ namespace game_framework {
 				else if (isDefense) {
 					charactor_defense_left.OnMove();
 				}
-				else if (isMovingRunLeft) {
-					charactor_run_left.OnMove();
-				}
+	
 				else {
 					charactor_stand_left.OnMove();
 					charactor_stand_left.OnMove();
@@ -446,25 +418,36 @@ namespace game_framework {
 				if (isMovingLeft) {
 					if (x - STEP_SIZE > -40)
 						x -= STEP_SIZE;
+					charactor_walk_left.OnMove();
+					charactor_walk_left.OnMove();
+					charactor_walk_left.OnMove();
 
 				}
-				if (isMovingUp) {
+				else if (isMovingUp) {
 					if (y - STEP_SIZE > 224)
 						y -= STEP_SIZE;
+					charactor_walk_left.OnMove();
+					charactor_walk_left.OnMove();
+					charactor_walk_left.OnMove();
 
 				}
-				if (isMovingDown) {
+				else if (isMovingDown) {
 					if (y + STEP_SIZE < 380)
 						y += STEP_SIZE;
+					charactor_walk_left.OnMove();
+					charactor_walk_left.OnMove();
+					charactor_walk_left.OnMove();
 		
 				}
-				if (isMovingRunLeft) {
+				else if (isMovingRunLeft) {
 					if (x - STEP_SIZE - 2 > -40) {
 						x -= 4;
 						charactor_run_left.OnMove();
+						charactor_run_left.OnMove();
+						charactor_run_left.OnMove();
 					}
 				}
-				if (isMovingJump) {
+				else if (isMovingJump) {
 					if (z == 0) {
 						charactor_jump_left.OnMove();
 						charactor_jump_left.OnMove();
@@ -487,10 +470,6 @@ namespace game_framework {
 					}
 					return;
 				}
-				
-					charactor_walk_left.OnMove();
-					charactor_walk_left.OnMove();
-					charactor_walk_left.OnMove();
 				
 			}
 		}
@@ -552,9 +531,6 @@ namespace game_framework {
 					else if (isDefense) {
 						charactor_defense_right.OnShow();
 					}
-					else if (isMovingRunRight) {
-						charactor_run_right.OnShow();
-					}
 					else {
 						charactor_stand_right.OnShow();
 						charactor_stand_right.OnShow();
@@ -564,6 +540,11 @@ namespace game_framework {
 				else {
 					if (isMovingJump) {
 						charactor_jump_right.OnShow();
+					}
+					else if (isMovingRunRight) {
+						charactor_run_right.OnShow();
+						charactor_run_right.OnShow();
+						charactor_run_right.OnShow();
 					}
 					else {
 						charactor_walk_right.OnShow();
@@ -609,9 +590,6 @@ namespace game_framework {
 					else if (isDefense) {
 						charactor_defense_left.OnShow();
 					}
-					else if (isMovingRunLeft) {
-						charactor_run_left.OnShow();
-					}
 					else {
 						charactor_stand_left.OnShow();
 						charactor_stand_left.OnShow();
@@ -621,6 +599,11 @@ namespace game_framework {
 				else {
 					if (isMovingJump) {
 						charactor_jump_left.OnShow();
+					}
+					else if (isMovingRunLeft) {
+						charactor_run_left.OnShow();
+						charactor_run_left.OnShow();
+						charactor_run_left.OnShow();
 					}
 					else {
 						charactor_walk_left.OnShow();
