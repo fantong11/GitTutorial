@@ -380,11 +380,11 @@ namespace game_framework {
 					}
 					return ;
 				}
-				if (isMovingRight) {
+				
 					charactor_walk_right.OnMove();
 					charactor_walk_right.OnMove();
 					charactor_walk_right.OnMove();
-				}
+				
 			}
 		}
 		else {
@@ -487,11 +487,11 @@ namespace game_framework {
 					}
 					return;
 				}
-				if (isMovingLeft) {
+				
 					charactor_walk_left.OnMove();
 					charactor_walk_left.OnMove();
 					charactor_walk_left.OnMove();
-				}
+				
 			}
 		}
 	}
