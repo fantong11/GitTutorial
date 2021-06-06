@@ -27,6 +27,8 @@ namespace game_framework {
 			char *file_charactor_behit_left[3] = { ".\\RES\\enemy\\be_hit_left\\behit1.bmp",".\\RES\\enemy\\be_hit_left\\behit2.bmp",".\\RES\\enemy\\be_hit_left\\behit3.bmp" };
 			char *file_charactor_defense_right[2] = { ".\\RES\\enemy\\defense_to_right\\defense1.bmp",".\\RES\\enemy\\defense_to_right\\defense2.bmp" };
 			char *file_charactor_defense_left[2] = { ".\\RES\\enemy\\defense_to_left\\defense1.bmp",".\\RES\\enemy\\defense_to_left\\defense2.bmp" };
+			char *file_charactor_run_left[3] = { ".\\RES\\template\\run_to_left\\run1.bmp", ".\\RES\\template\\run_to_left\\run2.bmp", ".\\RES\\template\\run_to_left\\run3.bmp" };
+			char *file_charactor_run_right[3] = { ".\\RES\\template\\run_to_right\\run1.bmp", ".\\RES\\template\\run_to_right\\run2.bmp", ".\\RES\\template\\run_to_right\\run3.bmp" };
 
 			for (int i = 0; i < 4; i++) {
 				charactor_stand_right.AddBitmap(file_charactor_stand_right[i], RGB(0, 0, 0));
@@ -48,6 +50,8 @@ namespace game_framework {
 				charactor_jump_right.AddBitmap(file_charactor_jump_right[i], RGB(0, 0, 0));
 				charactor_behit_right.AddBitmap(file_charactor_behit_right[i], RGB(0, 0, 0));
 				charactor_behit_left.AddBitmap(file_charactor_behit_left[i], RGB(0, 0, 0));
+				charactor_run_left.AddBitmap(file_charactor_run_left[i], RGB(0, 0, 0));
+				charactor_run_right.AddBitmap(file_charactor_run_right[i], RGB(0, 0, 0));
 
 			}
 			for (int i = 0; i < 2; i++) {
