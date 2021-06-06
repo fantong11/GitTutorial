@@ -64,8 +64,10 @@ namespace game_framework {
 		y = _y;
 		z = 0;
 		face_right = false;
-		HP = 50;
 		STEP_SIZE = 1;
+	}
+	void Enemy::SetHP(int hp) {
+		HP = hp;
 	}
 
 	void Enemy::getCloseToPlayer(int _x, int _y) {

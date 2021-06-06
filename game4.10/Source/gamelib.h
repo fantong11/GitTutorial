@@ -83,6 +83,9 @@
 enum GAME_STATES {
 	GAME_STATE_INIT,
 	GAME_STATE_RUN,
+	GAME_STATE_STAGE2,
+	GAME_STATE_STAGE3,
+	GAME_STATE_WIN,
 	GAME_STATE_OVER
 };
 
@@ -270,9 +273,11 @@ private:
 /////////////////////////////////////////////////////////////////////////////
 
 class CGame;
-class CGameStateInit;
 class CharactorChoose;
 class CGameStateRun;
+class CGameStateWin;
+class CGameStateStage2;
+class CGameStateStage3;
 class CGameStateOver;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -343,7 +348,7 @@ private:
 	bool            suspended;			// 遊戲是否被suspended
 	const int		NUM_GAME_STATES;	// 遊戲的狀態數(3個狀態)
 	CGameState		*gameState;			// pointer指向目前的遊戲狀態
-	CGameState		*gameStateTable[3];	// 遊戲狀態物件的pointer
+	CGameState		*gameStateTable[6];	// 遊戲狀態物件的pointer
 	static CGame	instance;			// 遊戲唯一的instance
 };
 

@@ -384,6 +384,7 @@
     <Image Include="RES\stageOneBackground\stageone_background.bmp" />
     <Image Include="RES\stageOneBackground\up_block.bmp" />
     <Image Include="RES\stageThreeBackground\stage_3.bmp" />
+    <Image Include="RES\stageTwoBacground\stage_2.bmp" />
     <Image Include="RES\stageTwoBackground\stage_2.bmp" />
     <Image Include="RES\stageTwoBackground\stage_2.png" />
   </ItemGroup>

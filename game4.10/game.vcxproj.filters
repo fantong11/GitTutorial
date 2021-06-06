@@ -351,5 +351,8 @@
     <Image Include="RES\stageThreeBackground\stage_3.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\stageTwoBacground\stage_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -180,7 +180,9 @@ IDB_STAGEONEWHOLE       BITMAP                  "..\\RES\\stageOneBackground\\do
 
 IDB_UPBLOCK             BITMAP                  "..\\RES\\stageOneBackground\\up_block.bmp"
 
-IDB_STAGETWOBACKGROUND  BITMAP                  "..\\RES\\stageTwoBackground\\stage_2.bmp"
+IDB_STAGETWOBACKGROUND  BITMAP                  "..\\RES\\stageTwoBacground\\stage_2.bmp"
+
+IDB_STAGETHREEBACKGROUND BITMAP                  "..\\RES\\stageThreeBackground\\stage_3.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

@@ -19,7 +19,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  *	 2004-03-02 V4.0
- *      1. Add CGameStateInit, CGameStateRun, and CGameStateOver to
+ *      1. Add 
+ , CGameStateRun, and CGameStateOver to
  *         demonstrate the use of states.
  *   2005-09-13
  *      Rewrite the codes for CBall and CEraser.
@@ -152,7 +153,52 @@ namespace game_framework {
 		int enemy_num;
 		int smallstage;
  	};
-
+	class CGameStateStage2 : public CGameState {
+	public:
+		CGameStateStage2(CGame *g);
+		~CGameStateStage2();
+		void OnBeginState();							// 設定每次重玩所需的變數
+		void OnInit();  								// 遊戲的初值及圖形設定
+		void OnKeyDown(UINT, UINT, UINT);
+		void OnKeyUp(UINT, UINT, UINT);
+	protected:
+		void OnMove();									// 移動遊戲元素
+		void OnShow();									// 顯示這個狀態的遊戲畫面
+	private:
+		CMovingBitmap stageone;
+		CMovingBitmap up_block;
+		CMovingBitmap* smallcharacter;
+		int map_floor_range_x;
+		int map_floor_range_y;
+		Enemy* enemy;
+		Player* player;
+		int stage;
+		int enemy_num;
+		int smallstage;
+	};
+	class CGameStateStage3 : public CGameState {
+	public:
+		CGameStateStage3(CGame *g);
+		~CGameStateStage3();
+		void OnBeginState();							// 設定每次重玩所需的變數
+		void OnInit();  								// 遊戲的初值及圖形設定
+		void OnKeyDown(UINT, UINT, UINT);
+		void OnKeyUp(UINT, UINT, UINT);
+	protected:
+		void OnMove();									// 移動遊戲元素
+		void OnShow();									// 顯示這個狀態的遊戲畫面
+	private:
+		CMovingBitmap stageone;
+		CMovingBitmap up_block;
+		CMovingBitmap* smallcharacter;
+		int map_floor_range_x;
+		int map_floor_range_y;
+		Enemy* enemy;
+		Player* player;
+		int stage;
+		int enemy_num;
+		int smallstage;
+	};
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的結束狀態(Game Over)
 	// 每個Member function的Implementation都要弄懂
@@ -168,6 +214,18 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		int counter;	// 倒數之計數器
+	};
+	class CGameStateWin : public CGameState {
+	public:
+		CGameStateWin(CGame *g);
+		void OnBeginState();							// 設定每次重玩所需的變數
+		void OnInit();
+	protected:
+		void OnMove();									// 移動遊戲元素
+		void OnShow();									// 顯示這個狀態的遊戲畫面
+	private:
+		int counter;	// 倒數之計數器
+		CMovingBitmap win;
 	};
 
 }
