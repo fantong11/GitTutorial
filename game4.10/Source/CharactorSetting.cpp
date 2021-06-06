@@ -58,20 +58,42 @@ namespace game_framework {
 
 	void CharactorSetting::whatStatus(void) {
 		// ¶]
+		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = isAttack = UnderAttack = isDefense = isMovingRunLeft = isMovingRunRight = false;
 		if (data.size() > 1) {
 			if (data[data.size() - 1].action == "left" && data[data.size() - 2].action == "left") {
 				isMovingRunLeft = true;
-				data.empty();
 			}
 			else if (data[data.size() - 1].action == "right" && data[data.size() - 2].action == "right") {
 				isMovingRunRight = true;
-				data.empty();
 			} 
+		}
+		else {
+			if (data[data.size() - 1].action == "left") {
+				isMovingLeft = true;
+			}
+			if (data[data.size() - 1].action == "right") {
+				isMovingRight = true;
+			}
+			if (data[data.size() - 1].action == "up") {
+				isMovingUp = true;
+			}
+			if (data[data.size() - 1].action == "down") {
+				isMovingDown = true;
+			}
+			if (data[data.size() - 1].action == "attack") {
+				isAttack = true;
+			}
+			if (data[data.size() - 1].action == "jump") {
+				isMovingJump = true;
+			}
+			if (data[data.size() - 1].action == "defense") {
+				isDefense = true;
+			}
 		}
 	}
 
 	void CharactorSetting::SetAttack(bool flag) {
-		isAttack = flag;
+		// isAttack = flag;
 		string s = "attack";
 		Data d;
 		d.action = s;
@@ -81,8 +103,8 @@ namespace game_framework {
 
 	
 	void CharactorSetting::SetMovingDown(bool flag) {
-		isAttack = false;
-		isMovingDown = flag;
+		// isAttack = false;
+		// isMovingDown = flag;
 		string s = "down";
 		Data d;
 		d.action = s;
@@ -91,8 +113,8 @@ namespace game_framework {
 	}
 
 	void CharactorSetting::SetMovingUp(bool flag) {
-		isAttack = false;
-		isMovingUp = flag;
+		// isAttack = false;
+		// isMovingUp = flag;
 		string s = "up";
 		Data d;
 		d.action = s;
@@ -101,8 +123,8 @@ namespace game_framework {
 	}
 
 	void CharactorSetting::SetMovingLeft(bool flag) {
-		isAttack = false;
-		isMovingLeft = flag;
+		// isAttack = false;
+		// isMovingLeft = flag;
 		face_right = false;
 		string s = "left";
 		Data d;
@@ -112,8 +134,8 @@ namespace game_framework {
 	}
 
 	void CharactorSetting::SetMovingRight(bool flag) {
-		isAttack = false;
-		isMovingRight = flag;
+		// isAttack = false;
+		// isMovingRight = flag;
 		face_right = true;
 		string s = "right";
 		Data d;
@@ -123,8 +145,8 @@ namespace game_framework {
 	}
 
 	void CharactorSetting::SetMovingJump(bool flag) {
-		isAttack = false;
-		isMovingJump = flag;
+		// isAttack = false;
+		// isMovingJump = flag;
 		on_floor = false;
 		string s = "jump";
 		Data d;
@@ -137,7 +159,7 @@ namespace game_framework {
 		isMoving = flag;
 	}
 	void CharactorSetting::SetDefense(bool flag) {
-		isDefense = flag;
+		// isDefense = flag;
 		string s = "defense";
 		Data d;
 		d.action = s;
