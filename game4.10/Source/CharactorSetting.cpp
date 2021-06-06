@@ -69,7 +69,7 @@ namespace game_framework {
 				isMovingRight = false;
 			} 
 		}
-		else {
+		
 			if (data[data.size() - 1].action == "left") {
 				isMovingLeft = true;
 				isMovingRunLeft = false;
@@ -102,7 +102,7 @@ namespace game_framework {
 				isMovingRunLeft = false;
 				isMovingRunRight = false;
 			}
-		}
+		
 	}
 
 	void CharactorSetting::SetAttack(bool flag) {
