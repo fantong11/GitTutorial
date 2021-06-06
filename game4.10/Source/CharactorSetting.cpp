@@ -58,7 +58,7 @@ namespace game_framework {
 
 	void CharactorSetting::whatStatus(void) {
 		// ¶]
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = isAttack = UnderAttack = isDefense = isMovingRunLeft = isMovingRunRight = false;
+		//isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = isAttack = UnderAttack = isDefense = isMovingRunLeft = isMovingRunRight = false;
 		if (data.size() > 1) {
 			if (data[data.size() - 1].action == "left" && data[data.size() - 2].action == "left") {
 				isMovingRunLeft = true;
@@ -357,6 +357,9 @@ namespace game_framework {
 				}
 				else if (isDefense) {
 					charactor_defense_left.OnMove();
+				}
+				else if (isMovingRunLeft) {
+					charactor_run_left.OnMove();
 				}
 				else {
 					charactor_stand_left.OnMove();
