@@ -58,7 +58,7 @@ namespace game_framework {
 
 	void CharactorSetting::whatStatus(void) {
 		// ¶]
-		// isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = isAttack = UnderAttack = isDefense = isMovingRunLeft = isMovingRunRight = false;
+		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = isAttack = UnderAttack = isDefense = isMovingRunLeft = isMovingRunRight = false;
 		if (data.size() > 1) {
 			if (data[data.size() - 1].action == "left" && data[data.size() - 2].action == "left") {
 				isMovingRunLeft = true;
@@ -68,6 +68,38 @@ namespace game_framework {
 				isMovingRunRight = true;
 				isMovingRight = false;
 			} 
+			else if (data[data.size() - 1].action == "left") {
+				isMovingLeft = true;
+				isMovingRunLeft = false;
+				isMovingRunRight = false;
+			}
+			else if (data[data.size() - 1].action == "right") {
+				isMovingRight = true;
+				isMovingRunLeft = false;
+				isMovingRunRight = false;
+			}
+			if (data[data.size() - 1].action == "up") {
+				isMovingUp = true;
+			}
+			if (data[data.size() - 1].action == "down") {
+				isMovingDown = true;
+			}
+			if (data[data.size() - 1].action == "attack") {
+				isAttack = true;
+				isMovingRunLeft = false;
+				isMovingRunRight = false;
+			}
+			if (data[data.size() - 1].action == "jump") {
+				isMovingJump = true;
+				isMovingRunLeft = false;
+				isMovingRunRight = false;
+				on_floor = false;
+			}
+			if (data[data.size() - 1].action == "defense") {
+				isDefense = true;
+				isMovingRunLeft = false;
+				isMovingRunRight = false;
+			}
 		}
 		else {
 			if (data[data.size() - 1].action == "left") {
