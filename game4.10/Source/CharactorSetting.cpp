@@ -59,8 +59,6 @@ namespace game_framework {
 	void CharactorSetting::whatStatus(void) {
 		// ¶]
 		// isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = isAttack = UnderAttack = isDefense = isMovingRunLeft = isMovingRunRight = false;
-		isMovingRunLeft = false;
-		isMovingRunRight = false;
 		if (data.size() > 1) {
 			if (data[data.size() - 1].action == "left" && data[data.size() - 2].action == "left") {
 				isMovingRunLeft = true;
@@ -71,81 +69,122 @@ namespace game_framework {
 				isMovingRight = false;
 			} 
 		}
+		else {
+			if (data[data.size() - 1].action == "left") {
+				isMovingLeft = true;
+				isMovingRunLeft = false;
+				isMovingRunRight = false;
+			}
+			if (data[data.size() - 1].action == "right") {
+				isMovingRight = true;
+				isMovingRunLeft = false;
+				isMovingRunRight = false;
+			}
+			if (data[data.size() - 1].action == "up") {
+				isMovingUp = true;
+			}
+			if (data[data.size() - 1].action == "down") {
+				isMovingDown = true;
+			}
+			if (data[data.size() - 1].action == "attack") {
+				isAttack = true;
+				isMovingRunLeft = false;
+				isMovingRunRight = false;
+			}
+			if (data[data.size() - 1].action == "jump") {
+				isMovingJump = true;
+				isMovingRunLeft = false;
+				isMovingRunRight = false;
+				on_floor = false;
+			}
+			if (data[data.size() - 1].action == "defense") {
+				isDefense = true;
+				isMovingRunLeft = false;
+				isMovingRunRight = false;
+			}
+		}
 	}
 
 	void CharactorSetting::SetAttack(bool flag) {
-		isAttack = flag;
+		// isAttack = flag;
 		string s = "attack";
 		Data d;
 		d.action = s;
 		d.time = time(0);
 		data.push_back(d);
+		whatStatus();
 	}
 
 	
 	void CharactorSetting::SetMovingDown(bool flag) {
-		isAttack = false;
-		isMovingDown = flag;
+		// isAttack = false;
+		// isMovingDown = flag;
 		string s = "down";
 		Data d;
 		d.action = s;
 		d.time = time(0);
 		data.push_back(d);
+		whatStatus();
 	}
 
 	void CharactorSetting::SetMovingUp(bool flag) {
-		isAttack = false;
-		isMovingUp = flag;
+		// isAttack = false;
+		// isMovingUp = flag;
 		string s = "up";
 		Data d;
 		d.action = s;
 		d.time = time(0);
 		data.push_back(d);
+		whatStatus();
 	}
 
 	void CharactorSetting::SetMovingLeft(bool flag) {
-		isAttack = false;
-		isMovingLeft = flag;
+		// isAttack = false;
+		// isMovingLeft = flag;
 		face_right = false;
 		string s = "left";
 		Data d;
 		d.action = s;
 		d.time = time(0);
 		data.push_back(d);
+		whatStatus();
 	}
 
 	void CharactorSetting::SetMovingRight(bool flag) {
-		isAttack = false;
-		isMovingRight = flag;
+		// isAttack = false;
+		// isMovingRight = flag;
 		face_right = true;
 		string s = "right";
 		Data d;
 		d.action = s;
 		d.time = time(0);
 		data.push_back(d);
+		whatStatus();
 	}
 
 	void CharactorSetting::SetMovingJump(bool flag) {
-		isAttack = false;
-		isMovingJump = flag;
-		on_floor = false;
+		// isAttack = false;
+		// isMovingJump = flag;
+		// on_floor = false;
 		string s = "jump";
 		Data d;
 		d.action = s;
 		d.time = time(0);
 		data.push_back(d);
+		whatStatus();
 	}
 
 	void CharactorSetting::SetMoving(bool flag) {
 		isMoving = flag;
 	}
 	void CharactorSetting::SetDefense(bool flag) {
-		isDefense = flag;
+		// isDefense = flag;
 		string s = "defense";
 		Data d;
 		d.action = s;
 		d.time = time(0);
 		data.push_back(d);
+		whatStatus();
 	}
 	bool CharactorSetting::IsDead() {
 		if (HP <= 0)
@@ -362,6 +401,9 @@ namespace game_framework {
 				else if (isDefense) {
 					charactor_defense_left.OnMove();
 				}
+				else if (isMovingRunLeft) {
+					charactor_run_left.OnMove();
+				}
 				else {
 					charactor_stand_left.OnMove();
 					charactor_stand_left.OnMove();
@@ -442,7 +484,6 @@ namespace game_framework {
 
 			charactor_shadow.OnShow();
 
-			whatStatus();
 
 			if (face_right) {
 				if (UnderAttack) {
