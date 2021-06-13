@@ -497,7 +497,8 @@ void CGameStateOver::OnMove()
 }
 void CGameStateOver::OnBeginState()
 {
-	counter = 30 * 5; // 5 seconds
+	counter = 30 * 3; // 5 seconds
+	lose.LoadBitmap(IDB_LOSE);
 }
 
 void CGameStateOver::OnInit()
@@ -519,17 +520,8 @@ void CGameStateOver::OnInit()
 
 void CGameStateOver::OnShow()
 {
-	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-	CFont f,*fp;
-	f.CreatePointFont(160,"Times New Roman");	// 產生 font f; 160表示16 point的字
-	fp=pDC->SelectObject(&f);					// 選用 font f
-	pDC->SetBkColor(RGB(0,0,0));
-	pDC->SetTextColor(RGB(255,255,0));
-	char str[80];								// Demo 數字對字串的轉換
-	sprintf(str, "Game Over ! (%d)", counter / 30);
-	pDC->TextOut(240,210,str);
-	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	lose.SetTopLeft(0, 0);
+	lose.ShowBitmap();
 }
 
 
@@ -548,8 +540,9 @@ void CGameStateWin::OnMove()
 }
 void CGameStateWin::OnBeginState()
 {
-	counter = 30 * 5; // 5 seconds
-	win.LoadBitmap(IDB_DAVID);
+	counter = 30 * 3; // 5 seconds
+	win.LoadBitmap(IDB_WIN);
+	
 }
 
 void CGameStateWin::OnInit()
@@ -567,11 +560,13 @@ void CGameStateWin::OnInit()
 	// 最終進度為100%
 	//
 	ShowInitProgress(100);
+	
+
 }
 
 void CGameStateWin::OnShow()
 {
-	win.SetTopLeft(150, 150);
+	win.SetTopLeft(0, 0);
 	win.ShowBitmap();
 }
 /////////////////////////////////////////////////////////////////////////////
@@ -595,6 +590,7 @@ CGameStateRun::~CGameStateRun()
 void CGameStateRun::OnBeginState()
 {
 	stage = 1;
+	CAudio::Instance()->Play(AUDIO_BACK1, true);			// 撥放 WAVE
 	smallstage = 1;
 	ifstream fin("text1.txt", ios::in);
 	int temp;
@@ -631,9 +627,7 @@ void CGameStateRun::OnBeginState()
 }
 
 void CGameStateRun::OnMove()							// 移動遊戲元素
-{
-
-	
+{	
 	int i = 0;
 	enemy_num = 0;
 	for (i = 0; i < 5; i++) {
@@ -641,8 +635,8 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 			enemy_num++;
 	}
 	if (enemy[0].IsDead()) {
-		if (enemy_num > 0 && smallstage == 1 && enemy[0].is_alive) {
-			enemy_num--;
+		if (smallstage == 1 && enemy[0].is_alive) {
+			//enemy_num--;
 			smallstage++;
 			enemy[1].enemy_now = true;
 			enemy[2].enemy_now = true;
@@ -653,16 +647,17 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		enemy[0].enemy_now = false;
 	}
 	if (enemy[1].IsDead()) {
-		if (enemy_num > 0 && smallstage == 2 && enemy[1].is_alive)
-			enemy_num -= 1;
+		//if (enemy_num > 0 && smallstage == 2 && enemy[1].is_alive)
+		//enemy_num = 1;
 		enemy[1].is_alive = false;
 		enemy[1].SetAlive(false);
 		enemy[1].isAttack = false;
 		enemy[1].enemy_now = false;
 	}
 	if (enemy[2].IsDead()) {
-		if (enemy_num > 0 && smallstage == 2 && enemy[2].is_alive)
-			enemy_num -= 1;
+		//if (enemy_num > 0 && smallstage == 2 && enemy[2].is_alive)
+		//enemy_num = 1;
+	
 		enemy[2].is_alive = false;
 		enemy[2].SetAlive(false);
 		enemy[2].isAttack = false;
@@ -674,22 +669,21 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		enemy[4].enemy_now = true;
 	}
 	if (enemy[3].IsDead()) {
-		if (enemy_num > 0 && smallstage == 3 && enemy[3].is_alive)
-			enemy_num -= 1;
+		//enemy_num = 1;
 		enemy[3].is_alive = false;
 		enemy[3].SetAlive(false);
 		enemy[3].isAttack = false;
 		enemy[3].enemy_now = false;
 	}
 	if (enemy[4].IsDead()) {
-		if (enemy_num > 0 && smallstage == 3 && enemy[4].is_alive)
-			enemy_num -= 1;
+		//enemy_num = 1;
 		enemy[4].is_alive = false;
 		enemy[4].SetAlive(false);
 		enemy[4].isAttack = false;
 		enemy[4].enemy_now = false;
 	}
 	if (smallstage == 3 && enemy[3].IsDead() && enemy[4].IsDead()) {
+		enemy_num = 0;
 		ofstream fout("blood.txt");
 		if (!fout)
 		{
@@ -706,19 +700,13 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 
 		fout2 << player[0].MAGIC << endl;
 		fout2.close();
+		CAudio::Instance()->Stop(AUDIO_BACK1);
 		GotoGameState(GAME_STATE_STAGE2);
 	}
-	if (smallstage == 2) {
-		for (i = 1; i < 3; i++)
-			enemy[i].enemy_now = true;
-	}
-	if (smallstage == 3) {
-		for (i = 3; i < 5; i++)
-			enemy[i].enemy_now = true;
-	}
-	if(player[0].IsDead())
+	if (player[0].IsDead()) {
+		CAudio::Instance()->Stop(AUDIO_BACK1);	
 		GotoGameState(GAME_STATE_OVER);
-
+	}
 
 	int p_x = 0, p_y = 0, e_x = 0, e_y = 0;
 	player[0].Decrease();
@@ -744,6 +732,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	
 	stageone.LoadBitmap(IDB_STAGEONEWHOLE);
 	up_block.LoadBitmap(IDB_UPBLOCK);
+	CAudio::Instance()->Load(AUDIO_BACK1, "sounds\\stage1.mp3");	// 載入編號0的聲音ding.wav
 
 }
 
@@ -865,6 +854,7 @@ CGameStateStage2::~CGameStateStage2()
 
 void CGameStateStage2::OnBeginState()
 {
+	CAudio::Instance()->Play(AUDIO_BACK2, true);			// 撥放 WAVE
 	stage = 2;
 	smallstage = 1;
 	ifstream fin3("text1.txt", ios::in);
@@ -919,8 +909,8 @@ void CGameStateStage2::OnMove()							// 移動遊戲元素
 			enemy_num++;
 	}
 	if (enemy[0].IsDead()) {
-		if (enemy_num > 0 && smallstage == 1 && enemy[0].is_alive) {
-			enemy_num--;
+		if (smallstage == 1 && enemy[0].is_alive) {
+			
 			smallstage++;
 			enemy[1].enemy_now = true;
 			enemy[2].enemy_now = true;
@@ -931,16 +921,14 @@ void CGameStateStage2::OnMove()							// 移動遊戲元素
 		enemy[0].enemy_now = false;
 	}
 	if (enemy[1].IsDead()) {
-		if (enemy_num > 0 && smallstage == 2 && enemy[1].is_alive)
-			enemy_num -= 1;
+		
 		enemy[1].is_alive = false;
 		enemy[1].SetAlive(false);
 		enemy[1].isAttack = false;
 		enemy[1].enemy_now = false;
 	}
 	if (enemy[2].IsDead()) {
-		if (enemy_num > 0 && smallstage == 2 && enemy[2].is_alive)
-			enemy_num -= 1;
+		
 		enemy[2].is_alive = false;
 		enemy[2].SetAlive(false);
 		enemy[2].isAttack = false;
@@ -952,16 +940,15 @@ void CGameStateStage2::OnMove()							// 移動遊戲元素
 		enemy[4].enemy_now = true;
 	}
 	if (enemy[3].IsDead()) {
-		if (enemy_num > 0 && smallstage == 3 && enemy[3].is_alive)
-			enemy_num -= 1;
+		
+		
 		enemy[3].is_alive = false;
 		enemy[3].SetAlive(false);
 		enemy[3].isAttack = false;
 		enemy[3].enemy_now = false;
 	}
 	if (enemy[4].IsDead()) {
-		if (enemy_num > 0 && smallstage == 3 && enemy[4].is_alive)
-			enemy_num -= 1;
+		
 		enemy[4].is_alive = false;
 		enemy[4].SetAlive(false);
 		enemy[4].isAttack = false;
@@ -983,18 +970,15 @@ void CGameStateStage2::OnMove()							// 移動遊戲元素
 		}
 		fout2 << player[0].MAGIC << endl;
 		fout2.close();
+		CAudio::Instance()->Stop(AUDIO_BACK2);
 		GotoGameState(GAME_STATE_STAGE3);
 	}
-	if (smallstage == 2) {
-		for (i = 1; i < 3; i++)
-			enemy[i].enemy_now = true;
-	}
-	if (smallstage == 3) {
-		for (i = 3; i < 5; i++)
-			enemy[i].enemy_now = true;
-	}
-	if (player[0].IsDead())
+	
+	if (player[0].IsDead()) {
+		CAudio::Instance()->Stop(AUDIO_BACK2);
 		GotoGameState(GAME_STATE_OVER);
+	}
+		
 
 
 	int p_x = 0, p_y = 0, e_x = 0, e_y = 0;
@@ -1021,6 +1005,8 @@ void CGameStateStage2::OnInit()  								// 遊戲的初值及圖形設定
 	ShowInitProgress(33);	// 接個前一個狀態的進度，此處進度視為33%	
 	stageone.LoadBitmap(IDB_STAGETWOBACKGROUND);
 	up_block.LoadBitmap(IDB_UPBLOCK);
+	CAudio::Instance()->Load(AUDIO_BACK2, "sounds\\stage2.mp3");
+
 
 
 }
@@ -1131,6 +1117,8 @@ CGameStateStage3::CGameStateStage3(CGame *g)
 
 }
 
+
+/////////////////////stage3//////////////////
 CGameStateStage3::~CGameStateStage3()
 {
 	delete[] enemy;
@@ -1140,6 +1128,7 @@ CGameStateStage3::~CGameStateStage3()
 
 void CGameStateStage3::OnBeginState()
 {
+	CAudio::Instance()->Play(AUDIO_BACK3, true);			// 撥放 WAVE
 	stage = 3;
 	smallstage = 1;
 	ifstream fin3("text1.txt", ios::in);
@@ -1197,8 +1186,8 @@ void CGameStateStage3::OnMove()
 			enemy_num++;
 	}
 	if (enemy[0].IsDead()) {
-		if (enemy_num > 0 && smallstage == 1 && enemy[0].is_alive) {
-			enemy_num--;
+		if (smallstage == 1 && enemy[0].is_alive) {
+			
 			smallstage++;
 			enemy[1].enemy_now = true;
 			enemy[2].enemy_now = true;
@@ -1209,16 +1198,14 @@ void CGameStateStage3::OnMove()
 		enemy[0].enemy_now = false;
 	}
 	if (enemy[1].IsDead()) {
-		if (enemy_num > 0 && smallstage == 2 && enemy[1].is_alive)
-			enemy_num -= 1;
+		
 		enemy[1].is_alive = false;
 		enemy[1].SetAlive(false);
 		enemy[1].isAttack = false;
 		enemy[1].enemy_now = false;
 	}
 	if (enemy[2].IsDead()) {
-		if (enemy_num > 0 && smallstage == 2 && enemy[2].is_alive)
-			enemy_num -= 1;
+		
 		enemy[2].is_alive = false;
 		enemy[2].SetAlive(false);
 		enemy[2].isAttack = false;
@@ -1230,34 +1217,29 @@ void CGameStateStage3::OnMove()
 		enemy[4].enemy_now = true;
 	}
 	if (enemy[3].IsDead()) {
-		if (enemy_num > 0 && smallstage == 3 && enemy[3].is_alive)
-			enemy_num -= 1;
+		
 		enemy[3].is_alive = false;
 		enemy[3].SetAlive(false);
 		enemy[3].isAttack = false;
 		enemy[3].enemy_now = false;
 	}
 	if (enemy[4].IsDead()) {
-		if (enemy_num > 0 && smallstage == 3 && enemy[4].is_alive)
-			enemy_num -= 1;
+		
 		enemy[4].is_alive = false;
 		enemy[4].SetAlive(false);
 		enemy[4].isAttack = false;
 		enemy[4].enemy_now = false;
 	}
 	if (smallstage == 3 && enemy[3].IsDead() && enemy[4].IsDead()) {
+		CAudio::Instance()->Stop(AUDIO_BACK3);
 		GotoGameState(GAME_STATE_WIN);
 	}
-	if (smallstage == 2) {
-		for (i = 1; i < 3; i++)
-			enemy[i].enemy_now = true;
-	}
-	if (smallstage == 3) {
-		for (i = 3; i < 5; i++)
-			enemy[i].enemy_now = true;
-	}
-	if (player[0].IsDead())
+	
+	if (player[0].IsDead()) {
+		CAudio::Instance()->Stop(AUDIO_BACK3);
 		GotoGameState(GAME_STATE_OVER);
+	}
+		
 
 
 	int p_x = 0, p_y = 0, e_x = 0, e_y = 0;
@@ -1278,15 +1260,13 @@ void CGameStateStage3::OnMove()
 
 
 }
-//////////////////////////////////////////////////////////////////////////////////////
-////////////////////STAGE3////////////////////////////////////////////////////
-///////////////////////////////////////
 void CGameStateStage3::OnInit()  								// 遊戲的初值及圖形設定
 {
 	
 	ShowInitProgress(33);	// 接個前一個狀態的進度，此處進度視為33%	
 	stageone.LoadBitmap(IDB_STAGETHREEBACKGROUND);
 	up_block.LoadBitmap(IDB_UPBLOCK);
+	CAudio::Instance()->Load(AUDIO_BACK3, "sounds\\stage3.mp3");
 
 }
 

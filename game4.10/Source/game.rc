@@ -184,6 +184,10 @@ IDB_STAGETWOBACKGROUND  BITMAP                  "..\\RES\\stageTwoBacground\\sta
 
 IDB_STAGETHREEBACKGROUND BITMAP                  "..\\RES\\stageThreeBackground\\stage_3.bmp"
 
+IDB_LOSE                BITMAP                  "..\\RES\\lose.bmp"
+
+IDB_WIN                 BITMAP                  "..\\RES\\win.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

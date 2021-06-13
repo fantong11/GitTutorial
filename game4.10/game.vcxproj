@@ -265,6 +265,7 @@
     <ClCompile Include="Source\CharactorSetting.cpp" />
     <ClCompile Include="Source\choose.cpp" />
     <ClCompile Include="Source\enemy.cpp" />
+    <ClCompile Include="Source\focusblast.cpp" />
     <ClCompile Include="Source\game.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -307,6 +308,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</TreatWarningAsError>
     </ClCompile>
+    <ClCompile Include="Source\swordgas.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
@@ -317,6 +319,7 @@
     <ClInclude Include="Source\CharactorSetting.h" />
     <ClInclude Include="Source\choose.h" />
     <ClInclude Include="Source\enemy.h" />
+    <ClInclude Include="Source\focusblast.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\gameDoc.h" />
     <ClInclude Include="Source\gameView.h" />
@@ -326,6 +329,7 @@
     <ClInclude Include="Source\StdAfx.h" />
     <ClInclude Include="Source\gamelib.h" />
     <ClInclude Include="Source\mygame.h" />
+    <ClInclude Include="Source\swordgas.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc">
@@ -349,6 +353,7 @@
     <Image Include="RES\initial_bk.bmp" />
     <Image Include="RES\join_char_1.bmp" />
     <Image Include="RES\join_char_2.bmp" />
+    <Image Include="RES\lose.bmp" />
     <Image Include="RES\role\bandit_f.bmp" />
     <Image Include="res\role\bitmap11.bmp" />
     <Image Include="res\role\bitmap8.bmp" />
@@ -387,6 +392,7 @@
     <Image Include="RES\stageTwoBacground\stage_2.bmp" />
     <Image Include="RES\stageTwoBackground\stage_2.bmp" />
     <Image Include="RES\stageTwoBackground\stage_2.png" />
+    <Image Include="RES\win.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

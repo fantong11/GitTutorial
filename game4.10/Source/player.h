@@ -7,5 +7,7 @@ namespace game_framework {
 		void SetXY(int x, int y) override;
 		void Decrease(void);
 		void DrawAllAboutPlayer(void);
+		void OnShow(void) override;
+		void OnMove(void) override;
 	};
 }
