@@ -46,7 +46,8 @@
 #include "CharactorSetting.h"
 #include "player.h"
 #include "enemy.h"
-
+#include "focusblast.h"
+#include "swordgas.h"
 namespace game_framework {
 	
 	/////////////////////////////////////////////////////////////////////////////
@@ -54,9 +55,11 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 
 	enum AUDIO_ID {				// 定義各種音效的編號
-		AUDIO_DING,				// 0
-		AUDIO_LAKE,				// 1
-		AUDIO_NTUT				// 2
+		AUDIO_BACK1,// 0
+		AUDIO_BACK2,
+		AUDIO_BACK3
+		//AUDIO_LAKE,				// 1
+		//AUDIO_NTUT				// 2
 	};
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件
@@ -214,6 +217,7 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		int counter;	// 倒數之計數器
+		CMovingBitmap lose;
 	};
 	class CGameStateWin : public CGameState {
 	public:

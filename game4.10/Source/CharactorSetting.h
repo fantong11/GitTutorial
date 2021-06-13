@@ -39,7 +39,7 @@ namespace game_framework {
 
 		virtual void SetXY(int, int);
 		virtual void OnMove();
-		void OnShow();
+		virtual void OnShow();
 
 		CAnimation charactor_shadow;
 

@@ -143,6 +143,381 @@ namespace game_framework {
 		z = 0;
 		face_right = true;
 	}
+
+	void Player::OnMove() {
+		if (face_right) {
+			if (UnderAttack) {
+				if (isDefense) {
+					charactor_defense_right.OnMove();
+				}
+				else {
+					charactor_behit_right.OnMove();
+					charactor_behit_right.OnMove();
+				}
+
+				//charactor_behit_right.OnMove();
+				//return;
+			}
+			else if (!isMoving) {
+				if (isAttack) {
+					charactor_attack_right.OnMove();
+					charactor_attack_right.OnMove();
+					//charactor_attack_right.OnMove();
+					//return;
+				}
+				else if (isMovingJump) {
+					if (z == 0 && jump_count < 2) {
+						charactor_jump_right.OnMove();
+						charactor_jump_right.OnMove();
+						charactor_jump_right.OnMove();
+						is_up = true;
+						jump_count++;
+					}
+					if (jump_count < 2) {
+						charactor_jump_right.OnMove();
+						charactor_jump_right.OnMove();
+						charactor_jump_right.OnMove();
+					}
+					if (z < 120 && is_up && jump_count == 2) {
+						//charactor_jump_right.OnMove();
+						z += 10;
+					}
+					if (z >= 120 && jump_count == 2) {
+						//charactor_jump_right.OnMove();
+						is_up = false;
+					}
+					if (!is_up && jump_count == 2) {
+						//charactor_jump_right.OnMove();
+						z -= 10;
+					}
+					if (z == 0 && jump_count == 2) {
+						jump_count = 0;
+						is_up = true;
+						charactor_jump_right.OnMove();
+						//charactor_jump_right.OnMove();
+						isMovingJump = false;
+					}
+				}
+				else if (isDefense) {
+					charactor_defense_right.OnMove();
+				}
+
+				else {
+					charactor_stand_right.OnMove();
+					charactor_stand_right.OnMove();
+					charactor_stand_right.OnMove();
+				}
+
+			}
+			else {
+				if (isMovingRight) {
+					if (x + STEP_SIZE < 594)
+						x += STEP_SIZE;
+					charactor_walk_right.OnMove();
+					charactor_walk_right.OnMove();
+					charactor_walk_right.OnMove();
+				}
+				else if (isMovingUp) {
+					if (y - STEP_SIZE > 224)
+						y -= STEP_SIZE;
+					charactor_walk_right.OnMove();
+					charactor_walk_right.OnMove();
+					charactor_walk_right.OnMove();
+				}
+				else if (isMovingDown) {
+					if (y + STEP_SIZE < 380)
+						y += STEP_SIZE;
+					charactor_walk_right.OnMove();
+					charactor_walk_right.OnMove();
+					charactor_walk_right.OnMove();
+				}
+				else if (isMovingRunRight) {
+					if (x + STEP_SIZE + 2 < 594)
+						x += 4;
+					charactor_run_right.OnMove();
+					charactor_run_right.OnMove();
+					charactor_run_right.OnMove();
+				}
+				else if (isMovingJump) {
+					if (z == 0) {
+						charactor_jump_right.OnMove();
+						//charactor_jump_right.OnMove();
+						is_up = true;
+					}
+					if (z < 120 && is_up) {
+						z += 10;
+					}
+					if (z >= 120) {
+						is_up = false;
+					}
+					if (!is_up) {
+						z -= 10;
+					}
+					if (z == 0) {
+						is_up = true;
+						charactor_jump_right.OnMove();
+						//charactor_jump_right.OnMove();
+						isMovingJump = false;
+					}
+					return;
+				}
+
+			}
+		}
+		else {
+			if (UnderAttack) {
+				if (isDefense) {
+					charactor_defense_left.OnMove();
+				}
+				else {
+					charactor_behit_left.OnMove();
+					charactor_behit_left.OnMove();
+				}
+				//charactor_behit_right.OnMove();
+				//return;
+
+			}
+			else if (!isMoving) {
+				if (isAttack) {
+					charactor_attack_left.OnMove();
+					charactor_attack_left.OnMove();
+					//charactor_attack_left.OnMove();
+					//return;
+				}
+				else if (isMovingJump) {
+					if (z == 0) {
+						charactor_jump_left.OnMove();
+						charactor_jump_left.OnMove();
+						is_up = true;
+					}
+					if (z < 120 && is_up) {
+						z += 10;
+					}
+					if (z >= 120) {
+						is_up = false;
+					}
+					if (!is_up) {
+						z -= 10;
+					}
+					if (z == 0) {
+						is_up = true;
+						charactor_jump_left.OnMove();
+						charactor_jump_left.OnMove();
+						isMovingJump = false;
+					}
+					return;
+				}
+				else if (isDefense) {
+					charactor_defense_left.OnMove();
+				}
+
+				else {
+					charactor_stand_left.OnMove();
+					charactor_stand_left.OnMove();
+					charactor_stand_left.OnMove();
+				}
+			}
+			else {
+				if (isMovingLeft) {
+					if (x - STEP_SIZE > -40)
+						x -= STEP_SIZE;
+					charactor_walk_left.OnMove();
+					charactor_walk_left.OnMove();
+					charactor_walk_left.OnMove();
+
+				}
+				else if (isMovingUp) {
+					if (y - STEP_SIZE > 224)
+						y -= STEP_SIZE;
+					charactor_walk_left.OnMove();
+					charactor_walk_left.OnMove();
+					charactor_walk_left.OnMove();
+
+				}
+				else if (isMovingDown) {
+					if (y + STEP_SIZE < 380)
+						y += STEP_SIZE;
+					charactor_walk_left.OnMove();
+					charactor_walk_left.OnMove();
+					charactor_walk_left.OnMove();
+
+				}
+				else if (isMovingRunLeft) {
+					if (x - STEP_SIZE - 2 > -40) {
+						x -= 4;
+						charactor_run_left.OnMove();
+						charactor_run_left.OnMove();
+						charactor_run_left.OnMove();
+					}
+				}
+				else if (isMovingJump) {
+					if (z == 0) {
+						charactor_jump_left.OnMove();
+						charactor_jump_left.OnMove();
+						is_up = true;
+					}
+					if (z < 120 && is_up) {
+						z += 10;
+					}
+					if (z >= 120) {
+						is_up = false;
+					}
+					if (!is_up) {
+						z -= 10;
+					}
+					if (z == 0) {
+						is_up = true;
+						charactor_jump_left.OnMove();
+						charactor_jump_left.OnMove();
+						isMovingJump = false;
+					}
+					return;
+				}
+
+			}
+		}
+	}
+	void Player::OnShow() {
+		if (is_alive) {
+			charactor_behit_left.SetTopLeft(x, y - z);
+			charactor_jump_left.SetTopLeft(x, y - z);
+			charactor_defense_right.SetTopLeft(x, y - z);
+			charactor_defense_left.SetTopLeft(x, y - z);
+			charactor_behit_right.SetTopLeft(x, y - z);
+			charactor_jump_right.SetTopLeft(x, y - z);
+			charactor_attack_right.SetTopLeft(x, y - z);
+			charactor_attack_left.SetTopLeft(x, y - z);
+			charactor_stand_right.SetTopLeft(x, y - z);
+			charactor_stand_left.SetTopLeft(x, y - z);
+			charactor_walk_right.SetTopLeft(x, y - z);
+			charactor_walk_left.SetTopLeft(x, y - z);
+			charactor_shadow.SetTopLeft(x + 20, y + 75);
+			charactor_run_left.SetTopLeft(x, y - z);
+			charactor_run_right.SetTopLeft(x, y - z);
+
+			charactor_shadow.OnShow();
+
+
+			if (face_right) {
+				if (UnderAttack) {
+					if (isDefense) {
+						charactor_defense_right.OnShow();
+					}
+					else {
+						charactor_behit_right.OnShow();
+						charactor_behit_right.OnShow();
+						//charactor_behit_right.OnShow();
+						control_be_attack--;
+						if (control_be_attack == 0) {
+							control_be_attack = 10;
+							UnderAttack = false;
+						}
+					}
+					//return;
+				}
+				else if (!isMoving) {
+					if (isAttack) {
+						charactor_attack_right.OnShow();
+						charactor_attack_right.OnShow();
+						//charactor_attack_right.OnShow();
+						control_attack--;
+						if (control_attack == 0) {
+							control_attack = 10;
+							isAttack = false;
+						}
+						//return;
+					}
+					else if (isMovingJump) {
+						charactor_jump_right.OnShow();
+					}
+					else if (isDefense) {
+						charactor_defense_right.OnShow();
+					}
+					else {
+						charactor_stand_right.OnShow();
+						charactor_stand_right.OnShow();
+						charactor_stand_right.OnShow();
+					}
+				}
+				else {
+					if (isMovingJump) {
+						charactor_jump_right.OnShow();
+					}
+					else if (isMovingRunRight) {
+						charactor_run_right.OnShow();
+						charactor_run_right.OnShow();
+						charactor_run_right.OnShow();
+					}
+					else {
+						charactor_walk_right.OnShow();
+						charactor_walk_right.OnShow();
+						charactor_walk_right.OnShow();
+					}
+				}
+			}
+			else {
+				if (UnderAttack) {
+					if (isDefense) {
+
+						charactor_defense_left.OnShow();
+
+					}
+					else {
+						charactor_behit_left.OnShow();
+						charactor_behit_left.OnShow();
+						//charactor_behit_right.OnShow();
+						control_be_attack--;
+						if (control_be_attack == 0) {
+							control_be_attack = 10;
+							UnderAttack = false;
+						}
+					}
+					//return;
+				}
+				else if (!isMoving) {
+					if (isAttack) {
+						charactor_attack_left.OnShow();
+						charactor_attack_left.OnShow();
+						//charactor_attack_left.OnShow();
+						control_attack--;
+						if (control_attack == 0) {
+							control_attack = 10;
+							isAttack = false;
+						}
+						//return;
+					}
+					else if (isMovingJump) {
+						charactor_jump_left.OnShow();
+					}
+					else if (isDefense) {
+						charactor_defense_left.OnShow();
+					}
+					else {
+						charactor_stand_left.OnShow();
+						charactor_stand_left.OnShow();
+						charactor_stand_left.OnShow();
+					}
+				}
+				else {
+					if (isMovingJump) {
+						charactor_jump_left.OnShow();
+					}
+					else if (isMovingRunLeft) {
+						charactor_run_left.OnShow();
+						charactor_run_left.OnShow();
+						charactor_run_left.OnShow();
+					}
+					else {
+						charactor_walk_left.OnShow();
+						charactor_walk_left.OnShow();
+						charactor_walk_left.OnShow();
+					}
+				}
+			}
+
+
+		}
+	}
 	void Player::Decrease() {
 		LEAVE_BLOOD = 144 - int((500 - HP)*0.206);
 		LEAVE_MAGIC = 144 - int((100 - MAGIC)*103/100);
