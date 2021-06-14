@@ -15,6 +15,9 @@ namespace game_framework {
 		y = 0;
 		direction_right = 0;
 		distance = 0;
+		hit = false;
+		now_pic = 1;
+		show = true;
 	}
 
 	void SwordGas::LoadBitmap()
@@ -40,31 +43,68 @@ namespace game_framework {
 			direction_right = 0;
 		}
 	}
+	bool SwordGas::Collision(int _x, int _y, int _z) {
+		if (fabs(_y - y) < 1) {
+			if (fabs(_x - x) < 30) {
+				if (_z == z) {
+					hit = true;
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	void SwordGas::OnMove()
 	{
-		if (direction_right) {
-			x += 10;
-			distance += 10;
-			charactor_special_right.OnMove();
-		}
-		else {
-			x -= 10;
-			distance += 10;
-			charactor_special_left.OnMove();
+		if (show) {
+			if (hit) {
+				if (direction_right)
+					charactor_special_right.OnMove();
+				else
+					charactor_special_left.OnMove();
+				now_pic++;
+				if (now_pic > 8)
+					show = false;
+			}
+			else if (direction_right) {
+				x++;
+				distance++;
+				if (distance >= 10) {
+					if (direction_right)
+						charactor_special_right.OnMove();
+					else
+						charactor_special_left.OnMove();
+					now_pic++;
+					if (now_pic > 8)
+						show = false;
+				}
+			}
+			else if (!direction_right) {
+				x--;
+				distance++;
+				if (distance >= 10) {
+					if (direction_right)
+						charactor_special_right.OnMove();
+					else
+						charactor_special_left.OnMove();
+					now_pic++;
+					if (now_pic > 8)
+						show = false;
+				}
+			}
 		}
 	}
-
 	void SwordGas::OnShow()
 	{
 		charactor_special_left.SetTopLeft(x, y);
 		charactor_special_right.SetTopLeft(x, y);
-		if (direction_right) {
-			charactor_special_right.OnShow();
+		if (show) {
+			if (direction_right) {
+				charactor_special_right.OnShow();
+			}
+			else {
+				charactor_special_left.OnShow();
+			}
 		}
-		else {
-			charactor_special_left.OnShow();
-		}
-		
-		
 	}
 }
