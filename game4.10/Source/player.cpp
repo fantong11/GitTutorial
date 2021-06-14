@@ -137,6 +137,56 @@ namespace game_framework {
 		}
 	}
 
+	void Player::whatStatus(void) {
+		// ¶]
+		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = isAttack = UnderAttack = isDefense = isMovingRunLeft = isMovingRunRight = false;
+		if (data.size() > 1) {
+			if (data[data.size() - 1].action == "left" && data[data.size() - 2].action == "left" && data[data.size() - 1].time - data[data.size() - 2].time <= 0) {
+				isMovingRunLeft = true;
+				isMovingLeft = false;
+			}
+			else if (data[data.size() - 1].action == "right" && data[data.size() - 2].action == "right" && data[data.size() - 1].time - data[data.size() - 2].time <= 0) {
+				isMovingRunRight = true;
+				isMovingRight = false;
+			}
+			else if (data[data.size() - 1].action == "left") {
+				isMovingLeft = true;
+				isMovingRunLeft = false;
+				isMovingRunRight = false;
+			}
+			else if (data[data.size() - 1].action == "right") {
+				isMovingRight = true;
+				isMovingRunLeft = false;
+				isMovingRunRight = false;
+			}
+			if (data[data.size() - 1].action == "up") {
+				isMovingUp = true;
+			}
+			if (data[data.size() - 1].action == "down") {
+				isMovingDown = true;
+			}
+			if (data[data.size() - 1].action == "attack") {
+				isAttack = true;
+				isMovingRunLeft = false;
+				isMovingRunRight = false;
+			}
+			if (data[data.size() - 1].action == "jump") {
+				isMovingJump = true;
+				isMovingRunLeft = false;
+				isMovingRunRight = false;
+				on_floor = false;
+			}
+			if (data[data.size() - 1].action == "defense") {
+				isDefense = true;
+				isMovingRunLeft = false;
+				isMovingRunRight = false;
+			}
+		}
+
+
+
+	}
+
 	void Player::SetXY(int _x, int _y) {
 		x = _x;
 		y = _y;
@@ -172,11 +222,6 @@ namespace game_framework {
 						charactor_jump_right.OnMove();
 						is_up = true;
 						jump_count++;
-					}
-					if (jump_count < 2) {
-						charactor_jump_right.OnMove();
-						charactor_jump_right.OnMove();
-						charactor_jump_right.OnMove();
 					}
 					if (z < 120 && is_up && jump_count == 2) {
 						//charactor_jump_right.OnMove();

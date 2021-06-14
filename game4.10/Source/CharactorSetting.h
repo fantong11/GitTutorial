@@ -23,7 +23,7 @@ namespace game_framework {
 		void isUnderAttack(int, int,int, bool);
 		void isJumping(bool flag);
 
-		void whatStatus(void);
+		virtual void whatStatus(void);
 
 		int NowX(void);
 		int NowY(void);

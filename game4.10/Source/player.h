@@ -9,5 +9,6 @@ namespace game_framework {
 		void DrawAllAboutPlayer(void);
 		void OnShow(void) override;
 		void OnMove(void) override;
+		void whatStatus(void) override;
 	};
 }
