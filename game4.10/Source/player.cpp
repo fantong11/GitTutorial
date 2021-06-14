@@ -13,6 +13,7 @@
 namespace game_framework {
 	void Player::LoadBitmap(int a) {
 		char *file_charactor_shadow[1] = {".\\RES\\shadow.bmp"};
+		role = a;
 		charactor_shadow.AddBitmap(file_charactor_shadow[0], RGB(0, 0, 0));
 		if (a == 1) {
 			char *file_charactor_walk_to_right[6] = { ".\\RES\\template\\walk_to_right\\walk1.bmp", ".\\RES\\template\\walk_to_right\\walk2.bmp", ".\\RES\\template\\walk_to_right\\walk3.bmp", ".\\RES\\template\\walk_to_right\\walk4.bmp", ".\\RES\\template\\walk_to_right\\walk3.bmp" , ".\\RES\\template\\walk_to_right\\walk2.bmp" };
@@ -140,6 +141,39 @@ namespace game_framework {
 	void Player::whatStatus(void) {
 		// 跑
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = isAttack = UnderAttack = isDefense = isMovingRunLeft = isMovingRunRight = false;
+		defenseUpAttack = defenseDownAttack = defenseRightAttack = defenseLeftAttack = false;
+		// 劍男
+		// 防下功  防左功 防右功
+		if (data.size() > 3) {
+			if (role == 2) {
+				if (data[data.size() - 1].action == "attack" && data[data.size() - 2].action == "down" && data[data.size() - 3].action == "defense" && data[data.size() - 1].time - data[data.size() - 3].time <= 0) {
+					defenseDownAttack = true;
+				}
+				else if (data[data.size() - 1].action == "attack" && data[data.size() - 2].action == "left" && data[data.size() - 3].action == "defense" && data[data.size() - 1].time - data[data.size() - 3].time <= 0) {
+					defenseLeftAttack = true;
+				}
+				else if (data[data.size() - 1].action == "attack" && data[data.size() - 2].action == "right" && data[data.size() - 3].action == "defense" && data[data.size() - 1].time - data[data.size() - 3].time <= 0) {
+					defenseRightAttack = true;
+				}
+			}
+			// 氣功男
+			// 防上攻 防下攻 防右攻 防左攻
+			else if (role == 3) {
+				if (data[data.size() - 1].action == "attack" && data[data.size() - 2].action == "up" && data[data.size() - 3].action == "defense" && data[data.size() - 1].time - data[data.size() - 3].time <= 0) {
+					defenseUpAttack = true;
+				}
+				else if (data[data.size() - 1].action == "attack" && data[data.size() - 2].action == "down" && data[data.size() - 3].action == "defense" && data[data.size() - 1].time - data[data.size() - 3].time <= 0) {
+					defenseDownAttack = true;
+				}
+				else if (data[data.size() - 1].action == "attack" && data[data.size() - 2].action == "right" && data[data.size() - 3].action == "defense" && data[data.size() - 1].time - data[data.size() - 3].time <= 0) {
+					defenseRightAttack = true;
+				}
+				else if (data[data.size() - 1].action == "attack" && data[data.size() - 2].action == "left" && data[data.size() - 3].action == "defense" && data[data.size() - 1].time - data[data.size() - 3].time <= 0) {
+					defenseLeftAttack = true;
+				}
+			}
+		}
+
 		if (data.size() > 1) {
 			if (data[data.size() - 1].action == "left" && data[data.size() - 2].action == "left" && data[data.size() - 1].time - data[data.size() - 2].time <= 0) {
 				isMovingRunLeft = true;

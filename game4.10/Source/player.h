@@ -10,5 +10,12 @@ namespace game_framework {
 		void OnShow(void) override;
 		void OnMove(void) override;
 		void whatStatus(void) override;
+
+		int role;
+
+		bool defenseLeftAttack;
+		bool defenseRightAttack;
+		bool defenseDownAttack;
+		bool defenseUpAttack;
 	};
 }
