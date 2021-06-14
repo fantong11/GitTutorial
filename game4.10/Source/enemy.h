@@ -18,5 +18,6 @@ namespace game_framework {
 		void getHit(void);
 		void OnShow(void) override;
 		void OnMove(void) override;
+		void whatStatus(void) override;
 	};
 }
