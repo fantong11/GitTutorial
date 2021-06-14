@@ -124,8 +124,7 @@ namespace game_framework {
 					charactor_behit_right.OnMove();
 				}
 
-				//charactor_behit_right.OnMove();
-				//return;
+
 			}
 			else if (!isMoving) {
 				if (isAttack) {
