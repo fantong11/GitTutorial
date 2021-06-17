@@ -167,6 +167,10 @@ namespace game_framework {
 		if (HP > 0)
 			HP -= 5;
 	}
+	void CharactorSetting::DecreaseBlood3() {
+		if (HP > 0)
+			HP -= 30;
+	}
 	void CharactorSetting::SetAlive(bool flag) {
 		is_alive = false;
 	}

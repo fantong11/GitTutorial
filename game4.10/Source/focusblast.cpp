@@ -19,13 +19,13 @@ namespace game_framework {
 		distance = 0;
 		hit = false;
 		now_pic = 1;
-		show = true;
+		show = false;
 	}
 
 	void Focusblast::LoadBitmap()
 	{
-		char *file_special_right[5] = { ".\\RES\\FocusBlast\\right\\special_attack_1.bmp",".\\RES\\FocusBlast\\right\\special_attack_2.bmp",".\\RES\\FocusBlast\\right\\special_attack_3.bmp",".\\RES\\FocusBlast\\right\\special_attack_4.bmp" ,".\\RES\\FocusBlast\\right\\special_attack_5.bmp"};
-		char *file_special_left[5] = { ".\\RES\\FocusBlast\\left\\special_attack_1.bmp",".\\RES\\FocusBlast\\left\\special_attack_2.bmp",".\\RES\\FocusBlast\\left\\special_attack_3.bmp",".\\RES\\FocusBlast\\left\\special_attack_4.bmp" ,".\\RES\\FocusBlast\\left\\special_attack_5.bmp"};
+		char *file_special_right[5] = { ".\\RES\\FocusBlast\\right\\special_attack1.bmp",".\\RES\\FocusBlast\\right\\special_attack2.bmp",".\\RES\\FocusBlast\\right\\special_attack3.bmp",".\\RES\\FocusBlast\\right\\special_attack4.bmp" ,".\\RES\\FocusBlast\\right\\special_attack5.bmp" };
+		char *file_special_left[5] = { ".\\RES\\FocusBlast\\left\\special_attack1.bmp",".\\RES\\FocusBlast\\left\\special_attack2.bmp",".\\RES\\FocusBlast\\left\\special_attack3.bmp",".\\RES\\FocusBlast\\left\\special_attack4.bmp" ,".\\RES\\FocusBlast\\left\\special_attack5.bmp"};
 
 		for (int i = 0; i < 5; i++) {
 			charactor_special_right.AddBitmap(file_special_right[i], RGB(0, 0, 0));
@@ -34,63 +34,70 @@ namespace game_framework {
 	}
 	void Focusblast::SetFocusblast(int _x, int _y, bool face_right)
 	{
-		if (face_right) {
-			x = _x + 80;
-			y = _y + 40;
-			direction_right = 1;
-		}
-		else {
-			x = _x;
-			y = _y + 40;
-			direction_right = 0;
-		}
+		
+			if (face_right) {
+				x = _x + 40;
+				y = _y+20;
+				direction_right = 1;
+			}
+			else {
+				x = _x;
+				y = _y+20;
+				direction_right = 0;
+			}
+		
 	}
 	void Focusblast::OnMove()
 	{
 		if (show) {
 			if (hit) {
-				if (direction_right)
+				
+				if (direction_right) {
 					charactor_special_right.OnMove();
-				else
+					charactor_special_right.OnMove();
+					charactor_special_right.OnMove();
+
+				}
+				else {
 					charactor_special_left.OnMove();
+					charactor_special_left.OnMove();
+					charactor_special_left.OnMove();
+
+				}
 				now_pic++;
-				if (now_pic > 5)
+				if (now_pic > 10)
+				
 					show = false;
 			}
 			else if (direction_right) {
 				x++;
 				distance++;
-				if (distance >= 20) {
-					if (direction_right)
-						charactor_special_right.OnMove();
-					else
-						charactor_special_left.OnMove();
-					now_pic++;
-					if (now_pic > 5)
+				if (distance >= 145) {
+
+
+			
 						show = false;
 				}
 			}
 			else if (!direction_right) {
 				x--;
 				distance++;
-				if (distance >= 20) {
-					if (direction_right)
-						charactor_special_right.OnMove();
-					else
-						charactor_special_left.OnMove();
-					now_pic++;
-					if (now_pic > 5)
+				if (distance >= 145) {
+
+			
 						show = false;
 				}
 			}
 		}
 	}
 	bool Focusblast::Collision(int _x, int _y,int _z) {
-		if (fabs(_y - y) < 1) {
-			if (fabs(_x - x) < 30) {
-				if (_z == z) {
-					hit = true;
-					return true;		
+		if (show) {
+			if (fabs(_y - y) < 21) {
+				if (fabs(_x - x) < 10) {
+					if (_z == z) {
+						hit = true;
+						return true;
+					}
 				}
 			}
 		}

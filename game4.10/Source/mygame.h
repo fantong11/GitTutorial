@@ -152,9 +152,13 @@ namespace game_framework {
 		int map_floor_range_y;
 		Enemy* enemy;
 		Player* player;
+		Focusblast* focusblast;
+		SwordGas* swordgas;
 		int stage;
 		int enemy_num;
 		int smallstage;
+		int special_num;
+		int count;
  	};
 	class CGameStateStage2 : public CGameState {
 	public:

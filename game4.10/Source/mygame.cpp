@@ -585,11 +585,15 @@ CGameStateRun::~CGameStateRun()
 	delete [] enemy;
 	delete[] player;
 	delete[] smallcharacter;
+	delete[] focusblast;
+	delete[] swordgas;
 }
 
 void CGameStateRun::OnBeginState()
 {
 	stage = 1;
+	count = 0;
+	special_num = 0;
 	CAudio::Instance()->Play(AUDIO_BACK1, true);			// 撥放 WAVE
 	smallstage = 1;
 	ifstream fin("text1.txt", ios::in);
@@ -599,12 +603,20 @@ void CGameStateRun::OnBeginState()
 	player = new Player[1];
 	player[0].LoadBitmap(temp);
 	enemy = new Enemy[5];
+	focusblast = new Focusblast[100];
+	swordgas = new SwordGas[100];
 	enemy_num = 0;
 	int i = 0;
 	for (i = 0; i < 5; i++) {
 		enemy[i].LoadBitmap(temp);
 		enemy[i].SetHP(50);
 	}
+	
+	for (i = 0; i < 100; i++) {
+		focusblast[i].LoadBitmap();
+		swordgas[i].LoadBitmap();
+	}
+	
 	enemy[0].SetXY(400, 300);
 	enemy[1].SetXY(400, 270);
 	enemy[2].SetXY(400, 330);
@@ -710,6 +722,62 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 
 	int p_x = 0, p_y = 0, e_x = 0, e_y = 0;
 	player[0].Decrease();
+
+	if (player[0].role == 2) {
+		if (player[0].defenseLeftAttack) {
+			if (player[0].nonduplicate) {
+				if (player[0].MAGIC >= 15) {
+					player[0].DecreaseMagic();
+					swordgas[special_num].SetSwordGas(player[0].x, player[0].y, player[0].face_right);
+					swordgas[special_num].show = true;
+					special_num++;
+					player[0].nonduplicate = false;
+				}
+			}
+		}
+		else if (player[0].defenseRightAttack) {
+			if (player[0].nonduplicate) {
+				if (player[0].MAGIC >= 15) {
+					player[0].DecreaseMagic();
+					swordgas[special_num].SetSwordGas(player[0].x, player[0].y, player[0].face_right);
+					swordgas[special_num].show = true;
+					special_num++;
+					player[0].nonduplicate = false;
+				}
+			}
+		}
+		else {
+			player[0].nonduplicate = true;
+		}
+	}
+	else if (player[0].role == 3) {
+		if (player[0].defenseLeftAttack) {
+			if (player[0].nonduplicate) {
+				if (player[0].MAGIC >= 15) {
+					player[0].DecreaseMagic();
+					focusblast[special_num].SetFocusblast(player[0].x, player[0].y, player[0].face_right);
+					focusblast[special_num].show = true;
+					special_num++;
+					player[0].nonduplicate = false;
+				}
+			}
+		}
+		else if (player[0].defenseRightAttack) {
+			if (player[0].nonduplicate) {
+				if (player[0].MAGIC >= 15) {
+					player[0].DecreaseMagic();
+					focusblast[special_num].SetFocusblast(player[0].x, player[0].y, player[0].face_right);
+					focusblast[special_num].show = true;
+					special_num++;
+					player[0].nonduplicate = false;
+				}
+			}
+		}
+		else {
+			player[0].nonduplicate = true;
+		}
+	}
+
 	for (i = 0; i < 5; i++) {
 		if (enemy[i].enemy_now)
 			enemy[i].getCloseToPlayer(player[0].x, player[0].y);
@@ -723,6 +791,29 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 				player[0].isUnderAttack(enemy[i].x, enemy[i].y, enemy[i].z, enemy[i].isAttack);
 		}
 	}
+	int j = 0;
+	for (j = 0; j < 100; j++) {
+		
+		for (i = 0; i < 5; i++) {
+			if (enemy[i].enemy_now) {
+				if (player[0].role == 2 && swordgas[j].Collision(enemy[i].x, enemy[i].y, enemy[i].z)) {
+					count++;
+					enemy[i].UnderAttack = true;
+					enemy[i].DecreaseBlood3();
+				}
+				else if (player[0].role == 3 && focusblast[j].Collision(enemy[i].x, enemy[i].y, enemy[i].z)) {
+					count++;
+						enemy[i].UnderAttack = true;
+						enemy[i].DecreaseBlood3();
+
+				}
+			}
+		}
+		
+		swordgas[j].OnMove();
+		focusblast[j].OnMove();
+	}
+
 
 
 }
@@ -803,6 +894,12 @@ void CGameStateRun::OnShow()
 		if(enemy[i].enemy_now)
 			enemy[i].OnShow();
 	}
+	
+	for (i = 0; i < 100; i++) {
+		swordgas[i].OnShow();
+		focusblast[i].OnShow();
+	}
+	
 	player[0].DrawAllAboutPlayer();
 
 	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 

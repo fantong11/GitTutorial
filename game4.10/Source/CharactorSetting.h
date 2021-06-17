@@ -19,6 +19,7 @@ namespace game_framework {
 		void SetAttack(bool flag);
 		void DecreaseBlood(void);
 		void DecreaseBlood2(void);
+		void DecreaseBlood3(void);
 		void SetAlive(bool flag);
 		void isUnderAttack(int, int,int, bool);
 		void isJumping(bool flag);

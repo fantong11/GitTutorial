@@ -8,6 +8,8 @@ namespace game_framework {
 		void OnMove();
 		void OnShow();			// 將圖形貼到畫面
 		bool Collision(int, int,int);
+		bool show;
+
 	private:
 		int x, y, z;				// 圖形座標
 		CAnimation charactor_special_right;
@@ -15,8 +17,8 @@ namespace game_framework {
 		int direction_right;
 		int distance;
 		bool hit;
-		bool show;
 		int now_pic;
+		
 
 	};
 }

@@ -14,6 +14,7 @@ namespace game_framework {
 	void Player::LoadBitmap(int a) {
 		char *file_charactor_shadow[1] = {".\\RES\\shadow.bmp"};
 		defenseUpAttack = defenseDownAttack = defenseRightAttack = defenseLeftAttack = false;
+		nonduplicate = true;
 		role = a;
 		charactor_shadow.AddBitmap(file_charactor_shadow[0], RGB(0, 0, 0));
 		if (a == 1) {
@@ -174,7 +175,9 @@ namespace game_framework {
 			}
 		}
 	}
-
+	void Player::DecreaseMagic(void) {
+		MAGIC -= 15;
+	}
 	void Player::whatStatus(void) {
 		// 跑
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = isAttack = UnderAttack = isDefense = isMovingRunLeft = isMovingRunRight = false;
@@ -740,7 +743,7 @@ namespace game_framework {
 		pDC->SetBkColor(RGB(0, 0, 0));
 		pDC->SetTextColor(RGB(120, 120, 255));
 		char str[80];								// Demo 數字對字串的轉換
-		sprintf(str, "Man:  1    HP:  %d",HP);
+		sprintf(str, "Man:  1    HP:  %d %d %d %d",HP,x,y,z);
 		pDC->TextOut(6, 94, str);
 
 

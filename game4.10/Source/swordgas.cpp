@@ -17,7 +17,7 @@ namespace game_framework {
 		distance = 0;
 		hit = false;
 		now_pic = 1;
-		show = true;
+		show = false;
 	}
 
 	void SwordGas::LoadBitmap()
@@ -32,23 +32,27 @@ namespace game_framework {
 	}
 	void SwordGas::SetSwordGas(int _x, int _y, bool face_right)
 	{
-		if (face_right) {
-			x = _x + 80;
-			y = _y + 40;
-			direction_right = 1;
-		}
-		else {
-			x = _x;
-			y = _y + 40;
-			direction_right = 0;
-		}
+		
+			if (face_right) {
+				x = _x + 80;
+				y = _y;
+				direction_right = 1;
+			}
+			else {
+				x = _x;
+				y = _y;
+				direction_right = 0;
+			}
+		
 	}
 	bool SwordGas::Collision(int _x, int _y, int _z) {
-		if (fabs(_y - y) < 1) {
-			if (fabs(_x - x) < 30) {
-				if (_z == z) {
-					hit = true;
-					return true;
+		if (show) {
+			if (fabs(_y - y) < 1) {
+				if (fabs(_x - x) < 10) {
+					if (_z == z) {
+						hit = true;
+						return true;
+					}
 				}
 			}
 		}
@@ -58,37 +62,34 @@ namespace game_framework {
 	{
 		if (show) {
 			if (hit) {
-				if (direction_right)
-					charactor_special_right.OnMove();
-				else
-					charactor_special_left.OnMove();
-				now_pic++;
-				if (now_pic > 8)
+				
 					show = false;
 			}
 			else if (direction_right) {
 				x++;
 				distance++;
-				if (distance >= 10) {
-					if (direction_right)
-						charactor_special_right.OnMove();
-					else
-						charactor_special_left.OnMove();
+				if (distance >= 100) {
+					charactor_special_right.OnMove();
+					charactor_special_right.OnMove();
+					charactor_special_right.OnMove();
+					
+					
 					now_pic++;
-					if (now_pic > 8)
+					if (now_pic > 25)
 						show = false;
 				}
 			}
 			else if (!direction_right) {
 				x--;
 				distance++;
-				if (distance >= 10) {
-					if (direction_right)
-						charactor_special_right.OnMove();
-					else
-						charactor_special_left.OnMove();
+				if (distance >= 100) {
+					
+					charactor_special_left.OnMove();
+					charactor_special_left.OnMove();
+					charactor_special_left.OnMove();
+					
 					now_pic++;
-					if (now_pic > 8)
+					if (now_pic > 25)
 						show = false;
 				}
 			}

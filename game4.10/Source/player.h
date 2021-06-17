@@ -10,8 +10,9 @@ namespace game_framework {
 		void OnShow(void) override;
 		void OnMove(void) override;
 		void whatStatus(void) override;
-
+		void DecreaseMagic(void);
 		int role;
+		bool nonduplicate;
 
 		bool defenseLeftAttack;
 		bool defenseRightAttack;
