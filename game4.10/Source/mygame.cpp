@@ -761,8 +761,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	}
 	if (nChar == KEY_DEF) {
 		player[0].SetDefense(true);
-	}
-		
+	}		
 	if (nChar == KEY_LEFT || nChar == KEY_RIGHT || nChar == KEY_UP || nChar == KEY_DOWN)
 		player[0].SetMoving(true);
 }

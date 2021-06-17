@@ -30,7 +30,9 @@ namespace game_framework {
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isMovingJump = isMoving = isAttack = UnderAttack = isDefense = isMovingRunLeft = isMovingRunRight = false;
 		on_floor = is_alive= enemy_now= true;
 		jump_count = 0;
-
+		x = 95;
+		y = 300;
+		z = 0;
 		HP = 500;
 		MAGIC = 100;
 		LEAVE_MAGIC = 100;
