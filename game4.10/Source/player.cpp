@@ -13,6 +13,7 @@
 namespace game_framework {
 	void Player::LoadBitmap(int a) {
 		char *file_charactor_shadow[1] = {".\\RES\\shadow.bmp"};
+		defenseUpAttack = defenseDownAttack = defenseRightAttack = defenseLeftAttack = false;
 		role = a;
 		charactor_shadow.AddBitmap(file_charactor_shadow[0], RGB(0, 0, 0));
 		if (a == 1) {
