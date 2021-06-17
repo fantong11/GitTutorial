@@ -59,6 +59,12 @@ namespace game_framework {
 		CAnimation charactor_behit_left;
 		CAnimation charactor_defense_right;
 		CAnimation charactor_defense_left;
+		CAnimation charactor_defense_attack_down_to_left;
+		CAnimation charactor_defense_attack_down_to_right;
+		CAnimation charactor_defense_left_attack;
+		CAnimation charactor_defense_right_attack;
+		CAnimation charactor_defense_up_attack_to_left;
+		CAnimation charactor_defense_up_attack_to_right;
 
 		int x, y, z;
 		int HP;

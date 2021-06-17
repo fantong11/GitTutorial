@@ -71,6 +71,12 @@ namespace game_framework {
 			char *file_charactor_behit_left[3] = { ".\\RES\\deep\\be_hit_left\\behit1.bmp",".\\RES\\deep\\be_hit_left\\behit2.bmp",".\\RES\\deep\\be_hit_left\\behit3.bmp" };
 			char *file_charactor_defense_right[2] = { ".\\RES\\deep\\defense_to_right\\defense1.bmp",".\\RES\\deep\\defense_to_right\\defense2.bmp" };
 			char *file_charactor_defense_left[2] = { ".\\RES\\deep\\defense_to_left\\defense1.bmp",".\\RES\\deep\\defense_to_left\\defense2.bmp" };
+			char *file_charactor_run_left[3] = {".\\RES\\deep\\run_to_left\\run1.bmp",".\\RES\\deep\\run_to_left\\run2.bmp",".\\RES\\deep\\run_to_left\\run3.bmp" };
+			char *file_charactor_run_right[3] = { ".\\RES\\deep\\run_to_right\\run1.bmp", ".\\RES\\deep\\run_to_right\\run2.bmp",  ".\\RES\\deep\\run_to_right\\run3.bmp", };
+			char *file_charactor_defense_down_attack_to_left[5] = {".\\RES\\deep\\defense_down_attack_to_left\\special2_1.bmp", ".\\RES\\deep\\defense_down_attack_to_left\\special2_2.bmp" , ".\\RES\\deep\\defense_down_attack_to_left\\special2_3.bmp" , ".\\RES\\deep\\defense_down_attack_to_left\\special2_4.bmp" , ".\\RES\\deep\\defense_down_attack_to_left\\special2_5.bmp" };
+			char *file_charactor_defense_down_attack_to_right[5] = { ".\\RES\\deep\\defense_down_attack_to_right\\special2_1.bmp", ".\\RES\\deep\\defense_down_attack_to_right\\special2_2.bmp", ".\\RES\\deep\\defense_down_attack_to_right\\special2_3.bmp", ".\\RES\\deep\\defense_down_attack_to_right\\special2_4.bmp", ".\\RES\\deep\\defense_down_attack_to_right\\special2_5.bmp" };
+			char *file_charactor_defense_left_attack[5] = {".\\RES\\deep\\defense_left_attack_to_left\\special1_1.bmp", ".\\RES\\deep\\defense_left_attack_to_left\\special1_2.bmp" , ".\\RES\\deep\\defense_left_attack_to_left\\special1_3.bmp" , ".\\RES\\deep\\defense_left_attack_to_left\\special1_4.bmp" , ".\\RES\\deep\\defense_left_attack_to_left\\special1_5.bmp" };
+			char *file_charactor_defense_right_attack[5] = {".\\RES\\deep\\defense_left_attack_to_right\\special1_1.bmp", ".\\RES\\deep\\defense_left_attack_to_right\\special1_2.bmp" , ".\\RES\\deep\\defense_left_attack_to_right\\special1_3.bmp" , ".\\RES\\deep\\defense_left_attack_to_right\\special1_4.bmp" , ".\\RES\\deep\\defense_left_attack_to_right\\special1_5.bmp" };
 
 			for (int i = 0; i < 4; i++) {
 				charactor_stand_right.AddBitmap(file_charactor_stand_right[i], RGB(0, 0, 0));
@@ -91,10 +97,19 @@ namespace game_framework {
 				charactor_jump_right.AddBitmap(file_charactor_jump_right[i], RGB(0, 0, 0));
 				charactor_behit_right.AddBitmap(file_charactor_behit_right[i], RGB(0, 0, 0));
 				charactor_behit_left.AddBitmap(file_charactor_behit_left[i], RGB(0, 0, 0));
+				charactor_run_left.AddBitmap(file_charactor_run_left[i], RGB(0 ,0, 0));
+				charactor_run_right.AddBitmap(file_charactor_run_right[i], RGB(0, 0, 0));
 			}
 			for (int i = 0; i < 2; i++) {
 				charactor_defense_right.AddBitmap(file_charactor_defense_right[i], RGB(0, 0, 0));
 				charactor_defense_left.AddBitmap(file_charactor_defense_left[i], RGB(0, 0, 0));
+			}
+
+			for (int i = 0; i < 5; i++) {
+				charactor_defense_attack_down_to_left.AddBitmap(file_charactor_defense_down_attack_to_left[i], RGB(0, 0, 0));
+				charactor_defense_attack_down_to_right.AddBitmap(file_charactor_defense_down_attack_to_right[i], RGB(0, 0, 0));
+				charactor_defense_left_attack.AddBitmap(file_charactor_defense_left_attack[i], RGB(0, 0, 0));
+				charactor_defense_right_attack.AddBitmap(file_charactor_defense_right_attack[i], RGB(0, 0, 0));
 			}
 		}
 		else {
@@ -110,6 +125,14 @@ namespace game_framework {
 			char *file_charactor_behit_left[3] = { ".\\RES\\david\\be_hit_left\\behit1.bmp",".\\RES\\david\\be_hit_left\\behit2.bmp",".\\RES\\david\\be_hit_left\\behit3.bmp" };
 			char *file_charactor_defense_right[2] = { ".\\RES\\david\\defense_to_right\\defense1.bmp",".\\RES\\david\\defense_to_right\\defense2.bmp" };
 			char *file_charactor_defense_left[2] = { ".\\RES\\david\\defense_to_left\\defense1.bmp",".\\RES\\david\\defense_to_left\\defense2.bmp" };
+			char *file_charactor_run_left[3] = {".\\RES\\david\\run_to_left\\run1.bmp" , ".\\RES\\david\\run_to_left\\run2.bmp" , ".\\RES\\david\\run_to_left\\run3.bmp" };
+			char *file_charactor_run_right[3] = {".\\RES\\david\\run_to_right\\run1.bmp", ".\\RES\\david\\run_to_right\\run2.bmp" , ".\\RES\\david\\run_to_right\\run3.bmp" };
+			char *file_charactor_defense_down_attack_to_left[13] = {".\\RES\\david\\defense_down_attack_to_left\\special2_1.bmp", ".\\RES\\david\\defense_down_attack_to_left\\special2_2.bmp" , ".\\RES\\david\\defense_down_attack_to_left\\special2_3.bmp" , ".\\RES\\david\\defense_down_attack_to_left\\special2_4.bmp" , ".\\RES\\david\\defense_down_attack_to_left\\special2_5.bmp" , ".\\RES\\david\\defense_down_attack_to_left\\special2_6.bmp" , ".\\RES\\david\\defense_down_attack_to_left\\special2_7.bmp" , ".\\RES\\david\\defense_down_attack_to_left\\special2_8.bmp" , ".\\RES\\david\\defense_down_attack_to_left\\special2_9.bmp" , ".\\RES\\david\\defense_down_attack_to_left\\special2_10.bmp" , ".\\RES\\david\\defense_down_attack_to_left\\special2_11.bmp" , ".\\RES\\david\\defense_down_attack_to_left\\special2_12.bmp" , ".\\RES\\david\\defense_down_attack_to_left\\special2_13.bmp" };
+			char *file_charactor_defense_down_attack_to_right[13] = { ".\RES\david\defense_down_attack_to_right\special2_1.bmp", ".\RES\david\defense_down_attack_to_right\special2_2.bmp" , ".\RES\david\defense_down_attack_to_right\special2_3.bmp" , ".\RES\david\defense_down_attack_to_right\special2_4.bmp" , ".\RES\david\defense_down_attack_to_right\special2_5.bmp" , ".\RES\david\defense_down_attack_to_right\special2_6.bmp" , ".\RES\david\defense_down_attack_to_right\special2_7.bmp" , ".\RES\david\defense_down_attack_to_right\special2_8.bmp" , ".\RES\david\defense_down_attack_to_right\special2_9.bmp" , ".\RES\david\defense_down_attack_to_right\special2_10.bmp" , ".\RES\david\defense_down_attack_to_right\special2_11.bmp" , ".\RES\david\defense_down_attack_to_right\special2_12.bmp" , ".\RES\david\defense_down_attack_to_right\special2_13.bmp"};
+			char *file_charactor_defense_left_attack[10] = {".\\RES\\david\\defense_left_attack_to_left\\special1_1.bmp", ".\\RES\\david\\defense_left_attack_to_left\\special1_2.bmp" , ".\\RES\\david\\defense_left_attack_to_left\\special1_3.bmp" , ".\\RES\\david\\defense_left_attack_to_left\\special1_4.bmp" , ".\\RES\\david\\defense_left_attack_to_left\\special1_5.bmp" , ".\\RES\\david\\defense_left_attack_to_left\\special1_6.bmp" , ".\\RES\\david\\defense_left_attack_to_left\\special1_7.bmp" , ".\\RES\\david\\defense_left_attack_to_left\\special1_8.bmp" , ".\\RES\\david\\defense_left_attack_to_left\\special1_9.bmp" , ".\\RES\\david\\defense_left_attack_to_left\\special1_10.bmp" };
+			char *file_charactor_defense_right_attack[10] = { ".\RES\david\defense_right_attack_to_right\special1_1.bmp", ".\RES\david\defense_right_attack_to_right\special1_2.bmp" , ".\RES\david\defense_right_attack_to_right\special1_3.bmp" , ".\RES\david\defense_right_attack_to_right\special1_4.bmp" , ".\RES\david\defense_right_attack_to_right\special1_5.bmp" , ".\RES\david\defense_right_attack_to_right\special1_6.bmp" , ".\RES\david\defense_right_attack_to_right\special1_7.bmp" , ".\RES\david\defense_right_attack_to_right\special1_8.bmp" , ".\RES\david\defense_right_attack_to_right\special1_9.bmp" , ".\RES\david\defense_right_attack_to_right\special1_10.bmp" };
+			char *file_charactor_defense_up_attack_to_left[8] = {".\\RES\\david\\defense_up_attack_to_left\\special3_1.bmp", ".\\RES\\david\\defense_up_attack_to_left\\special3_2.bmp" , ".\\RES\\david\\defense_up_attack_to_left\\special3_3.bmp" , ".\\RES\\david\\defense_up_attack_to_left\\special3_4.bmp" , ".\\RES\\david\\defense_up_attack_to_left\\special3_5.bmp" , ".\\RES\\david\\defense_up_attack_to_left\\special3_6.bmp" , ".\\RES\\david\\defense_up_attack_to_left\\special3_7.bmp" , ".\\RES\\david\\defense_up_attack_to_left\\special3_8.bmp" };
+			char *file_charactor_defense_up_attack_to_right[8] = { ".\RES\david\defense_up_attack_to_right\special3_1.bmp", ".\RES\david\defense_up_attack_to_right\special3_2.bmp" , ".\RES\david\defense_up_attack_to_right\special3_3.bmp" , ".\RES\david\defense_up_attack_to_right\special3_4.bmp" , ".\RES\david\defense_up_attack_to_right\special3_5.bmp" , ".\RES\david\defense_up_attack_to_right\special3_6.bmp" , ".\RES\david\defense_up_attack_to_right\special3_7.bmp" , ".\RES\david\defense_up_attack_to_right\special3_8.bmp" };
 
 			for (int i = 0; i < 4; i++) {
 				charactor_stand_right.AddBitmap(file_charactor_stand_right[i], RGB(0, 0, 0));
@@ -129,11 +152,24 @@ namespace game_framework {
 				charactor_jump_right.AddBitmap(file_charactor_jump_right[i], RGB(0, 0, 0));
 				charactor_behit_right.AddBitmap(file_charactor_behit_right[i], RGB(0, 0, 0));
 				charactor_behit_left.AddBitmap(file_charactor_behit_left[i], RGB(0, 0, 0));
-
+				charactor_run_left.AddBitmap(file_charactor_run_left[i], RGB(0, 0, 0));
+				charactor_run_right.AddBitmap(file_charactor_run_right[i], RGB(0, 0, 0));
 			}
 			for (int i = 0; i < 2; i++) {
 				charactor_defense_right.AddBitmap(file_charactor_defense_right[i], RGB(0, 0, 0));
 				charactor_defense_left.AddBitmap(file_charactor_defense_left[i], RGB(0, 0, 0));
+			}
+			for (int i = 0; i < 10; i++) {
+				charactor_defense_left_attack.AddBitmap(file_charactor_defense_left_attack[i], RGB(0, 0, 0));
+				charactor_defense_right_attack.AddBitmap(file_charactor_defense_right_attack[i], RGB(0, 0, 0));
+			}
+			for (int i = 0; i < 8; i++) {
+				charactor_defense_up_attack_to_left.AddBitmap(file_charactor_defense_up_attack_to_left[i], RGB(0, 0, 0));
+				charactor_defense_up_attack_to_right.AddBitmap(file_charactor_defense_up_attack_to_right[i], RGB(0, 0, 0));
+			}
+			for (int i = 0; i < 13; i++) {
+				charactor_defense_attack_down_to_left.AddBitmap(file_charactor_defense_down_attack_to_left[i], RGB(0, 0, 0));
+				charactor_defense_attack_down_to_right.AddBitmap(file_charactor_defense_down_attack_to_right[i], RGB(0, 0, 0));
 			}
 		}
 	}
@@ -277,10 +313,28 @@ namespace game_framework {
 						isMovingJump = false;
 					}
 				}
+				else if (role == 2 && defenseDownAttack) {
+					charactor_defense_attack_down_to_right.OnMove();
+				}
+				else if (role == 2 && defenseRightAttack) {
+					charactor_defense_right_attack.OnMove();
+				}
+				else if (role == 3 && defenseDownAttack) {
+					if (x + STEP_SIZE < 594)
+						x += STEP_SIZE;
+					charactor_defense_attack_down_to_right.OnMove();
+				}
+				else if (role == 3 && defenseRightAttack) {
+					charactor_defense_right_attack.OnMove();
+				}
+				else if (role == 3 && defenseUpAttack) {
+					if (y - STEP_SIZE > 224)
+						y -= STEP_SIZE;
+					charactor_defense_up_attack_to_right.OnMove();
+				}
 				else if (isDefense) {
 					charactor_defense_right.OnMove();
 				}
-
 				else {
 					charactor_stand_right.OnMove();
 					charactor_stand_right.OnMove();
@@ -389,7 +443,25 @@ namespace game_framework {
 				else if (isDefense) {
 					charactor_defense_left.OnMove();
 				}
-
+				else if (role == 2 && defenseDownAttack) {
+					charactor_defense_attack_down_to_left.OnMove();
+				}
+				else if (role == 2 && defenseLeftAttack) {
+					charactor_defense_left_attack.OnMove();
+				}
+				else if (role == 3 && defenseDownAttack) {
+					if (x + STEP_SIZE < 594)
+						x += STEP_SIZE;
+					charactor_defense_attack_down_to_left.OnMove();
+				}
+				else if (role == 3 && defenseLeftAttack) {
+					charactor_defense_left_attack.OnMove();
+				}
+				else if (role == 3 && defenseUpAttack) {
+					if (y - STEP_SIZE > 224)
+						y -= STEP_SIZE;
+					charactor_defense_up_attack_to_left.OnMove();
+				}
 				else {
 					charactor_stand_left.OnMove();
 					charactor_stand_left.OnMove();
@@ -512,6 +584,21 @@ namespace game_framework {
 					else if (isDefense) {
 						charactor_defense_right.OnShow();
 					}
+					else if (role == 2 && defenseDownAttack) {
+						charactor_defense_attack_down_to_right.OnShow();
+					}
+					else if (role == 2 && defenseRightAttack) {
+						charactor_defense_right_attack.OnShow();
+					}
+					else if (role == 3 && defenseDownAttack) {
+						charactor_defense_attack_down_to_right.OnShow();
+					}
+					else if (role == 3 && defenseRightAttack) {
+						charactor_defense_right_attack.OnShow();
+					}
+					else if (role == 3 && defenseUpAttack) {
+						charactor_defense_up_attack_to_right.OnShow();
+					}
 					else {
 						charactor_stand_right.OnShow();
 						charactor_stand_right.OnShow();
@@ -570,6 +657,21 @@ namespace game_framework {
 					}
 					else if (isDefense) {
 						charactor_defense_left.OnShow();
+					}
+					else if (role == 2 && defenseDownAttack) {
+						charactor_defense_attack_down_to_left.OnShow();
+					}
+					else if (role == 2 && defenseLeftAttack) {
+						charactor_defense_left_attack.OnShow();
+					}
+					else if (role == 3 && defenseDownAttack) {
+						charactor_defense_attack_down_to_left.OnShow();
+					}
+					else if (role == 3 && defenseLeftAttack) {
+						charactor_defense_left_attack.OnShow();
+					}
+					else if (role == 3 && defenseUpAttack) {
+						charactor_defense_up_attack_to_left.OnShow();
 					}
 					else {
 						charactor_stand_left.OnShow();
