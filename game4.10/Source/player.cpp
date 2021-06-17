@@ -76,7 +76,7 @@ namespace game_framework {
 			char *file_charactor_defense_down_attack_to_left[5] = {".\\RES\\deep\\defense_down_attack_to_left\\special2_1.bmp", ".\\RES\\deep\\defense_down_attack_to_left\\special2_2.bmp" , ".\\RES\\deep\\defense_down_attack_to_left\\special2_3.bmp" , ".\\RES\\deep\\defense_down_attack_to_left\\special2_4.bmp" , ".\\RES\\deep\\defense_down_attack_to_left\\special2_5.bmp" };
 			char *file_charactor_defense_down_attack_to_right[5] = { ".\\RES\\deep\\defense_down_attack_to_right\\special2_1.bmp", ".\\RES\\deep\\defense_down_attack_to_right\\special2_2.bmp", ".\\RES\\deep\\defense_down_attack_to_right\\special2_3.bmp", ".\\RES\\deep\\defense_down_attack_to_right\\special2_4.bmp", ".\\RES\\deep\\defense_down_attack_to_right\\special2_5.bmp" };
 			char *file_charactor_defense_left_attack[5] = {".\\RES\\deep\\defense_left_attack_to_left\\special1_1.bmp", ".\\RES\\deep\\defense_left_attack_to_left\\special1_2.bmp" , ".\\RES\\deep\\defense_left_attack_to_left\\special1_3.bmp" , ".\\RES\\deep\\defense_left_attack_to_left\\special1_4.bmp" , ".\\RES\\deep\\defense_left_attack_to_left\\special1_5.bmp" };
-			char *file_charactor_defense_right_attack[5] = {".\\RES\\deep\\defense_left_attack_to_right\\special1_1.bmp", ".\\RES\\deep\\defense_left_attack_to_right\\special1_2.bmp" , ".\\RES\\deep\\defense_left_attack_to_right\\special1_3.bmp" , ".\\RES\\deep\\defense_left_attack_to_right\\special1_4.bmp" , ".\\RES\\deep\\defense_left_attack_to_right\\special1_5.bmp" };
+			char *file_charactor_defense_right_attack[5] = {".\\RES\\deep\\defense_right_attack_to_right\\special1_1.bmp", ".\\RES\\deep\\defense_right_attack_to_right\\special1_2.bmp" , ".\\RES\\deep\\defense_right_attack_to_right\\special1_3.bmp" , ".\\RES\\deep\\defense_right_attack_to_right\\special1_4.bmp" , ".\\RES\\deep\\defense_right_attack_to_right\\special1_5.bmp" };
 
 			for (int i = 0; i < 4; i++) {
 				charactor_stand_right.AddBitmap(file_charactor_stand_right[i], RGB(0, 0, 0));
@@ -547,7 +547,21 @@ namespace game_framework {
 			charactor_run_right.SetTopLeft(x, y - z);
 
 			charactor_shadow.OnShow();
+			if (role == 2) {
+				charactor_defense_attack_down_to_left.SetTopLeft(x, y - z);
+				charactor_defense_attack_down_to_right.SetTopLeft(x, y - z);
+				charactor_defense_left_attack.SetTopLeft(x, y - z);
+				charactor_defense_right_attack.SetTopLeft(x, y - z);
+			}
+			else if (role == 3) {
+				charactor_defense_attack_down_to_left.SetTopLeft(x, y - z);
+				charactor_defense_attack_down_to_right.SetTopLeft(x, y - z);
+				charactor_defense_up_attack_to_right.SetTopLeft(x, y - z);
+				charactor_defense_up_attack_to_left.SetTopLeft(x, y - z);
+				charactor_defense_left_attack.SetTopLeft(x, y - z);
+				charactor_defense_right_attack.SetTopLeft(x, y - z);
 
+			}
 
 			if (face_right) {
 				if (UnderAttack) {
@@ -725,7 +739,7 @@ namespace game_framework {
 		pDC->SetBkColor(RGB(0, 0, 0));
 		pDC->SetTextColor(RGB(120, 120, 255));
 		char str[80];								// Demo 數字對字串的轉換
-		sprintf(str, "Man:  1    HP:  %d   %d   %d", x,y,z);
+		sprintf(str, "Man:  1    HP:  %d",HP);
 		pDC->TextOut(6, 94, str);
 
 
