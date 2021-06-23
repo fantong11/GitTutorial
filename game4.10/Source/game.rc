@@ -188,6 +188,24 @@ IDB_LOSE                BITMAP                  "..\\RES\\lose.bmp"
 
 IDB_WIN                 BITMAP                  "..\\RES\\win.bmp"
 
+IDB_START_MENU1         BITMAP                  "..\\RES\\start_menu\\1.bmp"
+
+IDB_START_MENU2         BITMAP                  "..\\RES\\start_menu\\2.bmp"
+
+IDB_START_MENU3         BITMAP                  "..\\RES\\start_menu\\3.bmp"
+
+IDB_START_MENU4         BITMAP                  "..\\RES\\start_menu\\4.bmp"
+
+IDB_START_MENU5         BITMAP                  "..\\RES\\start_menu\\5.bmp"
+
+IDB_START_MENU6         BITMAP                  "..\\RES\\start_menu\\6.bmp"
+
+IDB_START_MENU7         BITMAP                  "..\\RES\\start_menu\\7.bmp"
+
+IDB_START_MENU8         BITMAP                  "..\\RES\\start_menu\\8.bmp"
+
+IDB_ABOUT               BITMAP                  "..\\RES\\ABOUT.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -195,14 +213,6 @@ IDB_WIN                 BITMAP                  "..\\RES\\win.bmp"
 //
 
 IDC_GAMECURSOR          CURSOR                  "..\\res\\gamecurs.cur"
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// PNG
-//
-
-IDB_PNG2                PNG                     "..\\RES\\game_menu5.PNG"
 
 #endif    // 中文 (繁體，台灣) resources
 /////////////////////////////////////////////////////////////////////////////

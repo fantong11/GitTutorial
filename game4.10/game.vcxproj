@@ -342,6 +342,7 @@
     <Image Include="..\..\..\..\..\Program Files (x86)\LittleFighter\sprite\sys\ad0.bmp" />
     <Image Include="Bitmaps\ad0.bmp" />
     <Image Include="Bitmaps\initial_bk.bmp" />
+    <Image Include="RES\ABOUT.bmp" />
     <Image Include="RES\ad0.bmp" />
     <Image Include="RES\game_menu.bmp" />
     <Image Include="RES\game_menu2.bmp" />
@@ -392,6 +393,14 @@
     <Image Include="RES\stageTwoBacground\stage_2.bmp" />
     <Image Include="RES\stageTwoBackground\stage_2.bmp" />
     <Image Include="RES\stageTwoBackground\stage_2.png" />
+    <Image Include="RES\start_menu\1.bmp" />
+    <Image Include="RES\start_menu\2.bmp" />
+    <Image Include="RES\start_menu\3.bmp" />
+    <Image Include="RES\start_menu\4.bmp" />
+    <Image Include="RES\start_menu\5.bmp" />
+    <Image Include="RES\start_menu\6.bmp" />
+    <Image Include="RES\start_menu\7.bmp" />
+    <Image Include="RES\start_menu\8.bmp" />
     <Image Include="RES\win.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

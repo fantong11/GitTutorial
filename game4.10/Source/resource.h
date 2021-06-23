@@ -89,6 +89,17 @@
 #define IDB_LOSE                        228
 #define IDB_BITMAP12                    229
 #define IDB_WIN                         229
+#define IDB_START_MENU1                 230
+#define IDB_START_MENU2                 231
+#define IDB_START_MENU3                 232
+#define IDB_START_MENU4                 233
+#define IDB_START_MENU5                 234
+#define IDB_START_MENU6                 235
+#define IDB_START_MENU7                 236
+#define IDB_BITMAP19                    237
+#define IDB_START_MENU8                 237
+#define IDB_BITMAP11                    238
+#define IDB_ABOUT                       238
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -101,7 +112,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        230
+#define _APS_NEXT_RESOURCE_VALUE        239
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

@@ -34,7 +34,7 @@ namespace game_framework {
 	{
 		
 			if (face_right) {
-				x = _x + 80;
+				x = _x + 40;
 				y = _y;
 				direction_right = 1;
 			}
@@ -66,8 +66,8 @@ namespace game_framework {
 					show = false;
 			}
 			else if (direction_right) {
-				x++;
-				distance++;
+				x+=3;
+				distance+=3;
 				if (distance >= 100) {
 					charactor_special_right.OnMove();
 					charactor_special_right.OnMove();
@@ -80,8 +80,8 @@ namespace game_framework {
 				}
 			}
 			else if (!direction_right) {
-				x--;
-				distance++;
+				x-=3;
+				distance+=3;
 				if (distance >= 100) {
 					
 					charactor_special_left.OnMove();

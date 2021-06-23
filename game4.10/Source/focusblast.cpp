@@ -70,8 +70,8 @@ namespace game_framework {
 					show = false;
 			}
 			else if (direction_right) {
-				x++;
-				distance++;
+				x+=3;
+				distance+=3;
 				if (distance >= 145) {
 
 
@@ -80,8 +80,8 @@ namespace game_framework {
 				}
 			}
 			else if (!direction_right) {
-				x--;
-				distance++;
+				x-=3;
+				distance+=3;
 				if (distance >= 145) {
 
 			

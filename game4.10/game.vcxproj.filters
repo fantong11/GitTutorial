@@ -372,5 +372,32 @@
     <Image Include="RES\win.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\start_menu\1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\start_menu\2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\start_menu\3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\start_menu\4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\start_menu\5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\start_menu\6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\start_menu\7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\start_menu\8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ABOUT.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -69,17 +69,201 @@ namespace game_framework {
 // 這個class為遊戲的遊戲開頭畫面物件
 /////////////////////////////////////////////////////////////////////////////
 
-CGameStateInit::CGameStateInit(CGame *g)
-: CGameState(g)
+	CGameStateInit::CGameStateInit(CGame *g)
+		: CGameState(g)
+	{
+
+
+
+
+
+	}
+
+void CGameStateInit::OnMove()
 {
 	
+}
+void CGameStateInit::OnBeginState()
+{
+	counter = 0;
+	menu1.LoadBitmap(IDB_START_MENU1);
+	menu2.LoadBitmap(IDB_START_MENU2);
+	menu3.LoadBitmap(IDB_START_MENU3);
+	menu4.LoadBitmap(IDB_START_MENU4);
+	menu5.LoadBitmap(IDB_START_MENU5);
+	menu6.LoadBitmap(IDB_START_MENU6);
+	menu7.LoadBitmap(IDB_START_MENU7);
+	menu8.LoadBitmap(IDB_START_MENU8);
 
+}
+void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	const char KEY_ESC = 27;
+	const char KEY_SPACE = ' ';
+	const char KEY_LEFT = 0x25; // keyboard左箭頭
+	const char KEY_UP = 0x26; // keyboard上箭頭
+	const char KEY_RIGHT = 0x27; // keyboard右箭頭
+	const char KEY_DOWN = 0x28; // keyboard下箭頭
+	const char KEY_ATTACK = 0x4A;
+	const char KEY_DEF = 0x4C;
+	const char KEY_JUMP = 0x4B;
+	if (nChar == KEY_ATTACK) {
+		if (counter >= 0) {
+			if (((counter + 1) % 6) == 2) {
+				if ((abs(counter) % 6) == 1) {
+					GotoGameState(GAME_STATE_ABOUT);
+				}
+
+			}
+			if (((counter + 1) % 6) == 0)
+				PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
+		}
+		else {
+			if ((abs(counter) % 8) == 7) {
+				GotoGameState(GAME_STATE_ABOUT);
+			}
+			if ((abs(counter) % 8) == 1)
+				PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);
+		}
+	}
+	if (nChar == KEY_UP) {
+		counter--;
+	}
+	if (nChar == KEY_DOWN) {
+		counter++;
+	}
+}
+
+void CGameStateInit::OnInit()
+{
+		//
+		// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
+		//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
+		//
+		ShowInitProgress(66);	// 接個前一個狀態的進度，此處進度視為66%
+		//
+		// 開始載入資料
+		//
+		Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
+		//
+		// 最終進度為100%
+		//
+		ShowInitProgress(100);
+
+
+}
+
+void CGameStateInit::OnShow()
+{
+	menu1.SetTopLeft(0, 0);
+	menu2.SetTopLeft(0, 0);
+	menu3.SetTopLeft(0, 0);
+	menu4.SetTopLeft(0, 0);
+	menu5.SetTopLeft(0, 0);
+	menu6.SetTopLeft(0, 0);
+	menu7.SetTopLeft(0, 0);
+	menu8.SetTopLeft(0, 0);
 	
+		if (counter >= 0) {
+			if (((counter + 1) % 8) == 1)
+				menu1.ShowBitmap();
+			else if (((counter + 1) % 8) == 2)
+				menu2.ShowBitmap();
+			else if (((counter + 1) % 8) == 3)
+				menu3.ShowBitmap();
+			else if (((counter + 1) % 8) == 4)
+				menu4.ShowBitmap();
+			else if (((counter + 1) % 8) == 5)
+				menu5.ShowBitmap();
+			else if (((counter + 1) % 8) == 6)
+				menu6.ShowBitmap();
+			else if (((counter + 1) % 8) == 7)
+				menu7.ShowBitmap();
+			else
+				menu8.ShowBitmap();
+		}
+		else {
+			if ((abs(counter) % 8) == 1)
+				menu8.ShowBitmap();
+			else if ((abs(counter) % 8) == 2)
+				menu7.ShowBitmap();
+			else if ((abs(counter) % 8) == 3)
+				menu6.ShowBitmap();
+			else if ((abs(counter) % 8) == 4)
+				menu5.ShowBitmap();
+			else if ((abs(counter) % 8) == 5)
+				menu4.ShowBitmap();
+			else if ((abs(counter) % 8) == 6)
+				menu3.ShowBitmap();
+			else if ((abs(counter) % 8) == 7)
+				menu2.ShowBitmap();
+			else
+				menu1.ShowBitmap();
+		}
+	
+}
+
+
+CGameStateAbout::CGameStateAbout(CGame *g)
+	: CGameState(g)
+{
+
+
+
+
+
+}
+
+void CGameStateAbout::OnMove()
+{
+	counter--;
+	if (counter < 0)
+		GotoGameState(GAME_STATE_MENU);
+}
+void CGameStateAbout::OnBeginState()
+{
+	counter = 30 * 5; // 5 seconds
+	about.LoadBitmap(IDB_ABOUT);
+
+}
+
+void CGameStateAbout::OnInit()
+{
+	//
+	// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
+	//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
+	//
+	ShowInitProgress(66);	// 接個前一個狀態的進度，此處進度視為66%
+	//
+	// 開始載入資料
+	//
+	Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
+	//
+	// 最終進度為100%
+	//
+	ShowInitProgress(100);
+
+
+}
+
+void CGameStateAbout::OnShow()
+{
+	about.SetTopLeft(0, 0);
+	about.ShowBitmap();
+}
+
+
+
+
+CGameStateMenu::CGameStateMenu(CGame *g)
+: CGameState(g)
+{
+		
 	
 
 }
 
-void CGameStateInit::OnInit()
+void CGameStateMenu::OnInit()
 {
 	//
 	// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
@@ -146,7 +330,7 @@ void CGameStateInit::OnInit()
 	}
 }
 
-void CGameStateInit::OnBeginState()
+void CGameStateMenu::OnBeginState()
 {
 	counter = 30 * 6;
 	control = 0;
@@ -156,7 +340,7 @@ void CGameStateInit::OnBeginState()
 	role.Initialize();
 	section = 1;
 }
-void CGameStateInit::OnMove()
+void CGameStateMenu::OnMove()
 {
 	control += 1;
 	if (attack > 1) {
@@ -168,7 +352,7 @@ void CGameStateInit::OnMove()
 		counter = 30 * 6;
 	}
 }
-void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
+void CGameStateMenu::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	const char KEY_ESC = 27;
 	const char KEY_SPACE = ' ';
@@ -287,7 +471,7 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 					counter -= 30;
 			}
 		}
-		else {
+		else if(attack<2){
 			attack--;
 		}
 	}
@@ -297,11 +481,11 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 		PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE,0,0);	// 關閉遊戲
 }
 
-void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
+void CGameStateMenu::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	section++;
 }
-void CGameStateInit::OnShow()
+void CGameStateMenu::OnShow()
 {
 	//
 	// 貼上logo
@@ -594,6 +778,7 @@ void CGameStateRun::OnBeginState()
 	stage = 1;
 	count = 0;
 	special_num = 0;
+	count_sec=0;
 	CAudio::Instance()->Play(AUDIO_BACK1, true);			// 撥放 WAVE
 	smallstage = 1;
 	ifstream fin("text1.txt", ios::in);
@@ -603,15 +788,15 @@ void CGameStateRun::OnBeginState()
 	player = new Player[1];
 	player[0].LoadBitmap(temp);
 	enemy = new Enemy[5];
-	focusblast = new Focusblast[100];
-	swordgas = new SwordGas[100];
+	
 	enemy_num = 0;
 	int i = 0;
 	for (i = 0; i < 5; i++) {
 		enemy[i].LoadBitmap(temp);
 		enemy[i].SetHP(50);
 	}
-	
+	focusblast = new Focusblast[100];
+	swordgas = new SwordGas[100];
 	for (i = 0; i < 100; i++) {
 		focusblast[i].LoadBitmap();
 		swordgas[i].LoadBitmap();
@@ -645,6 +830,14 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	for (i = 0; i < 5; i++) {
 		if (enemy[i].enemy_now)
 			enemy_num++;
+	}
+	
+	if (player[0].MAGIC < 100) {
+		count_sec++;
+		if (count_sec == 30) {
+			player[0].MAGIC += 1;
+			count_sec = 0;
+		}
 	}
 	if (enemy[0].IsDead()) {
 		if (smallstage == 1 && enemy[0].is_alive) {
@@ -943,15 +1136,21 @@ CGameStateStage2::CGameStateStage2(CGame *g)
 
 CGameStateStage2::~CGameStateStage2()
 {
-	delete[] enemy;
+	
 	delete[] player;
 	delete[] smallcharacter;
+	delete[] enemy;
+	delete[] focusblast;
+	delete[] swordgas;
 }
 
 void CGameStateStage2::OnBeginState()
 {
 	CAudio::Instance()->Play(AUDIO_BACK2, true);			// 撥放 WAVE
+	special_num = 0;
+	count = 0;
 	stage = 2;
+	count_sec = 0;
 	smallstage = 1;
 	ifstream fin3("text1.txt", ios::in);
 	int temp3;
@@ -983,6 +1182,12 @@ void CGameStateStage2::OnBeginState()
 	enemy[4].SetXY(400, 330);
 	enemy_num = 1;
 	player[0].SetXY(95, 300);
+	focusblast = new Focusblast[100];
+	swordgas = new SwordGas[100];
+	for (i = 0; i < 100; i++) {
+		focusblast[i].LoadBitmap();
+		swordgas[i].LoadBitmap();
+	}
 	if (smallstage == 1) {
 		for (i = 1; i < 5; i++)
 			enemy[i].enemy_now = false;
@@ -1003,6 +1208,13 @@ void CGameStateStage2::OnMove()							// 移動遊戲元素
 	for (i = 0; i < 5; i++) {
 		if (enemy[i].enemy_now)
 			enemy_num++;
+	}
+	if (player[0].MAGIC < 100) {
+		count_sec++;
+		if (count_sec == 30) {
+			player[0].MAGIC += 1;
+			count_sec = 0;
+		}
 	}
 	if (enemy[0].IsDead()) {
 		if (smallstage == 1 && enemy[0].is_alive) {
@@ -1074,7 +1286,60 @@ void CGameStateStage2::OnMove()							// 移動遊戲元素
 		CAudio::Instance()->Stop(AUDIO_BACK2);
 		GotoGameState(GAME_STATE_OVER);
 	}
-		
+	if (player[0].role == 2) {
+		if (player[0].defenseLeftAttack) {
+			if (player[0].nonduplicate) {
+				if (player[0].MAGIC >= 15) {
+					player[0].DecreaseMagic();
+					swordgas[special_num].SetSwordGas(player[0].x, player[0].y, player[0].face_right);
+					swordgas[special_num].show = true;
+					special_num++;
+					player[0].nonduplicate = false;
+				}
+			}
+		}
+		else if (player[0].defenseRightAttack) {
+			if (player[0].nonduplicate) {
+				if (player[0].MAGIC >= 15) {
+					player[0].DecreaseMagic();
+					swordgas[special_num].SetSwordGas(player[0].x, player[0].y, player[0].face_right);
+					swordgas[special_num].show = true;
+					special_num++;
+					player[0].nonduplicate = false;
+				}
+			}
+		}
+		else {
+			player[0].nonduplicate = true;
+		}
+	}
+	else if (player[0].role == 3) {
+		if (player[0].defenseLeftAttack) {
+			if (player[0].nonduplicate) {
+				if (player[0].MAGIC >= 15) {
+					player[0].DecreaseMagic();
+					focusblast[special_num].SetFocusblast(player[0].x, player[0].y, player[0].face_right);
+					focusblast[special_num].show = true;
+					special_num++;
+					player[0].nonduplicate = false;
+				}
+			}
+		}
+		else if (player[0].defenseRightAttack) {
+			if (player[0].nonduplicate) {
+				if (player[0].MAGIC >= 15) {
+					player[0].DecreaseMagic();
+					focusblast[special_num].SetFocusblast(player[0].x, player[0].y, player[0].face_right);
+					focusblast[special_num].show = true;
+					special_num++;
+					player[0].nonduplicate = false;
+				}
+			}
+		}
+		else {
+			player[0].nonduplicate = true;
+		}
+	}
 
 
 	int p_x = 0, p_y = 0, e_x = 0, e_y = 0;
@@ -1091,6 +1356,28 @@ void CGameStateStage2::OnMove()							// 移動遊戲元素
 			else
 				player[0].isUnderAttack(enemy[i].x, enemy[i].y, enemy[i].z, enemy[i].isAttack);
 		}
+	}
+	int j = 0;
+	for (j = 0; j < 100; j++) {
+
+		for (i = 0; i < 5; i++) {
+			if (enemy[i].enemy_now) {
+				if (player[0].role == 2 && swordgas[j].Collision(enemy[i].x, enemy[i].y, enemy[i].z)) {
+					count++;
+					enemy[i].UnderAttack = true;
+					enemy[i].DecreaseBlood3();
+				}
+				else if (player[0].role == 3 && focusblast[j].Collision(enemy[i].x, enemy[i].y, enemy[i].z)) {
+					count++;
+					enemy[i].UnderAttack = true;
+					enemy[i].DecreaseBlood3();
+
+				}
+			}
+		}
+
+		swordgas[j].OnMove();
+		focusblast[j].OnMove();
 	}
 
 
@@ -1176,6 +1463,10 @@ void CGameStateStage2::OnShow()
 		if (enemy[i].enemy_now)
 			enemy[i].OnShow();
 	}
+	for (i = 0; i < 100; i++) {
+		swordgas[i].OnShow();
+		focusblast[i].OnShow();
+	}
 
 	player[0].DrawAllAboutPlayer();
 
@@ -1220,6 +1511,8 @@ CGameStateStage3::~CGameStateStage3()
 	delete[] enemy;
 	delete[] player;
 	delete[] smallcharacter;
+	delete[] swordgas;
+	delete[] focusblast;
 }
 
 void CGameStateStage3::OnBeginState()
@@ -1227,6 +1520,9 @@ void CGameStateStage3::OnBeginState()
 	CAudio::Instance()->Play(AUDIO_BACK3, true);			// 撥放 WAVE
 	stage = 3;
 	smallstage = 1;
+	special_num = 0;
+	count = 0;
+	count_sec = 0;
 	ifstream fin3("text1.txt", ios::in);
 	int temp3;
 	fin3 >> temp3;
@@ -1245,6 +1541,7 @@ void CGameStateStage3::OnBeginState()
 	player[0].MAGIC = temp2;
 	enemy = new Enemy[5];
 	enemy_num = 0;
+
 	int i = 0;
 	for (i = 0; i < 5; i++) {
 		enemy[i].LoadBitmap(temp);
@@ -1256,6 +1553,12 @@ void CGameStateStage3::OnBeginState()
 	enemy[3].SetXY(400, 270);
 	enemy[4].SetXY(400, 330);
 	enemy_num = 1;
+	focusblast = new Focusblast[100];
+	swordgas = new SwordGas[100];
+	for (i = 0; i < 100; i++) {
+		focusblast[i].LoadBitmap();
+		swordgas[i].LoadBitmap();
+	}
 	player[0].SetXY(95, 300);
 	if (smallstage == 1) {
 		for (i = 1; i < 5; i++)
@@ -1280,6 +1583,13 @@ void CGameStateStage3::OnMove()
 	for (i = 0; i < 5; i++) {
 		if (enemy[i].enemy_now)
 			enemy_num++;
+	}
+	if (player[0].MAGIC < 100) {
+		count_sec++;
+		if (count_sec == 30) {
+			player[0].MAGIC += 1;
+			count_sec = 0;
+		}
 	}
 	if (enemy[0].IsDead()) {
 		if (smallstage == 1 && enemy[0].is_alive) {
@@ -1335,7 +1645,60 @@ void CGameStateStage3::OnMove()
 		CAudio::Instance()->Stop(AUDIO_BACK3);
 		GotoGameState(GAME_STATE_OVER);
 	}
-		
+	if (player[0].role == 2) {
+		if (player[0].defenseLeftAttack) {
+			if (player[0].nonduplicate) {
+				if (player[0].MAGIC >= 15) {
+					player[0].DecreaseMagic();
+					swordgas[special_num].SetSwordGas(player[0].x, player[0].y, player[0].face_right);
+					swordgas[special_num].show = true;
+					special_num++;
+					player[0].nonduplicate = false;
+				}
+			}
+		}
+		else if (player[0].defenseRightAttack) {
+			if (player[0].nonduplicate) {
+				if (player[0].MAGIC >= 15) {
+					player[0].DecreaseMagic();
+					swordgas[special_num].SetSwordGas(player[0].x, player[0].y, player[0].face_right);
+					swordgas[special_num].show = true;
+					special_num++;
+					player[0].nonduplicate = false;
+				}
+			}
+		}
+		else {
+			player[0].nonduplicate = true;
+		}
+	}
+	else if (player[0].role == 3) {
+		if (player[0].defenseLeftAttack) {
+			if (player[0].nonduplicate) {
+				if (player[0].MAGIC >= 15) {
+					player[0].DecreaseMagic();
+					focusblast[special_num].SetFocusblast(player[0].x, player[0].y, player[0].face_right);
+					focusblast[special_num].show = true;
+					special_num++;
+					player[0].nonduplicate = false;
+				}
+			}
+		}
+		else if (player[0].defenseRightAttack) {
+			if (player[0].nonduplicate) {
+				if (player[0].MAGIC >= 15) {
+					player[0].DecreaseMagic();
+					focusblast[special_num].SetFocusblast(player[0].x, player[0].y, player[0].face_right);
+					focusblast[special_num].show = true;
+					special_num++;
+					player[0].nonduplicate = false;
+				}
+			}
+		}
+		else {
+			player[0].nonduplicate = true;
+		}
+	}
 
 
 	int p_x = 0, p_y = 0, e_x = 0, e_y = 0;
@@ -1352,6 +1715,29 @@ void CGameStateStage3::OnMove()
 			else
 				player[0].isUnderAttack(enemy[i].x, enemy[i].y, enemy[i].z, enemy[i].isAttack);
 		}
+	}
+
+	int j = 0;
+	for (j = 0; j < 100; j++) {
+
+		for (i = 0; i < 5; i++) {
+			if (enemy[i].enemy_now) {
+				if (player[0].role == 2 && swordgas[j].Collision(enemy[i].x, enemy[i].y, enemy[i].z)) {
+					count++;
+					enemy[i].UnderAttack = true;
+					enemy[i].DecreaseBlood3();
+				}
+				else if (player[0].role == 3 && focusblast[j].Collision(enemy[i].x, enemy[i].y, enemy[i].z)) {
+					count++;
+					enemy[i].UnderAttack = true;
+					enemy[i].DecreaseBlood3();
+
+				}
+			}
+		}
+
+		swordgas[j].OnMove();
+		focusblast[j].OnMove();
 	}
 
 
@@ -1435,6 +1821,12 @@ void CGameStateStage3::OnShow()
 		if (enemy[i].enemy_now)
 			enemy[i].OnShow();
 	}
+
+	for (i = 0; i < 100; i++) {
+		swordgas[i].OnShow();
+		focusblast[i].OnShow();
+	}
+	
 	player[0].DrawAllAboutPlayer();
 
 	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 

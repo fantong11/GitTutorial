@@ -66,9 +66,9 @@ namespace game_framework {
 	// 每個Member function的Implementation都要弄懂
 	/////////////////////////////////////////////////////////////////////////////
 
-	class CGameStateInit : public CGameState {
+	class CGameStateMenu : public CGameState {
 	public:
-		CGameStateInit(CGame *g);
+		CGameStateMenu(CGame *g);
 		void OnInit();  								// 遊戲的初值及圖形設定
 		void OnBeginState();							// 設定每次重玩所需的變數
 		void OnKeyUp(UINT, UINT, UINT); 				// 處理鍵盤Up的動作
@@ -159,6 +159,7 @@ namespace game_framework {
 		int smallstage;
 		int special_num;
 		int count;
+		int count_sec;
  	};
 	class CGameStateStage2 : public CGameState {
 	public:
@@ -175,6 +176,10 @@ namespace game_framework {
 		CMovingBitmap stageone;
 		CMovingBitmap up_block;
 		CMovingBitmap* smallcharacter;
+		Focusblast* focusblast;
+		SwordGas* swordgas;
+		int special_num;
+		int count;
 		int map_floor_range_x;
 		int map_floor_range_y;
 		Enemy* enemy;
@@ -182,6 +187,7 @@ namespace game_framework {
 		int stage;
 		int enemy_num;
 		int smallstage;
+		int count_sec;
 	};
 	class CGameStateStage3 : public CGameState {
 	public:
@@ -198,6 +204,10 @@ namespace game_framework {
 		CMovingBitmap stageone;
 		CMovingBitmap up_block;
 		CMovingBitmap* smallcharacter;
+		Focusblast* focusblast;
+		SwordGas* swordgas;
+		int special_num;
+		int count;
 		int map_floor_range_x;
 		int map_floor_range_y;
 		Enemy* enemy;
@@ -205,6 +215,7 @@ namespace game_framework {
 		int stage;
 		int enemy_num;
 		int smallstage;
+		int count_sec;
 	};
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的結束狀態(Game Over)
@@ -235,5 +246,41 @@ namespace game_framework {
 		int counter;	// 倒數之計數器
 		CMovingBitmap win;
 	};
+
+	class CGameStateInit : public CGameState {
+	public:
+		CGameStateInit(CGame *g);
+		void OnBeginState();							// 設定每次重玩所需的變數
+		void OnInit();
+	protected:
+		void OnMove();									// 移動遊戲元素
+		void OnShow();									// 顯示這個狀態的遊戲畫面
+		void OnKeyUp(UINT, UINT, UINT);
+	private:
+		int counter;
+		int SelectMenu;
+		CMovingBitmap menu1;
+		CMovingBitmap menu2;
+		CMovingBitmap menu3;
+		CMovingBitmap menu4;
+		CMovingBitmap menu5;
+		CMovingBitmap menu6;
+		CMovingBitmap menu7;
+		CMovingBitmap menu8;
+	};
+
+	class CGameStateAbout : public CGameState {
+	public:
+		CGameStateAbout(CGame *g);
+		void OnBeginState();							// 設定每次重玩所需的變數
+		void OnInit();
+	protected:
+		void OnMove();									// 移動遊戲元素
+		void OnShow();									// 顯示這個狀態的遊戲畫面
+	private:
+		int counter;	// 倒數之計數器
+		CMovingBitmap about;
+	};
+
 
 }
